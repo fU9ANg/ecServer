@@ -23,7 +23,7 @@
 #define SQL_SELECT_CLASSROOM_DB "select classroom_name, white_board from classroom"
 #define SQL_SELECT_STUDENT_DB "SELECT s.student_id, r.path AS picture_name, s.account AS student_name FROM student AS s, resource AS r WHERE s.picture_id = r.resource_id"
 //#define SQL_SELECT_COURSEITEM_DB "SELECT c.course_name, i.item_name from course_item AS ci, course AS c, item AS i WHERE ci.course_id=c.course_id AND ci.item_id=i.item_id AND c.course_name=?"
-#define SQL_SELECT_COURSEITEM_DB "SELECT c.course_name, i.item_name from course_item AS ci, course AS c, item AS i WHERE ci.course_id=c.course_id AND ci.item_id=i.item_id AND (c.course_name=? OR c.course_name=? OR c.course_name=? OR c.course_name=?)"
+#define SQL_SELECT_COURSEITEM_DB "SELECT c.course_name, i.item_name, ci.fck_desc from course_item AS ci, course AS c, item AS i WHERE ci.course_id=c.course_id AND ci.item_id=i.item_id AND (c.course_name=? OR c.course_name=? OR c.course_name=? OR c.course_name=?)"
 
 #define SQL_SELECT_ROOM "SELECT classroom_id, classroom_name, white_board FROM classroom"
 

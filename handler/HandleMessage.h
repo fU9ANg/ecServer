@@ -64,6 +64,7 @@ private:
 
     static bool postTeacherToWhite (Buf* p, enum CommandType);
     static bool postStudentToWhite (Buf* p, enum CommandType);
+    static bool postWhiteToTeacher (Buf* p, enum CommandType);
 
     static bool postTeacherToAllStudent (Buf* p, enum CommandType);
     static bool postTeacherToStudent    (Buf* p, enum CommandType, int iStuId);

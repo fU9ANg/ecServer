@@ -16,9 +16,9 @@ int SendTask::work() {
         }
 
         //
+#if 0
         cout << "Send cType: " << ((MSG_HEAD*)p->ptr())->cType <<endl;
         printf ("address: %p\n", p);
-
         if (((MSG_HEAD*)p->ptr())->cType == 187) {
         cout << "-----------------------BEGIN-------------------------------------" << endl;
         cout << "CTYPE: " << ((MSG_HEAD*) (p->ptr()))->cType << endl;
@@ -30,9 +30,11 @@ int SendTask::work() {
 
         cout << "-------------------------END-----------------------------------" << endl;
         }
+#endif
 
         // send fck message to clients
         // must be need written bytes data finished
+        debugProtocol (p);
         int bytes_left = p->size ();
         int written_bytes;
         char* ptr = (char*) p->ptr();

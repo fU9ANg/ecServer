@@ -1,7 +1,7 @@
 /*
-   @desc		the implement of db class @author		cacls
-   @date		2012/12/24
-   @copyright	sxkj
+   @desc		the implement of db class @author fU9ANg
+   @date		2013/04/25
+   @copyright	bb.newlife@gmail.com
    */
 
 #include "database.h"

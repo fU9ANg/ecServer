@@ -1,5 +1,7 @@
     MSGNAME (CT_Test, handleTest);
     MSGNAME (CT_ChangeScene, handleChangeScene);
+    MSGNAME (CT_ControlChangeScene, handleControlChangeScene);
+    MSGNAME (CT_InitSceneFinished, handleInitSceneFinished);
     MSGNAME (CT_Login, handleLogin);
     MSGNAME (CT_LoginResult, handleLoginResult);
     MSGNAME (CT_GetCourseDBCount, handleGetCourseDBCount);
@@ -85,6 +87,7 @@
     MSGNAME (CT_BuildHouse_Activation, handleBuildHouse_Activation);
     MSGNAME (CT_BuildHouse_Role, handleBuildHouse_Role);
     MSGNAME (CT_BuildHouse_Stamp, handleBuildHouse_Stamp);
+    MSGNAME (CT_BuildHouse_ScreenShot, handleBuildHouse_ScreenShot);
     MSGNAME (CT_BuildHouse_SaveHouse, handleBuildHouse_SaveHouse);
 
     //////////////////
@@ -101,6 +104,8 @@
     MSGNAME (CT_Scene_End, handleSceneEnd);
     MSGNAME (CT_Puzzle_GetPic, handlePuzzle_GetPic);
     MSGNAME (CT_Puzzle_UpdatePic, handlePuzzle_UpdatePic);
+    MSGNAME (CT_Puzzle_SelectedType, handlePuzzle_SelectedType);
+    MSGNAME (CT_Puzzle_SelectedSize, handlePuzzle_SelectedSize);
 
     //////////////////
 

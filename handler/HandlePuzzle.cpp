@@ -187,6 +187,46 @@ void CHandleMessage::handlePuzzle_EndGame (Buf* p)
     SINGLE->bufpool.free(p);
 }
 
+/*
+====================
+ 拼图的类型选择
+ CT_Puzzle_SelectedType
+====================
+*/
+void CHandleMessage::handlePuzzle_SelectedType (Buf* p)
+{
+    if (p == NULL)
+        return;
+
+    cout << "process: CT_Puzzle_SelectedType" << endl;
+    MSG_HEAD* head = (MSG_HEAD*)p->ptr();
+
+    if (head->cType == CT_Puzzle_SelectedType) {
+        CHandleMessage::postTeacherToWhite (p, ST_Puzzle_SelectedType);
+    }
+
+}
+
+/*
+====================
+ 拼图的大小选择
+ CT_Puzzle_SelectedSize
+====================
+*/
+void CHandleMessage::handlePuzzle_SelectedSize (Buf* p)
+{
+    if (p == NULL)
+        return;
+
+    cout << "process: CT_Puzzle_SelectedSize" << endl;
+    MSG_HEAD* head = (MSG_HEAD*)p->ptr();
+
+    if (head->cType == CT_Puzzle_SelectedSize) {
+        CHandleMessage::postTeacherToWhite (p, ST_Puzzle_SelectedSize);
+    }
+
+}
+
 void CHandleMessage::handlePuzzle_GetPic(Buf* p)
 {
 #if 0

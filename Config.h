@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <string>
 
-#include <lua5.2/lua.hpp>
+#include "lua5.2/lua.hppp"
 using namespace std;
 
 /**

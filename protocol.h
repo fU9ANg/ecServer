@@ -13,6 +13,10 @@ enum CommandType
     ST_ChangeScene,
     CT_ControlChangeScene,
     ST_ControlChangeScene,
+    CT_InitSceneFinished,       // 当白板端初始化数据后,发送此消息给服务器
+    ST_InitSceneFinished,       // 服务器转发此消息给教师端
+
+    ST_ConfirmIntoClassRoom,    // 当教师进入电子教室后,发送此消息给所有的学生端
 
     CT_Login = 150,      // 登录 (所有端)
     CT_LoginResult,      // 登录结果 (所有端)
@@ -145,6 +149,8 @@ enum CommandType
     CT_BuildHouse_Stamp,                // 盖章 (教师端) *
     ST_BuildHouse_Stamp,                // 盖章 (白板端) *
     CT_BuildHouse_SaveHouse,            // 盖章确认 (教师端) ***
+    CT_BuildHouse_ScreenShot,           // 截图 (教师端)
+    ST_BuildHouse_Screenshot,           // 截图 (白板端)
 
 
     //////////////////
@@ -169,6 +175,11 @@ enum CommandType
     CT_Puzzle_CalcScore,        // 拼图的结果 (教师端) &*
     CT_Puzzle_EndGame,          // 结束拼图课程 (教师端) *
     ST_Puzzle_EndGame,          // 结束拼图课程 (白板端和所有学生端) *
+
+    CT_Puzzle_SelectedType,
+    ST_Puzzle_SelectedType,
+    CT_Puzzle_SelectedSize,
+    ST_Puzzle_SelectedSize,
 
 
 
@@ -377,6 +388,8 @@ struct sCourseItem
 {
     char sCourseName[20];
     char sItemName[20];
+    char sDesc[512];
+    int  iId;
 };
 /*
 SELECT c.course_name, i.item_name from course_item AS ci, course AS c, item AS i WHERE ci.course_id=c.course_id AND ci.item_id=i.item_id AND c.course_name="造房子";
@@ -627,6 +640,8 @@ typedef struct Make_House_Change_Layer{
 
 typedef struct Make_House_Add_Pic {
     int node_id;
+    float x;
+    float y;
     char picture_name[40];
 }TMake_House_Add_Pic;
 

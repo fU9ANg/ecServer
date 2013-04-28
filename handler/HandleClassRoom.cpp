@@ -30,7 +30,7 @@ void CHandleMessage::handleTest (Buf* p)
 void CHandleMessage::handleChangeScene (Buf* p)
 {
     cout << "CT_ChangeScene\n";
-    printf ("change scene: %d\n", *(int *)((char *)p->ptr () + sizeof (MSG_HEAD)));
+    //printf ("change scene: %d\n", *(int *)((char *)p->ptr () + sizeof (MSG_HEAD)));
 ////测试使用!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #if 0
     MSG_HEAD* p_head = (MSG_HEAD*)p->ptr();
@@ -44,7 +44,58 @@ void CHandleMessage::handleChangeScene (Buf* p)
         printf("send change scence!\n");
     }
 #endif
-    CHandleMessage::postTeacherToAllStudent(p, ST_ChangeScene);
+    //CHandleMessage::postTeacherToAllStudent(p, ST_ChangeScene);
+}
+
+void CHandleMessage::handleControlChangeScene (Buf* p)
+{
+    cout << "CT_ControlChangeScene\n";
+    printf ("control change scene: %d\n", *(int *)((char *)p->ptr () + sizeof (MSG_HEAD)));
+    Buf* pp = SINGLE->bufpool.malloc();
+
+    pp->setfd (p->getfd());
+    pp->setsize (MSG_HEAD_LEN + sizeof (int));
+    MSG_HEAD* head = (MSG_HEAD*) pp->ptr();
+    head->cLen = MSG_HEAD_LEN + sizeof (int);
+    head->cType = ST_ControlChangeScene;
+
+    *(int *)((char *)pp->ptr () + sizeof (MSG_HEAD)) = *(int *)((char *)p->ptr () + sizeof (MSG_HEAD));
+    //cout << "---------size: " << pp->size() << "--------------fd: " << pp->getfd() << endl;
+
+    CRoom* pc = ROOMMANAGER->get_room_by_fd (pp->getfd());
+
+    if (pc != NULL && pc->get_teacher_fd() == pp->getfd()) 
+    {
+        //cout << "hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
+    
+        pp->setfd (pc->get_white_fd());
+        //cout << "here len = " << head->cLen << endl;
+        pp->setsize (head->cLen);
+        SINGLE->sendqueue.enqueue (pp);
+    }
+    else 
+    {
+        cout << "Error: not found 'teacher_fd' in Room" << endl;
+        SINGLE->bufpool.free(pp);
+    }
+
+    //CHandleMessage::postTeacherToWhite (pp, ST_ControlChangeScene);
+    CHandleMessage::postTeacherToAllStudent (p, ST_ControlChangeScene);
+}
+
+void CHandleMessage::handleInitSceneFinished (Buf* p)
+{
+    if (p == NULL)
+        return;
+
+    cout << "process: CT_InitSceneFinished" << endl;
+    MSG_HEAD* head = (MSG_HEAD*)p->ptr();
+
+    if (head->cType == CT_InitSceneFinished) {
+        CHandleMessage::postWhiteToTeacher (p, ST_InitSceneFinished);
+    }
+
+    return;
 }
 
 /*
@@ -140,6 +191,22 @@ void CHandleMessage::handleSetCourseGroup (Buf* p)
 
     // select record of coruseitem from database, not 
     // from item_list of course get information (record)
+    // 同步教师进行电子教室到所有的学生端
+    Buf* tmp = SINGLE->bufpool.malloc ();
+    if (tmp == NULL)
+    {
+        cout << "out of memory" << endl;
+        return;
+    }
+    
+    ((MSG_HEAD*) ((char*) tmp->ptr()))->cLen = MSG_HEAD_LEN + sizeof (sCommonStruct);
+    *(int*) (((char*) tmp->ptr()) + MSG_HEAD_LEN) = 1;
+    tmp->setsize (MSG_HEAD_LEN + sizeof (sCommonStruct));
+    tmp->setfd (p->getfd());
+
+    cout << "Send ST_ConfirmIntoClassRoom, size=" << tmp->size() << ", " << "value="
+        << *(int*) (((char*) tmp->ptr()) + MSG_HEAD_LEN);
+    CHandleMessage::postTeacherToAllStudent (tmp, ST_ConfirmIntoClassRoom);
 }
 
 /*
@@ -591,7 +658,11 @@ void CHandleMessage::handleSelectedClassRoom (Buf* p)
     //todo:
     TSelectedClassRoom* pp = (TSelectedClassRoom*)((char*)p->ptr() + sizeof(MSG_HEAD));
 
+    cout << "classroom_id: " << pp->classroom_id << endl;
+    cout << "client_type: " << pp->client_type << endl;
     CRoom* proom = ROOMMANAGER->get_room(pp->classroom_id);
+    if (proom == NULL)
+        return;
     if (MCT_STUDENT == pp->client_type) {
         CStudent* pstudent = new CStudent();
         pstudent->setId (0);
@@ -605,11 +676,12 @@ void CHandleMessage::handleSelectedClassRoom (Buf* p)
         proom->add_student(p->getfd(), pstudent);
         printf("student login room[%d] fd = [%d]\n", pp->classroom_id, p->getfd());
     }
-    if (MCT_WHITEBOARD == pp->client_type) {
-        printf("white board login classroom[%d]", proom->get_room_id());
+    else if (MCT_WHITEBOARD == pp->client_type) {
+        //printf("white board login classroom[%d]", proom->get_room_id());
+        cout << "white board login classroom = " << proom->get_room_id() << ", fd = " << p->getfd() << endl;
         proom->set_white_fd(p->getfd());
     }
-    p->reset();
+    //p->reset();
     SINGLE->bufpool.free(p);
 }
 
@@ -722,7 +794,7 @@ void CHandleMessage::handleCommonPlayorPause (Buf* p)
     MSG_HEAD* head = (MSG_HEAD*)p->ptr();
 
     if (head->cType == CT_Common_PlayorPause) {
-        postTeacherToWhite (p, CT_Common_PlayorPause);
+        postTeacherToWhite (p, ST_Common_PlayorPause);
     }
 
     return;

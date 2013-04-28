@@ -26,6 +26,7 @@ void CHandleMessage::handleBuildHouse_CaiHongXiaoWu (Buf* p)
 
     if (head->cType == CT_BuildHouse_CaiHongXiaoWu) {
         CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_CaiHongXiaoWu);
+        cout << "content: " << ((sBuildHouseCaiHongXiaoWu*)(((char*)p->ptr()) + MSG_HEAD_LEN))->sText << endl;
     }
 
     return;
@@ -390,6 +391,22 @@ void CHandleMessage::handleBuildHouse_Stamp (Buf* p)
 }
 
 /*
+ */
+void CHandleMessage::handleBuildHouse_ScreenShot (Buf* p)
+{
+    if (p == NULL)
+        return;
+
+    cout << "process: CT_BuildHouse_ScreenShot" << endl;
+    MSG_HEAD* head = (MSG_HEAD*) p->ptr();
+
+    if (head->cType == CT_BuildHouse_ScreenShot) {
+        CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_Screenshot);
+    }
+    return;
+}
+
+/*
 =====================
  盖章确认 (教师端) ***
 =====================
@@ -415,7 +432,7 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
     if (p_group == NULL)
         return;
 
-    TMake_House_Update* t_update = (TMake_House_Update*) ((char*)p->ptr() + MSG_HEAD_LEN);
+    TMake_House_Update* t_update = (TMake_House_Update*) (((char*)p->ptr()) + MSG_HEAD_LEN);
 
     CMakeHouse* p_make_house = p_group->get_make_house();
     if (p_make_house == NULL)

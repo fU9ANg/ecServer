@@ -9,16 +9,16 @@
 #include <iostream>
 
 
-#include <mysql_connection.h>
-#include <mysql_driver.h>
-#include <cppconn/resultset.h>
-#include <cppconn/driver.h>
-#include <cppconn/exception.h>
-#include <cppconn/resultset.h>
-#include <cppconn/statement.h>
-#include <cppconn/prepared_statement.h>
+#include "mysql/mysql_connection.h"
+#include "mysql/mysql_driver.h"
+#include "mysql/cppconn/resultset.h"
+#include "mysql/cppconn/driver.h"
+#include "mysql/cppconn/exception.h"
+#include "mysql/cppconn/resultset.h"
+#include "mysql/cppconn/statement.h"
+#include "mysql/cppconn/prepared_statement.h"
 
-#include <glog/logging.h>
+#include "glog/logging.h"
 
 #include "Config.h"
 #include "Mutex.h"

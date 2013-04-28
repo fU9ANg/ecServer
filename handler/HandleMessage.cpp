@@ -63,16 +63,17 @@ bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)
     printf("Teacher login class room [%d] success!\n", proom->get_room_id());
 #endif
 
-
+    cout << "postTeacherToWhite............................ " << endl;
     CRoom* pc = ROOMMANAGER->get_room_by_fd (p->getfd());
 
     if (pc != NULL && pc->get_teacher_fd() == p->getfd()) 
     {
-
+        cout << "hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
         MSG_HEAD* head = (MSG_HEAD*)p->ptr();
 
         head->cType = iCommandType;
         p->setfd (pc->get_white_fd());
+        cout << "here len = " << head->cLen << endl;
         p->setsize (head->cLen);
         SINGLE->sendqueue.enqueue (p);
     }
@@ -85,6 +86,33 @@ bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)
     return true;
 }
 
+bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)
+{
+    cout << "postWhiteToTeacher ...................... " << endl;
+    CRoom* pc = ROOMMANAGER->get_room_by_fd (p->getfd());
+
+    if (pc != NULL && pc->get_white_fd() == p->getfd())
+    {
+        cout << "herere ... postWhiteToTeacher.... " << endl;
+        MSG_HEAD* head = (MSG_HEAD*) p->ptr();
+        head->cType = iCommandType;
+        cout << "teacher: fddddddddddddd=" << pc->get_teacher_fd() 
+            << " len: " << head->cLen 
+            << " cType: " << head->cType << endl;
+        cout << "data  = " << *(int*)(((char*)p->ptr()) + MSG_HEAD_LEN) << endl;
+        p->setfd (pc->get_teacher_fd());
+        p->setsize (head->cLen);
+        SINGLE->sendqueue.enqueue (p);
+    }
+    else
+    {
+        cout << "ERROR: not found 'whiteboard_fd' in Room" << endl;
+        SINGLE->bufpool.free (p);
+        return false;
+    }
+
+    return true;
+}
 /*
 =====================
  转发学生端数据到白板端
@@ -121,6 +149,7 @@ bool CHandleMessage::postStudentToWhite (Buf* p, enum CommandType iCommandType)
 */
 bool CHandleMessage::postTeacherToAllStudent (Buf* p, enum CommandType iCommandType)
 {
+    cout << "postTeacherToAllStudent ------------------------ " <<endl;
     if (p == NULL)
         return false;
 
@@ -227,7 +256,7 @@ bool CHandleMessage::postDBRecordCount (Buf* p, int iCase)
         printf("null buf\n");
         return false;
     }
-    printf (" postDBRecordCount ..., iCase=%d\n", iCase);
+    //printf (" postDBRecordCount ..., iCase=%d\n", iCase);
 #if 1
     if (iCase == 1) {
         strcat (str, "course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id");
@@ -398,6 +427,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 memcpy (&head.cType, &type, sizeof (unsigned int));
                 head.cLen = sizeof(MSG_HEAD) + sizeof(struct sGetCourseDB);
                 struct sGetCourseDB course_info;
+                (void) memset (&course_info, 0x00, sizeof (sGetCourseDB));
 
                 strcpy(course_info.sGradeName, prst->getString ("grade_name").c_str());
                 strcpy(course_info.sGroupName, prst->getString ("group_name").c_str());
@@ -505,10 +535,15 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 //head.cType = CT_GetCourseItem;
                 head.cLen = sizeof(MSG_HEAD) + sizeof (struct sCourseItem);
                 struct sCourseItem course_item;
+                (void) memset (&course_item, 0x00, sizeof (sCourseItem));
 
                 strcpy (course_item.sCourseName, prst->getString ("course_name").c_str());
                 strcpy (course_item.sItemName, prst->getString ("item_name").c_str());
+                strcpy (course_item.sDesc, prst->getString ("fck_desc").c_str());
 
+                cout << "courseName: " << course_item.sCourseName << endl;
+                cout << "itemName: " << course_item.sItemName << endl;
+                cout << "Desc: " << course_item.sDesc << endl;
                 Buf* p = SINGLE->bufpool.malloc ();
                 memcpy (p->ptr(), &head, sizeof(MSG_HEAD));
                 memcpy ((char *)p->ptr() + sizeof(MSG_HEAD), &course_item, sizeof (struct sCourseItem));

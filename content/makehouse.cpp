@@ -253,15 +253,60 @@ CStudent* CGroup::get_student_by_fd (int fd)
 void CGroup::broadcast(Buf* p)
 {
     STUDENTMAP::iterator it;
-    for (it=m_student_map.begin(); it!=m_student_map.end();++it) {
-        Buf* p_buf = SINGLE->bufpool.malloc();
-        *p_buf = *p;
-        SINGLE->sendqueue.enqueue(p_buf);
+    Buf* p_buf = NULL;
+    MSG_HEAD* head = NULL;
+    char* pp = NULL;
+
+    for (it=m_student_map.begin(); it!=m_student_map.end(); ++it) {
+        p_buf = SINGLE->bufpool.malloc();
+        head = (MSG_HEAD*)((char*) p_buf->ptr());
+        pp = ((char*)p_buf->ptr()) + MSG_HEAD_LEN;
+
+        head->cType = \
+        ((MSG_HEAD*) ((char*) p->ptr()))->cType;
+
+        head->cLen  = \
+        ((MSG_HEAD*) ((char*) p->ptr()))->cLen;
+        
+        p_buf->setfd (p->getfd());
+        p_buf->setsize (head->cLen);
+
+        (void) memcpy (pp, ((char*)p->ptr()) + MSG_HEAD_LEN, head->cLen);
+        SINGLE->sendqueue.enqueue (p_buf);
     }
 }
 
 void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 {
+    STUDENTMAP::iterator it;
+    Buf* p_buf = NULL;
+    MSG_HEAD* head = NULL;
+    char* pp = NULL;
+
+    for (it=m_student_map.begin(); it!=m_student_map.end(); ++it) {
+
+        if (p->getfd() == it->first) continue;
+
+        p_buf = SINGLE->bufpool.malloc();
+        head = (MSG_HEAD*)((char*) p_buf->ptr());
+        pp = ((char*)p_buf->ptr()) + MSG_HEAD_LEN;
+
+        head->cType = eType;
+
+        head->cLen  = \
+        ((MSG_HEAD*) ((char*) p->ptr()))->cLen;
+        
+        p_buf->setfd (it->first);
+        p_buf->setsize (head->cLen);
+
+        (void) memcpy (pp, ((char*)p->ptr()) + MSG_HEAD_LEN, head->cLen);
+        SINGLE->sendqueue.enqueue (p_buf);
+    }
+
+    SINGLE->bufpool.free (p);
+
+    return;
+#if 0
     STUDENTMAP::iterator it;
     for (it = m_student_map.begin(); it != m_student_map.end (); it++) {
         if (p->getfd() == it->first) {
@@ -273,14 +318,15 @@ void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
             cout << "out of memory" << endl;
             return;
         }
-        (void) memcpy (pp, p, ((MSG_HEAD *)p)->cLen);
-        ((MSG_HEAD*)p)->cType = eType;
+        (void) memcpy (pp->ptr(), p->ptr(), ((MSG_HEAD *)p->ptr())->cLen);
+        ((MSG_HEAD*)p->ptr())->cType = eType;
         pp->setfd (it->first);
         SINGLE->sendqueue.enqueue (pp);
     }
 
-    p->reset ();
+    //p->reset ();
     SINGLE->bufpool.free (p);
 
     return;
+#endif
 }

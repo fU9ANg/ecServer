@@ -10,7 +10,8 @@
 #include <time.h>
 #include <assert.h>
 #include <sys/file.h>
-#include <glog/logging.h>
+
+#include "glog/logging.h"
 
 #include "ThreadPool.h"
 #include "task.h"
