@@ -48,7 +48,8 @@ class AtomicT
         /**
          * @brief post-increment
          */
-        TYPE operator++ (int){
+        TYPE operator++ (int)   // parameter must is int
+        {
             MutexLockGuard guard(lock_);
             return this->value_++;
         }
@@ -58,7 +59,7 @@ class AtomicT
             return --this->value_;
         }
 
-        TYPE operator-- (int){
+        TYPE operator-- (int){  // parameter must is int
             MutexLockGuard guard(lock_);
             return this->value_--;
         }

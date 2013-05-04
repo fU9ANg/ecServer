@@ -16,7 +16,9 @@ enum CommandType
     CT_InitSceneFinished,       // 当白板端初始化数据后,发送此消息给服务器
     ST_InitSceneFinished,       // 服务器转发此消息给教师端
 
+
     ST_ConfirmIntoClassRoom,    // 当教师进入电子教室后,发送此消息给所有的学生端
+    CT_ConfirmIntoClassRoom,    // 学生端
 
     CT_Login = 150,      // 登录 (所有端)
     CT_LoginResult,      // 登录结果 (所有端)
@@ -229,6 +231,12 @@ enum mClientType
     MCT_STUDENT = 1,
     MCT_TEACHER,
     MCT_WHITEBOARD,
+};
+
+enum eTeacherIntoRoomType
+{
+    TT_LOGIN_CLASSROOM  = 1,
+    TT_LOGOUT_CLASSROOM = 2,
 };
 
 enum eClientStatus

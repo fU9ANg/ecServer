@@ -1,8 +1,11 @@
+
 /**
  * @ingroup framework
  */
+
 #ifndef _GLOBAL_DATA_H_
 #define _GLOBAL_DATA_H_
+
 #include <stdio.h>
 #include "AtomicT.h"
 #include "QueueT.h"
@@ -29,6 +32,8 @@ class Single
         Single();
         static class Single* p_;
 };
+
 #define SINGLE Single::instance()
+
 ///@}
 #endif

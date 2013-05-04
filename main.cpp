@@ -1,7 +1,9 @@
+
 /**
  * @ingroup framework
  * @{
  */
+
 #include <stdio.h>
 #include "ThreadPool.h"
 #include "AtomicT.h"
@@ -10,6 +12,7 @@
 
 #include "ProcessManager.h"
 
+// it's rock
 int main(int argc, char* argv[])
 {
     ProcessManager* x = new ProcessManager();

@@ -111,7 +111,11 @@ public:
 
     unsigned int getAutoNodeId ();
 
+    int getIsUsed ();
+    void setIsUsed (int used);
+
 private:
+    int m_isUsed;
     CTeacher m_teacher;
     int m_room_id;
     int m_teacher_fd;

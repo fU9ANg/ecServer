@@ -1,3 +1,4 @@
+
 /**
  * ingroup database database
  * @{
@@ -7,7 +8,6 @@
 #define _DATABASE_H_
 #include <string>
 #include <iostream>
-
 
 #include "mysql/mysql_connection.h"
 #include "mysql/mysql_driver.h"
@@ -26,7 +26,8 @@
 using namespace sql;
 using namespace std;
 
-class DataBase {
+class DataBase
+{
     public:
         ~DataBase();
         /**
@@ -57,6 +58,7 @@ class DataBase {
 
         static DataBase* instance();
         MutexLock m_mutex;
+
     private:
         DataBase();
         Driver* m_pDriver;
@@ -67,8 +69,10 @@ class DataBase {
         string m_database;
         static DataBase *pinstance;
 };
+
 #define DATABASE DataBase::instance()
 #endif
+
 /**
  * @}
  */

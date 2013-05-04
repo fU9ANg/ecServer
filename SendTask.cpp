@@ -1,6 +1,8 @@
+
 #include "SendTask.h"
 
-int SendTask::work() {
+int SendTask::work()
+{
     while(true){
         Buf* p = NULL;
         if (0 != SINGLE->sendqueue.dequeue(p, 3)) {

@@ -1,9 +1,11 @@
+
 /**
  * @author  liuyuncheng
  * @version  1.0
  * @addtogroup framework
  * @{
  */
+
 #ifndef _POOLT_H_
 #define _POOLT_H_
 #include <queue>
@@ -12,6 +14,7 @@
 #include <pthread.h>
 
 #include "Mutex.h"
+
 using namespace std;
 
 /**
@@ -20,7 +23,8 @@ using namespace std;
  * @  简易内存池
  */
 template<typename TYPE>
-class PoolT {
+class PoolT
+{
 public:
     /**
      * @brief   constructor
@@ -88,6 +92,7 @@ private:
     MutexLock lock_;
     int size_;
 };
+
 /**
  * @}
  */

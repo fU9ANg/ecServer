@@ -1,8 +1,10 @@
+
 /**
  * @author  liuyuncheng
  * @version  1.0
  * @{
  */
+
 #ifndef _QUEUET_H_
 #define _QUEUET_H_
 #include <queue>
@@ -18,7 +20,8 @@ using namespace std;
  * @brief   simple blocking queue
  */
 template<typename TYPE>
-class QueueT {
+class QueueT
+{
 public:
     /**
      * @brief   constructor
@@ -94,6 +97,7 @@ private:
     /**queue*/
     queue<TYPE> m_queue;
 };
+
 /**
  * @}
  */

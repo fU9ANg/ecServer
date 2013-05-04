@@ -131,11 +131,11 @@ CREATE TABLE `class` (
 #
 LOCK TABLES `class` WRITE;
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
-INSERT INTO `class` VALUES (1,'一年级',1,1);
-INSERT INTO `class` VALUES (2,'二年级',1,1);
-INSERT INTO `class` VALUES (3,'三年级',1,1);
-INSERT INTO `class` VALUES (4,'四年级',1,1);
-INSERT INTO `class` VALUES (5,'五年级',1,1);
+INSERT INTO `class` VALUES (1,'河蟹班',1,1);
+INSERT INTO `class` VALUES (2,'蜈蚣班',1,1);
+INSERT INTO `class` VALUES (3,'蜘蛛班',1,1);
+INSERT INTO `class` VALUES (4,'壁虎班',1,1);
+INSERT INTO `class` VALUES (5,'青蛙班',1,1);
 /*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,10 +185,10 @@ CREATE TABLE `course` (
 #
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'暖身操',100,1, 73, 56, 85, 45, 62);
-INSERT INTO `course` VALUES (2,'动画片',101,1, 83, 84, 85, 18, 62);
-INSERT INTO `course` VALUES (3,'造房子',103,1, 91, 56, 41, 45, 62);
-INSERT INTO `course` VALUES (4,'拼图' ,104,1, 95, 56, 85, 45, 81);
+INSERT INTO `course` VALUES (1,'暖身操',100,1, 13, 56, 76, 25, 92);
+INSERT INTO `course` VALUES (2,'动画片',101,1, 83, 64, 15, 18, 32);
+INSERT INTO `course` VALUES (3,'造房子',103,1, 41, 26, 11, 65, 82);
+INSERT INTO `course` VALUES (4,'拼图'  ,104,1, 35, 56, 25, 95, 11);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -214,19 +214,19 @@ INSERT INTO `course_group_course` VALUES (2, 1, 2);
 INSERT INTO `course_group_course` VALUES (3, 1, 3);
 INSERT INTO `course_group_course` VALUES (4, 1, 4);
 
-INSERT INTO `course_group_course` VALUES (5, 2, 1);
-INSERT INTO `course_group_course` VALUES (6, 2, 2);
-INSERT INTO `course_group_course` VALUES (7, 2, 3);
+INSERT INTO `course_group_course` VALUES (5, 2, 2);
+INSERT INTO `course_group_course` VALUES (6, 2, 3);
+INSERT INTO `course_group_course` VALUES (7, 2, 1);
 INSERT INTO `course_group_course` VALUES (8, 2, 4);
 
-INSERT INTO `course_group_course` VALUES (9, 3, 1);
+INSERT INTO `course_group_course` VALUES (9, 3, 4);
 INSERT INTO `course_group_course` VALUES (10, 3, 2);
-INSERT INTO `course_group_course` VALUES (11, 3, 3);
+INSERT INTO `course_group_course` VALUES (11, 3, 1);
 INSERT INTO `course_group_course` VALUES (12, 3, 4);
 
 INSERT INTO `course_group_course` VALUES (13, 4, 1);
-INSERT INTO `course_group_course` VALUES (14, 4, 2);
-INSERT INTO `course_group_course` VALUES (15, 4, 3);
+INSERT INTO `course_group_course` VALUES (14, 4, 3);
+INSERT INTO `course_group_course` VALUES (15, 4, 2);
 INSERT INTO `course_group_course` VALUES (16, 4, 4);
 /*!40000 ALTER TABLE `course_group_course` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -284,18 +284,17 @@ CREATE TABLE `course_item` (
 #
 LOCK TABLES `course_item` WRITE;
 /*!40000 ALTER TABLE `course_item` DISABLE KEYS */;
-# INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,3, '待机,一级,二级,三级,进入下一阶段', '说明: 暖身操(控场动画) - f**ing U!');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,13, '待机,一级,二级,三级,进入下一阶段', '说明: 暖身操(暖身串场) - f**ing U!');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,6, '开始,停止, 进入下一阶段', '说明: 暖身操(暖身操)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,2, '待机,一级,二级,三级,大幕拉开,下一章节', '说明: 动画片(动画串场)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,7, '开始,停止', '说明: 动画片(动画剧院)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '待机,一级,二级,三级,进入下一阶段,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,下一章', '说明: 造房子(造房串场)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,4, '监视器,彩虹谷,进入下一阶段', '说明: 造房子(互动)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '盖章,咔嚓', '说明: 造房子(拍照)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,10, '', '说明: 造房子(示范造房)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,11, '', '说明: 造房子(学生造房)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '方块,凹凸,12块,20块,启动,监视器,结束,下课', '说明: 拼图(拼图)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,14, '待机,进入下一阶段', '说明: 拼图(拼图串场)');
+# INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,13, '开始,停止,进入下一阶段', '说明:暖身操(暖身串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,6, '返回上一阶段,开始,停止', '说明:暖身操(暖身操)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,2, '返回上一阶段,进入,停留,离开,进入下一阶段', '说明:动画片(动画串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,7, '返回上一阶段,大幕拉开,开始,停止', '说明:动画片(动画剧院)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '返回上一阶段,进入,停留,离开,进入下一章,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,进入下一阶段', '说明:造房子(造房串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,10, '', '说明:造房子(示范造房)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,11, '', '说明:造房子(学生造房)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,4, '返回上一阶段,造房监视,彩虹谷场景,进入下一阶段', '说明:造房子(互动)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '返回上一阶段,盖章,咔嚓,进入下一阶段', '说明:造房子(拍照)');
+# INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,14, '返回上一阶段,待机,进入下一阶段', '说明:拼图(拼图串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '返回上一阶段,方块,凹凸,12块,20块,启动,拼图监视,结束', '说明:拼图(拼图)');
 /*!40000 ALTER TABLE `course_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -599,8 +598,16 @@ CREATE TABLE `teacher` (
 LOCK TABLES `teacher` WRITE;
 /*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
 INSERT INTO `teacher` VALUES (1,'张','三','女','张三','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
-INSERT INTO `teacher` VALUES (2,'李','四','男','李四','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2002);
-INSERT INTO `teacher` VALUES (3,'王','五','男','王五','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2003);
+INSERT INTO `teacher` VALUES (2,'李','四','男','李四','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (3,'王','五','男','王五','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (4,'A','A','男','A','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (5,'a','a','男','a','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (6,'B','B','男','B','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (7,'b','b','男','b','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (8,'C','C','男','C','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (9,'c','c','男','c','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (10,'D','D','男','D','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
+INSERT INTO `teacher` VALUES (11,'d','d','男','d','e14b4e10a3107f50a07362d74e856218',1,'1989-12-30',1,1,1,2001);
 UPDATE teacher SET password = "123456";
 /*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
 UNLOCK TABLES;

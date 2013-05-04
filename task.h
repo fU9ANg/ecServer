@@ -79,6 +79,11 @@ class task
                                             *(int*)pstr);
                                     pstr += sizeof (int);
                                 }
+                                else if (strcmp (str, "uint,") == 0) {
+                                    printf ("\t\t%s.int = %d\n", protocols[idx].cStructName.c_str(), \
+                                            *(unsigned int*)pstr);
+                                    pstr += sizeof (unsigned int);
+                                }
                                 (void) memset (str, 0x00, sizeof (str));
                                 j = 0;
                                 continue;

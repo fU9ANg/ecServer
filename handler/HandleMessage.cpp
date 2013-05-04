@@ -113,6 +113,7 @@ bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)
 
     return true;
 }
+
 /*
 =====================
  转发学生端数据到白板端
@@ -454,6 +455,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 //head.cType = CT_GetGradeDB;
                 head.cLen = sizeof (MSG_HEAD)+ sizeof (struct sGetGradeDB);
                 struct sGetGradeDB grade_info;
+                (void) memset (&grade_info, 0x00, sizeof (grade_info));
 
                 strcpy (grade_info.sGradeName, prst->getString ("grade_name").c_str());
 
@@ -472,6 +474,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 //head.cType = CT_GetClassDB;
                 head.cLen = sizeof(MSG_HEAD)+ sizeof (struct sGetClassDB);
                 struct sGetClassDB class_info;
+                (void) memset (&class_info, 0x00, sizeof (class_info));
 
                 strcpy (class_info.sClassName, prst->getString ("class_name").c_str());
 
@@ -490,6 +493,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 memcpy (&head.cType, &type, sizeof (unsigned int));
                 head.cLen = sizeof(MSG_HEAD) + sizeof (struct sGetClassRoomDB);
                 struct sGetClassRoomDB room_info;
+                (void) memset (&room_info, 0x00, sizeof (room_info));
 
                 strcpy (room_info.sClassRoomName, prst->getString ("classroom_name").c_str());
 
@@ -508,6 +512,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
                 /// cout << "begin:-head.cType = " << head.cType << endl;
                 head.cLen = sizeof (MSG_HEAD) + sizeof (struct sGetAllStudentInfo);
                 struct sGetAllStudentInfo stu_info;
+                (void) memset (&stu_info, 0x00, sizeof (stu_info));
 
                 strcpy (stu_info.sPicName, prst->getString ("picture_name").c_str());
                 strcpy (stu_info.sStudentName, prst->getString ("student_name").c_str());

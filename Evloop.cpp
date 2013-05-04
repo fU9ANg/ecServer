@@ -4,7 +4,8 @@ struct ev_loop* Evloop::loop = NULL;
 struct ev_io_info Evloop::ioarray[MAXFD];
 AtomicT<int> Evloop::clientcount;
 
-Evloop::Evloop(string ip, int port) {
+Evloop::Evloop(string ip, int port)
+{
     ip_ = ip;
     port_ = port;
     listenfd_ = socket(AF_INET, SOCK_STREAM, 0);
@@ -16,11 +17,13 @@ Evloop::Evloop(string ip, int port) {
     }
 }
 
-Evloop::~Evloop() {
+Evloop::~Evloop()
+{
     close(listenfd_);
 }
 
-int Evloop::startlisten() {
+int Evloop::startlisten()
+{
     struct sockaddr_in servaddr;
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = inet_addr(ip_.c_str());
@@ -37,7 +40,8 @@ int Evloop::startlisten() {
     return listenfd_;
 }
 
-int Evloop::work() {
+int Evloop::work()
+{
     //建立监听
     startlisten();
     ev_io *ev_io_watcher = (ev_io*)malloc(sizeof(ev_io));
@@ -66,7 +70,8 @@ int Evloop::work() {
 /**
  * @brief 接受客户端回调函数
  */
-void Evloop::accept_cb(struct ev_loop *loop, ev_io *w, int revents) {
+void Evloop::accept_cb(struct ev_loop *loop, ev_io *w, int revents)
+{
     struct sockaddr_in clientaddr;
     socklen_t socklen = sizeof(struct sockaddr_in);
     int newfd = accept(w->fd, (struct sockaddr*)&clientaddr, &socklen);
@@ -97,7 +102,8 @@ void Evloop::accept_cb(struct ev_loop *loop, ev_io *w, int revents) {
 /**
  * @brief 接受数据回调函数
  */
-void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents) {
+void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents)
+{
     //从内存池中取出一个buf
     Buf* buf = SINGLE->bufpool.malloc();
     if (NULL == buf) {
@@ -136,7 +142,8 @@ void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents) {
     return;
 }
 
-void Evloop::setnonblock(int fd) {
+void Evloop::setnonblock(int fd)
+{
     fcntl(fd, F_SETFL, fcntl(fd, F_GETFL, 0) | O_NONBLOCK);
 }
 
@@ -152,7 +159,8 @@ void Evloop::setnodelay (int fd)
     setsockopt (fd, IPPROTO_TCP, TCP_NODELAY, &nodelay, sizeof (nodelay));
 }
 
-void Evloop::closefd(int fd) {
+void Evloop::closefd(int fd)
+{
     struct sockaddr_in  remote_addr;
     socklen_t socklen = sizeof(struct sockaddr_in);
     getpeername(fd, (struct sockaddr*)&remote_addr, &socklen);
@@ -174,7 +182,8 @@ void Evloop::closefd(int fd) {
     ROOMMANAGER->del_client(fd);
 }
 
-void Evloop::time_cb(struct ev_loop* loop, struct ev_timer *timer, int revents) {
+void Evloop::time_cb(struct ev_loop* loop, struct ev_timer *timer, int revents)
+{
     ev_tstamp now = ev_time();
     for(register int i = 0; i < MAXFD; ++i ) {
         if (NULL != ioarray[i].io) {
@@ -188,6 +197,7 @@ void Evloop::time_cb(struct ev_loop* loop, struct ev_timer *timer, int revents) 
     return;
 }
 
-int Evloop::getClientCount() {
+int Evloop::getClientCount()
+{
     return Evloop::clientcount.value();
 }

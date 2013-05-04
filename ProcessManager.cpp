@@ -1,17 +1,23 @@
+
 /**
  * @ingroup framework
  * @{
  */
+
 #include "ProcessManager.h"
-ProcessManager::ProcessManager() { 
+
+ProcessManager::ProcessManager()
+{
     thrpool_ = new ThreadPool(10);
     lockfd_ = 0;
 }
 
-ProcessManager::~ProcessManager() {
+ProcessManager::~ProcessManager()
+{
 }
 
-int ProcessManager::process_logic(int argc, char** argv) {
+int ProcessManager::process_logic(int argc, char** argv)
+{
   //设置信号处理
   signal(SIGINT, SIG_IGN);
   signal(SIGPIPE, SIG_IGN);
@@ -71,16 +77,19 @@ int ProcessManager::process_logic(int argc, char** argv) {
   return 0;
 }
 
-void ProcessManager::sig_term(int signo) {
+void ProcessManager::sig_term(int signo)
+{
   printf("get exit signal\n");
   LOG(INFO) << "server stoped";
   raise(SIGKILL);
   return;
 }
+
 /**
  *主循环
  */
-int ProcessManager::run() {
+int ProcessManager::run()
+{
   printf("run\n");
 
   thrpool_->start();
@@ -112,7 +121,8 @@ int ProcessManager::run() {
   return 0;
 }
 
-bool ProcessManager::lock(int mode) {
+bool ProcessManager::lock(int mode)
+{
   char szPid[32] = {0};
   snprintf(szPid, 32, "%ld", (long)getpid());
   if (0 == lockfd_) {
@@ -140,4 +150,5 @@ bool ProcessManager::lock(int mode) {
   }
   return true;
 }
+
 ///@}

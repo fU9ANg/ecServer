@@ -2,8 +2,10 @@
  * @addtogroup framework
  * @{
  */
+
 #ifndef _CONFIG_H_
 #define _CONFIG_H_
+
 #include <stdio.h>
 #include <string>
 
@@ -30,10 +32,13 @@ class Config {
         int server_port;
         int school_id;
         int game_count;
+
     private:
         Config();
         static class Config* p_;
 };
+
 #define CONFIG Config::instance()
 #endif
+
 ///@}

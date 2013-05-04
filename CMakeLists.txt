@@ -21,6 +21,7 @@ SET (CMAKE_C_COMPILER_ARG1 "gcc")
 INCLUDE_DIRECTORIES (
     content
     handler
+    ./includes
     ./
 )
 

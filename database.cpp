@@ -9,7 +9,8 @@
 DataBase* DataBase::pinstance = NULL;
 
 // init function
-bool DataBase::Init(string host, string user_name, string password, string database) {
+bool DataBase::Init(string host, string user_name, string password, string database)
+{
     m_host = host; m_user_name = user_name;
     m_password = password;
     m_database = database;
@@ -25,10 +26,13 @@ bool DataBase::Init(string host, string user_name, string password, string datab
     return (NULL == m_pConn) ? false:true;
 }
 
-DataBase::DataBase() {
+DataBase::DataBase()
+{
     m_pConn = NULL;
 }
-DataBase::~DataBase() {
+
+DataBase::~DataBase()
+{
     if (NULL != m_pConn)
     {
         delete m_pConn;
@@ -36,11 +40,13 @@ DataBase::~DataBase() {
     }
 }
 
-Connection* DataBase::getConnection() {
+Connection* DataBase::getConnection()
+{
     return m_pConn;	
 }
 
-Statement* DataBase::getStatement() {
+Statement* DataBase::getStatement()
+{
     Statement* p = NULL;
     try {
         p = m_pConn->createStatement(); 
@@ -56,11 +62,13 @@ Statement* DataBase::getStatement() {
     return p;
 }
 
-PreparedStatement* DataBase::preStatement(string sql) {
+PreparedStatement* DataBase::preStatement(string sql)
+{
     return m_pConn->prepareStatement(sql); 
 }
 
-DataBase* DataBase::instance() {
+DataBase* DataBase::instance()
+{
     if ( NULL == pinstance) {
         pinstance = new DataBase();
     }

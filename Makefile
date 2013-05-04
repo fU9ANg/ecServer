@@ -53,7 +53,8 @@ BIN	    = server
 INC	    = -I. -I./includes -I./handler -I./content
 
 # for Linker
-LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so
+#LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so
+LINK        = -lev -lglog -lmysqlcppconn -llua5.2
 # rock..
 all:$(BIN)
 
@@ -69,4 +70,4 @@ $(BIN):$(OBJS)
 .PHONY: clean
 
 clean:
-	-rm -rf $(OBJS) $(BIN)
+	-rm -rf $(OBJS) $(BIN) *~

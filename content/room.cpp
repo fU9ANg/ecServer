@@ -7,6 +7,17 @@
 CRoom::CRoom(int id, string class_name, string white_board):
     m_room_id(id),m_room_name(class_name),m_white_board(white_board) {
         m_node_id = 1;
+        m_isUsed = 0;
+}
+
+int CRoom::getIsUsed ()
+{
+    return (m_isUsed);
+}
+
+void CRoom::setIsUsed (int used)
+{
+    m_isUsed = used;
 }
 
 int CRoom::get_room_id() {
@@ -95,6 +106,7 @@ void CRoom::update_all_student_status (int fd, int flag)
     // 清除学生Map中的某一学生
     it = m_student_map.find (fd);
     if (m_student_map.end() != it) {
+    // FIXME: don't copy code
 #if 1   // 向教师发送所有学生的当前状态
         Buf* pt = SINGLE->bufpool.malloc ();
         MSG_HEAD* head = (MSG_HEAD*) ((char*) pt->ptr());
@@ -106,6 +118,19 @@ void CRoom::update_all_student_status (int fd, int flag)
         req->status = it->second->getStudentStatus ();
         pt->setsize (head->cLen);
         pt->setfd (m_teacher_fd);
+        SINGLE->sendqueue.enqueue (pt);
+#endif
+#if 1   // 向白板端发送所有学生的当前状态
+        pt = SINGLE->bufpool.malloc ();
+        head = (MSG_HEAD*) ((char*) pt->ptr());
+        head->cLen = MSG_HEAD_LEN + sizeof (unsigned int) + sizeof (TSendStudentStatusReq);
+        head->cType = ST_SendStudentStatus;
+        *(unsigned int *)(((char *)pt->ptr()) + MSG_HEAD_LEN) = 1;
+        req = (TSendStudentStatusReq*)(((char*)pt->ptr()) + MSG_HEAD_LEN + sizeof (unsigned int));
+        req->student_id = it->second->getId ();
+        req->status = it->second->getStudentStatus ();
+        pt->setsize (head->cLen);
+        pt->setfd (m_white_fd);
         SINGLE->sendqueue.enqueue (pt);
 #endif
         if (flag == 0) {
@@ -204,7 +229,7 @@ void CRoom::del_client(int fd) {
     }
     //del_student(fd);
 
-    // 改为向所有的学生端发送数据
+    // 改为向所有的学生端发送数据 (学生掉线处理也在其中)
     update_all_student_status (fd, 0);
 }
 
@@ -317,9 +342,9 @@ int CRoom::reset() {
         delete *it2;
         m_game_list.erase(it2++);
     }
-    m_white_fd = 0;
+    //m_white_fd = 0;
     m_teacher_fd = 0;
-    m_teacher_name.clear();
+    //m_teacher_name.clear();
     return 0;
 }
 
@@ -340,6 +365,21 @@ void CRoom::teacher_disconnect() {
         p->setfd(it->first);
         SINGLE->sendqueue.enqueue(p);
     }
+
+    /// FIXME: 所有的发送信息代码，应提供一个通用的工具类
+
+    /// 发送教室掉线信息给白板端
+    Buf* p = SINGLE->bufpool.malloc ();
+    MSG_HEAD* p_head = (MSG_HEAD*) p->ptr();
+    p_head->cLen = sizeof (MSG_HEAD) + sizeof (TSendStudentStatusReq);
+    p_head->cType = ST_SendStudentStatus;
+    TSendStudentStatusReq body;
+    body.student_id = 0xFFFFFFFF;
+    body.status = 0xFFFFFFFF;
+    (void) memcpy (p_head->cData(), &body, sizeof (body));
+    p->setsize (p_head->cLen);
+    p->setfd (m_white_fd);
+    SINGLE->sendqueue.enqueue (p);
 
     /// 释放某个电子教室
     this->reset();

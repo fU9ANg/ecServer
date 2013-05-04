@@ -1,9 +1,12 @@
+
 /**
  * @ingroup framework
  * @{
  */
+
 #ifndef _PROCESSMAMAGER_H_
 #define _PROCESSMAMAGER_H_
+
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -25,7 +28,8 @@
 
 #define CONFIGFILE "./config.lua"
 
-enum {
+enum
+{
   LOCK_WAIT   = LOCK_EX,            /**<阻塞锁*/
   LOCK_NOWAIT = LOCK_EX | LOCK_NB,  /**<非阻塞锁*/
   UNLOCK      = LOCK_UN             /**<解锁*/
@@ -53,6 +57,7 @@ class ProcessManager
      * @param signo 信号
      */
     static void sig_term(int signo);
+
   private:
     /**
      * @brief 文件锁
@@ -62,5 +67,6 @@ class ProcessManager
     ThreadPool* thrpool_;   /**线程池*/
     int lockfd_;            /**文件锁句柄*/
 };
+
 #endif
 ///@}

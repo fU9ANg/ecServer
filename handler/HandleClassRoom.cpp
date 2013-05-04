@@ -100,6 +100,46 @@ void CHandleMessage::handleInitSceneFinished (Buf* p)
 
 /*
 =====================
+ CT_ConfirmIntoClassRoom
+=====================
+*/
+void CHandleMessage::handleConfirmIntoClassRoom (Buf* p)
+{
+    if (p == NULL)
+        return;
+
+    cout << "process: CT_ConfirmIntoClassRoom" << endl;
+    MSG_HEAD* head = (MSG_HEAD*)p->ptr();
+
+    if (head->cType == CT_ConfirmIntoClassRoom)
+    {
+        head->cType = ST_ConfirmIntoClassRoom;
+        ((MSG_HEAD*) ((char*) p->ptr()))->cLen = MSG_HEAD_LEN + sizeof (sCommonStruct);
+
+        CRoom* proom = ROOMMANAGER->get_room_by_fd (p->getfd());
+        if (proom == NULL) {
+            cout << "Warning: not found class room" << endl;
+            return;
+        }
+        if (proom->get_teacher_fd() <= 0)
+            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
+        else
+            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = TT_LOGIN_CLASSROOM;
+
+        p->setsize (MSG_HEAD_LEN + sizeof (sCommonStruct));
+        //p->setfd (p->getfd());
+
+        cout << "Send ST_ConfirmIntoClassRoom, size=" << p->size() << ", " << "value="
+             << *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN);
+
+        SINGLE->sendqueue.enqueue (p);
+    }
+
+    return;
+}
+
+/*
+=====================
  登录 (所有端)
 =====================
 */
@@ -191,7 +231,7 @@ void CHandleMessage::handleSetCourseGroup (Buf* p)
 
     // select record of coruseitem from database, not 
     // from item_list of course get information (record)
-    // 同步教师进行电子教室到所有的学生端
+    // 同步教师进行电子教室到所有的学生端 (其实应该放在LoginClassRoom的handler中去处理)
     Buf* tmp = SINGLE->bufpool.malloc ();
     if (tmp == NULL)
     {
@@ -200,13 +240,27 @@ void CHandleMessage::handleSetCourseGroup (Buf* p)
     }
     
     ((MSG_HEAD*) ((char*) tmp->ptr()))->cLen = MSG_HEAD_LEN + sizeof (sCommonStruct);
-    *(int*) (((char*) tmp->ptr()) + MSG_HEAD_LEN) = 1;
+    *(int*) (((char*) tmp->ptr()) + MSG_HEAD_LEN) = TT_LOGIN_CLASSROOM;
     tmp->setsize (MSG_HEAD_LEN + sizeof (sCommonStruct));
     tmp->setfd (p->getfd());
 
     cout << "Send ST_ConfirmIntoClassRoom, size=" << tmp->size() << ", " << "value="
         << *(int*) (((char*) tmp->ptr()) + MSG_HEAD_LEN);
     CHandleMessage::postTeacherToAllStudent (tmp, ST_ConfirmIntoClassRoom);
+
+    // Send teacher login information to whiteboard.
+    Buf* pp;
+    if ((pp = SINGLE->bufpool.malloc ()) == NULL)
+    {
+        cout << "out of memory" << endl;
+        return;
+    }
+    MSG_HEAD* head = NULL;
+    head = (MSG_HEAD*) ((char*) pp->ptr());
+    head->cLen = MSG_HEAD_LEN + sizeof (int);
+    head->cType = ST_ConfirmIntoClassRoom;
+    *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
+    CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
 }
 
 /*
@@ -377,12 +431,11 @@ void CHandleMessage::handleLoginClassRoom (Buf* p)
         printf("can't find class room [%s]\n", st_login_class_room.sClassRoomName);
         return;
     }
+
+    if (proom->getIsUsed() == 1)
+#if 0
     if ((p->getfd() == proom->get_teacher_fd()) || \
         (strcmp(st_login_class_room.sTeacherName, proom->get_teacher_name().c_str()) == 0))
-#if 0
-        || \
-        (strcmp(st_login_class_room.sClassName, proom->get_class_name().c_str()) == 0) || \
-        (strcmp(st_login_class_room.sClassRoomName, proom->get_room_name().c_str()) == 0))
 #endif
     {
         cout << "classroom used by teachername='" << proom->get_teacher_name() << "'" << endl;
@@ -393,7 +446,7 @@ void CHandleMessage::handleLoginClassRoom (Buf* p)
     proom->set_teacher_name(st_login_class_room.sTeacherName);
     proom->set_class_name(st_login_class_room.sClassName);
     printf("Teacher login class room [%d] success!\n", proom->get_room_id());
-
+    proom->setIsUsed (1);
     SINGLE->bufpool.free(p);
     //todo:
 }
@@ -408,7 +461,29 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
     CRoom* room = ROOMMANAGER->get_room_by_fd (p->getfd());
     if (room != NULL) {
         if (room->get_teacher_by_fd (p->getfd ())) {
+            room->set_teacher_fd (0);   // set teacher fd to INVALID
+            room->setIsUsed (0);
             room->reset ();
+            // send teacher logout information to all students.
+            // TODO:
+            MSG_HEAD* head = (MSG_HEAD*) ((char*)p->ptr());
+            head->cLen = MSG_HEAD_LEN + sizeof (int);
+            head->cType = ST_ConfirmIntoClassRoom;
+            *(int*) (((char*)p->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
+            CHandleMessage::postTeacherToAllStudent (p, ST_ConfirmIntoClassRoom);
+
+            // Send teacher login information to whiteboard.
+            Buf* pp;
+            if ((pp = SINGLE->bufpool.malloc ()) == NULL)
+            {
+                cout << "out of memory" << endl;
+                return;
+            }
+            head = (MSG_HEAD*) ((char*) pp->ptr());
+            head->cLen = MSG_HEAD_LEN + sizeof (int);
+            head->cType = ST_ConfirmIntoClassRoom;
+            *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
+            CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
         }
     }
     return;

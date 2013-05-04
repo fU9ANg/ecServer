@@ -1,9 +1,12 @@
+
 /**
  * @addtogroup framework
  * @{
  */
+
 #ifndef EVLOOP_H_
 #define EVLOOP_H_
+
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
@@ -31,7 +34,8 @@
 #define MAXFD 10240
 #define TIMEOUT 10
 
-typedef struct ev_io_info{
+typedef struct ev_io_info
+{
     struct ev_io* io;
     ev_tstamp lasttime;
 }ev_in_info;
@@ -40,7 +44,8 @@ typedef struct ev_io_info{
  * @class Evloop
  * @brief event loop
  */
-class Evloop: public task{
+class Evloop: public task
+{
     public:
         Evloop(string ip, int port);
         ~Evloop();
@@ -87,6 +92,7 @@ class Evloop: public task{
         int port_;
         string ip_;
 };
+
 #endif
 /**
  * @}

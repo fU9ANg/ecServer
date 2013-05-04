@@ -136,6 +136,7 @@ int LoginCheck::login_student(int fd, struct sLogin login) {
         pStudent->setOnLine (true);
         pStudent->setStudentStatus (eCS_ONLINE);
 
+        // send student state to teacher.
         Buf* pp = SINGLE->bufpool.malloc();
         MSG_HEAD* p_head = (MSG_HEAD*)pp->ptr();
         p_head->cLen = sizeof(MSG_HEAD) + sizeof (unsigned int) + sizeof(TSendStudentStatusReq); 
@@ -145,12 +146,26 @@ int LoginCheck::login_student(int fd, struct sLogin login) {
         body.student_id = pStudent->getId();
         body.status = eCS_ONLINE;
         *((unsigned int *)p_head->cData()) = 1;      // 设置变化状态的个数为1
-        memcpy((char*)p_head->cData() + sizeof (unsigned int), &body, sizeof(body));
+        (void) memcpy((char*)p_head->cData() + sizeof (unsigned int), &body, sizeof(body));
 
-        // send student state to teacher.
         pp->setsize(p_head->cLen);      
         pp->setfd(pRoom->get_teacher_fd());        
         SINGLE->sendqueue.enqueue(pp);
+
+        // send student state to whiteboard.
+        Buf* ppp = SINGLE->bufpool.malloc ();
+        MSG_HEAD* ppp_head = (MSG_HEAD*) ppp->ptr();
+        ppp_head->cLen = sizeof (MSG_HEAD) + sizeof (unsigned int) + sizeof (TSendStudentStatusReq);
+        ppp_head->cType = ST_SendStudentStatus;
+        (void) memset (&body, 0x00, sizeof (body));
+        body.student_id = pStudent->getId();
+        body.status = eCS_ONLINE;
+        *((unsigned int *)ppp_head->cData()) = 1;
+        (void) memcpy ((char*)ppp_head->cData() + sizeof (unsigned int), &body, sizeof (body));
+
+        ppp->setsize(ppp_head->cLen);      
+        ppp->setfd(pRoom->get_white_fd());        
+        SINGLE->sendqueue.enqueue(ppp);
 
         // send student state to other students.
         CRoom::STUDENTMAP::iterator it;

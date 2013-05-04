@@ -16,7 +16,11 @@
 
 #define SQL_SELECT_USED_COURSE "select cg.group_name, c.course_id, c.course_name, c.language, c.art, c.community, c.health, c.science, g.grade_name FROM course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id AND g.grade_name=? AND group_name=?"
 
-#define SQL_SELECT_COURSE_DB "select cg.group_name, c.course_name, c.language, c.art, c.community, c.health, c.science, g.grade_name FROM course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id ORDER BY cg.group_name ASC, g.grade_name ASC"
+//#define SQL_SELECT_COURSE_DB "select cg.group_name, c.course_name, c.language, c.art, c.community, c.health, c.science, g.grade_name FROM course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id"
+
+#define SQL_SELECT_COURSE_DB "select cg.group_name, c.course_name, c.language, c.art, c.community, c.health, c.science, g.grade_name, concat (g.grade_name, cg.group_name) AS grade_group_name FROM course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id"
+
+//#define SQL_SELECT_COURSE_DB "select cg.group_name, c.course_name, c.language, c.art, c.community, c.health, c.science, g.grade_name, concat(g.grade_name,cg.group_name) AS grade_group_name FROM course_group_course AS cgc, course_group AS cg, course AS c, grade AS g, grade_course AS gc WHERE  cgc.group_id = cg.group_id AND cgc.course_id = c.course_id AND gc.grade_id = g.grade_id AND c.course_id = gc.course_id"
 
 #define SQL_SELECT_GRADE_DB "select grade_name from grade"
 #define SQL_SELECT_CLASS_DB "select class_name from class"
