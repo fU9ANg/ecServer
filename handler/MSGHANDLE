@@ -79,8 +79,11 @@
     MSGNAME (CT_BuildHouse_EmailAmerica, handleBuildHouse_EmailAmerica);
 
     MSGNAME (CT_BuildHouse_Update, handleBuildHouse_Update);
-    //MSGNAME (CT_BuildHouse_Move, handleBuildHouse_Move);
-    //MSGNAME (CT_BuildHouse_Zoom, handleBuildHouse_Zoom);
+    
+    MSGNAME (CT_BuildHouse_Move, handleBuildHouse_Move);
+    MSGNAME (CT_BuildHouse_Scale, handleBuildHouse_Scale);
+    MSGNAME (CT_BuildHouse_Angle, handleBuildHouse_Angle);
+
     MSGNAME (CT_BuildHouse_Change_Layer, handleBuildHouse_Change_Layer);
     MSGNAME (CT_BuildHouse_Add_Pic, handleBuildHouse_Add_Pic);
     MSGNAME (CT_BuildHouse_Del_Pic, handleBuildHouse_Del_Pic);

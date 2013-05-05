@@ -81,6 +81,7 @@ void CRoom::update_all_student_status (int fd, int flag)
                 it->first,
                 it->second->getId(),
                 it->second->getName().c_str());
+        it->second->setSocket (0);
         if (flag == 0)
             it->second->setStudentStatus (eCS_OFFLINE);
     }
@@ -327,8 +328,12 @@ CRoom* CRoom::get_room_by_fd (int fd)
 int CRoom::reset() {
     STUDENTMAP::iterator it;
     for (it = m_student_map.begin(); it != m_student_map.end();) {
+#if 0
         delete it->second;
         m_student_map.erase(it++);
+#else
+        it->second->setSocket (0);
+#endif
     }
 
     COURSELIST::iterator it1;

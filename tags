@@ -28,9 +28,8 @@ CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y)$/;"	
 CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y, float angle)$/;"	f	class:CNode
 CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y, float angle, float zoom)$/;"	f	class:CNode
 CNode	content/makehouse.h	/^class CNode$/;"	c
-CONFIG	Config.h	41;"	d
-CONFIGFILE	ProcessManager.h	29;"	d
-CON_NUM	client.c	11;"	d	file:
+CONFIG	Config.h	37;"	d
+CONFIGFILE	ProcessManager.h	26;"	d
 COURSEITEMLIST	content/course.h	/^typedef list<CCourseItem*> COURSEITEMLIST;$/;"	t
 COURSELIST	content/room.h	/^    typedef list<CCourse*> COURSELIST;$/;"	t	class:CRoom
 CPuzzle	content/puzzle.cpp	/^CPuzzle::CPuzzle():$/;"	f	class:CPuzzle
@@ -142,12 +141,12 @@ Condition	Mutex.h	/^        Condition(MutexLock& m):mutex_(m){$/;"	f	class:Condi
 Condition	Mutex.h	/^class Condition{$/;"	c
 Config	Config.cpp	/^Config::Config(){$/;"	f	class:Config
 Config	Config.h	/^class Config {$/;"	c
-DATABASE	database.h	73;"	d
-DataBase	database.cpp	/^DataBase::DataBase()$/;"	f	class:DataBase
-DataBase	database.h	/^class DataBase$/;"	c
-EVLOOP_H_	Evloop.h	8;"	d
-Evloop	Evloop.cpp	/^Evloop::Evloop(string ip, int port)$/;"	f	class:Evloop
-Evloop	Evloop.h	/^class Evloop: public task$/;"	c
+DATABASE	database.h	70;"	d
+DataBase	database.cpp	/^DataBase::DataBase() {$/;"	f	class:DataBase
+DataBase	database.h	/^class DataBase {$/;"	c
+EVLOOP_H_	Evloop.h	6;"	d
+Evloop	Evloop.cpp	/^Evloop::Evloop(string ip, int port) {$/;"	f	class:Evloop
+Evloop	Evloop.h	/^class Evloop: public task{$/;"	c
 GAMELIST	content/room.h	/^    typedef list<CGame*> GAMELIST;$/;"	t	class:CRoom
 GROUPMAP	content/room.h	/^    typedef map<int, CGroup*>  GROUPMAP;  \/* map<group_id, CGroup *> *\/$/;"	t	class:CRoom
 GetCourseItemKeyInfoReq	protocol.h	/^}GetCourseItemKeyInfoReq;$/;"	t	typeref:struct:_stCT_GetCourseItemKeyInfoReq
@@ -180,14 +179,14 @@ HAVE_VFORK	config.h	75;"	d
 HAVE_WORKING_FORK	config.h	81;"	d
 HAVE_WORKING_VFORK	config.h	84;"	d
 HAVE__BOOL	config.h	87;"	d
-Init	database.cpp	/^bool DataBase::Init(string host, string user_name, string password, string database)$/;"	f	class:DataBase
+Init	database.cpp	/^bool DataBase::Init(string host, string user_name, string password, string database) {$/;"	f	class:DataBase
 LOCK_NOWAIT	ProcessManager.h	/^  LOCK_NOWAIT = LOCK_EX | LOCK_NB,  \/**<非阻塞锁*\/$/;"	e	enum:__anon1
 LOCK_WAIT	ProcessManager.h	/^  LOCK_WAIT   = LOCK_EX,            \/**<阻塞锁*\/$/;"	e	enum:__anon1
 LOGIN_H_	content/LoginCheck.h	6;"	d
 ListLock_	ThreadPool.h	/^        MutexLock ListLock_;$/;"	m	class:ThreadPool
 LoginCheck	content/LoginCheck.cpp	/^LoginCheck::LoginCheck() {$/;"	f	class:LoginCheck
 LoginCheck	content/LoginCheck.h	/^class LoginCheck{$/;"	c
-MAXFD	Evloop.h	34;"	d
+MAXFD	Evloop.h	31;"	d
 MCT_STUDENT	protocol.h	/^    MCT_STUDENT = 1,$/;"	e	enum:mClientType
 MCT_TEACHER	protocol.h	/^    MCT_TEACHER,$/;"	e	enum:mClientType
 MCT_WHITEBOARD	protocol.h	/^    MCT_WHITEBOARD,$/;"	e	enum:mClientType
@@ -226,42 +225,40 @@ PT_SQUARE	protocol.h	/^    PT_SQUARE = 1,  \/\/ 方块$/;"	e	enum:ePuzzleType
 PUZZLEMAP	content/room.h	/^    typedef map<int, CPuzzle*> PUZZLEMAP; \/* map<group_id, CPuzzle*> *\/$/;"	t	class:CRoom
 PUZZLE_H_	content/puzzle.h	2;"	d
 PoolT	PoolT.h	/^    PoolT(int n = 2000) {$/;"	f	class:PoolT
-PoolT	PoolT.h	/^class PoolT$/;"	c
-ProcessManager	ProcessManager.cpp	/^ProcessManager::ProcessManager()$/;"	f	class:ProcessManager
+PoolT	PoolT.h	/^class PoolT {$/;"	c
+ProcessManager	ProcessManager.cpp	/^ProcessManager::ProcessManager() { $/;"	f	class:ProcessManager
 ProcessManager	ProcessManager.h	/^class ProcessManager$/;"	c
 QueueT	QueueT.h	/^    QueueT() {$/;"	f	class:QueueT
-QueueT	QueueT.h	/^class QueueT$/;"	c
-RECVTASK_H_	RecvTask.h	8;"	d
+QueueT	QueueT.h	/^class QueueT {$/;"	c
+RECVTASK_H_	RecvTask.h	7;"	d
 RES_FAIL	protocol.h	/^    RES_FAIL,$/;"	e	enum:mLoginOutResult
 RES_SUCCEED	protocol.h	/^    RES_SUCCEED = 1,$/;"	e	enum:mLoginOutResult
 ROOMMANAGER	content/roommanager.h	52;"	d
 ROOMMAP	content/roommanager.h	/^    typedef map<int, CRoom*> ROOMMAP;$/;"	t	class:CRoomManager
 RecvTask	RecvTask.cpp	/^RecvTask::RecvTask ()$/;"	f	class:RecvTask
 RecvTask	RecvTask.h	/^class RecvTask: public task$/;"	c
-SENDTASK_H_	SendTask.h	8;"	d
-SERVADDR	Evloop.h	32;"	d
-SERVPORT	Evloop.h	33;"	d
-SERV_IP	client.c	9;"	d	file:
-SERV_PORT	client.c	10;"	d	file:
-SINGLE	Single.h	36;"	d
+SENDTASK_H_	SendTask.h	6;"	d
+SERVADDR	Evloop.h	29;"	d
+SERVPORT	Evloop.h	30;"	d
+SINGLE	Single.h	32;"	d
 SQL_SELECT_ALLSTU	SQL.h	15;"	d
 SQL_SELECT_CLASS	SQL.h	10;"	d
 SQL_SELECT_CLASSROOM	SQL.h	11;"	d
 SQL_SELECT_CLASSROOM1	SQL.h	12;"	d
-SQL_SELECT_CLASSROOM_DB	SQL.h	27;"	d
-SQL_SELECT_CLASS_DB	SQL.h	26;"	d
+SQL_SELECT_CLASSROOM_DB	SQL.h	23;"	d
+SQL_SELECT_CLASS_DB	SQL.h	22;"	d
 SQL_SELECT_COURSE	SQL.h	9;"	d
-SQL_SELECT_COURSEITEM_DB	SQL.h	30;"	d
-SQL_SELECT_COURSE_DB	SQL.h	21;"	d
+SQL_SELECT_COURSEITEM_DB	SQL.h	26;"	d
+SQL_SELECT_COURSE_DB	SQL.h	19;"	d
 SQL_SELECT_GRADE	SQL.h	14;"	d
-SQL_SELECT_GRADE_DB	SQL.h	25;"	d
-SQL_SELECT_ITEM_KEYS	SQL.h	35;"	d
-SQL_SELECT_ROOM	SQL.h	32;"	d
+SQL_SELECT_GRADE_DB	SQL.h	21;"	d
+SQL_SELECT_ITEM_KEYS	SQL.h	31;"	d
+SQL_SELECT_ROOM	SQL.h	28;"	d
 SQL_SELECT_STU	SQL.h	8;"	d
-SQL_SELECT_STUDENT_DB	SQL.h	28;"	d
-SQL_SELECT_STUDENT_DETAILINFO	SQL.h	37;"	d
+SQL_SELECT_STUDENT_DB	SQL.h	24;"	d
+SQL_SELECT_STUDENT_DETAILINFO	SQL.h	33;"	d
 SQL_SELECT_TEACHER	SQL.h	13;"	d
-SQL_SELECT_TEACHER_DETAILINFO	SQL.h	39;"	d
+SQL_SELECT_TEACHER_DETAILINFO	SQL.h	35;"	d
 SQL_SELECT_USED_COURSE	SQL.h	17;"	d
 SS_END	content/room.h	/^    SS_END   = 3,$/;"	e	enum:SceneState
 SS_PAUSE	content/room.h	/^    SS_PAUSE = 2,$/;"	e	enum:SceneState
@@ -345,19 +342,19 @@ SceneState	content/room.h	/^} SceneState;$/;"	t	typeref:enum:SceneState
 SceneType	content/room.h	/^typedef enum SceneType$/;"	g
 SceneType	content/room.h	/^} SceneType;$/;"	t	typeref:enum:SceneType
 SendTask	SendTask.cpp	/^SendTask::SendTask() $/;"	f	class:SendTask
-SendTask	SendTask.h	/^class SendTask: public task$/;"	c
+SendTask	SendTask.h	/^class SendTask: public task{$/;"	c
 Single	Single.cpp	/^Single::Single()$/;"	f	class:Single
 Single	Single.h	/^class Single $/;"	c
 THouseItem_Info	protocol.h	/^}THouseItem_Info;$/;"	t	typeref:struct:sRainbowValley_HouseItem_Info
 THouse_Number	protocol.h	/^}THouse_Number;$/;"	t	typeref:struct:sRainbowValley_House_Num
-TIMEOUT	Evloop.h	35;"	d
+TIMEOUT	Evloop.h	32;"	d
 TMake_House_Add_Pic	protocol.h	/^}TMake_House_Add_Pic;$/;"	t	typeref:struct:Make_House_Add_Pic
 TMake_House_Change_Layer	protocol.h	/^}TMake_House_Change_Layer;$/;"	t	typeref:struct:Make_House_Change_Layer
 TMake_House_Del_Pic	protocol.h	/^}TMake_House_Del_Pic;$/;"	t	typeref:struct:Make_House_Del_Pic
 TMake_House_Update	protocol.h	/^} TMake_House_Update;$/;"	t	typeref:struct:Make_House_Update
 TSelectedClassRoom	protocol.h	/^}TSelectedClassRoom;$/;"	t	typeref:struct:sSelectedClassRoom
 TSendStudentStatusReq	protocol.h	/^}TSendStudentStatusReq;$/;"	t	typeref:struct:ST_SendStudentStatusReq
-TT_LOGIN_CLASSROOM	protocol.h	/^    TT_LOGIN_CLASSROOM  = 1,$/;"	e	enum:eTeacherIntoRoomType
+TT_LOGIN_CLASSROOM	protocol.h	/^    TT_LOGIN_CLASSROOM = 1,$/;"	e	enum:eTeacherIntoRoomType
 TT_LOGOUT_CLASSROOM	protocol.h	/^    TT_LOGOUT_CLASSROOM = 2,$/;"	e	enum:eTeacherIntoRoomType
 TaskQueue_	ThreadPool.h	/^        QueueT<task*> TaskQueue_;$/;"	m	class:ThreadPool
 ThreadPool	ThreadPool.cpp	/^ThreadPool::ThreadPool(int n):$/;"	f	class:ThreadPool
@@ -366,7 +363,7 @@ UNLOCK	ProcessManager.h	/^  UNLOCK      = LOCK_UN             \/**<解锁*\/$/;"
 VERSION	config.h	114;"	d
 _ATOMICT_H_	AtomicT.h	5;"	d
 _BUF_H_	Buf.h	3;"	d
-_CONFIG_H_	Config.h	7;"	d
+_CONFIG_H_	Config.h	6;"	d
 _C_COURSE_H	content/course.h	7;"	d
 _C_COURSE_ITEM_H	content/courseitem.h	3;"	d
 _C_GRADE_H	content/grade.h	7;"	d
@@ -374,24 +371,24 @@ _C_ROOMMANAGER_H	content/roommanager.h	8;"	d
 _C_ROOM_H	content/room.h	6;"	d
 _C_STUDENT_H	content/student.h	7;"	d
 _C_TEACHER_H	content/teacher.h	7;"	d
-_DATABASE_H_	database.h	8;"	d
+_DATABASE_H_	database.h	7;"	d
 _EXECUTE_	handler/HandleMessage.h	25;"	d
 _GAME_H_	content/game.h	2;"	d
-_GLOBAL_DATA_H_	Single.h	7;"	d
+_GLOBAL_DATA_H_	Single.h	5;"	d
 _HANDLE_MESSAGE_H	handler/HandleMessage.h	7;"	d
 _MAKEHOUSE_H_	content/makehouse.h	3;"	d
 _MUTEX_LOCK_H_	Mutex.h	6;"	d
-_POOLT_H_	PoolT.h	10;"	d
-_PROCESSMAMAGER_H_	ProcessManager.h	8;"	d
+_POOLT_H_	PoolT.h	8;"	d
+_PROCESSMAMAGER_H_	ProcessManager.h	6;"	d
 _PROTOCOL_H	protocol.h	6;"	d
-_QUEUET_H_	QueueT.h	9;"	d
+_QUEUET_H_	QueueT.h	7;"	d
 _SOCK_H_	Sock.h	2;"	d
 _SQL_H_	SQL.h	6;"	d
 _TASK_H_	task.h	3;"	d
 _THREADPOOL_H_	ThreadPool.h	6;"	d
 _stCT_GetCourseItemKeyInfoReq	protocol.h	/^typedef struct _stCT_GetCourseItemKeyInfoReq{$/;"	s
 _stCT_GetCourseItemKeyInfoRsp	protocol.h	/^typedef struct _stCT_GetCourseItemKeyInfoRsp{$/;"	s
-accept_cb	Evloop.cpp	/^void Evloop::accept_cb(struct ev_loop *loop, ev_io *w, int revents)$/;"	f	class:Evloop
+accept_cb	Evloop.cpp	/^void Evloop::accept_cb(struct ev_loop *loop, ev_io *w, int revents) {$/;"	f	class:Evloop
 add	content/makehouse.cpp	/^int CMakeHouse::add(int node_id, CNode* p_node)$/;"	f	class:CMakeHouse
 add_course	content/room.cpp	/^void CRoom::add_course (CCourse* pCourse)$/;"	f	class:CRoom
 add_group	content/room.cpp	/^bool CRoom::add_group (int id, CGroup* cg)$/;"	f	class:CRoom
@@ -423,7 +420,7 @@ clear_all_course	content/room.cpp	/^void CRoom::clear_all_course ()$/;"	f	class:
 client_type	protocol.h	/^    mClientType client_type;$/;"	m	struct:sSelectedClassRoom
 clientcount	Evloop.cpp	/^AtomicT<int> Evloop::clientcount;$/;"	m	class:Evloop	file:
 clientcount	Evloop.h	/^        static AtomicT<int> clientcount;$/;"	m	class:Evloop
-closefd	Evloop.cpp	/^void Evloop::closefd(int fd)$/;"	f	class:Evloop
+closefd	Evloop.cpp	/^void Evloop::closefd(int fd) {$/;"	f	class:Evloop
 columnCount	protocol.h	/^	int columnCount;$/;"	m	struct:sJigsawInitData
 columnCount	protocol.h	/^    unsigned int columnCount;$/;"	m	struct:sPuzzleSize
 count	ThreadPool.h	/^        int count;$/;"	m	class:ThreadPool
@@ -452,7 +449,7 @@ end	content/puzzle.cpp	/^void CPuzzle::end() {$/;"	f	class:CPuzzle
 end_puzzle_by_fd	content/room.cpp	/^void CRoom::end_puzzle_by_fd(int fd) {$/;"	f	class:CRoom
 enqueue	QueueT.h	/^    int enqueue(TYPE t) {$/;"	f	class:QueueT
 ev_in_info	Evloop.h	/^}ev_in_info;$/;"	t	typeref:struct:ev_io_info
-ev_io_info	Evloop.h	/^typedef struct ev_io_info$/;"	s
+ev_io_info	Evloop.h	/^typedef struct ev_io_info{$/;"	s
 fd_	Buf.h	/^    int fd_;$/;"	m	class:Buf
 free	PoolT.h	/^    int free(TYPE* i) {$/;"	f	class:PoolT
 free_	ThreadPool.h	/^        AtomicT<int> free_;$/;"	m	class:ThreadPool
@@ -460,14 +457,13 @@ game_count	Config.h	/^        int game_count;$/;"	m	class:Config
 getAccount	content/student.cpp	/^string CStudent::getAccount (void) {$/;"	f	class:CStudent
 getAccount	content/teacher.cpp	/^string CTeacher::getAccount (void)$/;"	f	class:CTeacher
 getAutoNodeId	content/room.cpp	/^unsigned int CRoom::getAutoNodeId ()$/;"	f	class:CRoom
-getClientCount	Evloop.cpp	/^int Evloop::getClientCount()$/;"	f	class:Evloop
-getConnection	database.cpp	/^Connection* DataBase::getConnection()$/;"	f	class:DataBase
+getClientCount	Evloop.cpp	/^int Evloop::getClientCount() {$/;"	f	class:Evloop
+getConnection	database.cpp	/^Connection* DataBase::getConnection() {$/;"	f	class:DataBase
 getHandler	handler/HandleMessage.h	/^    static handlefunc getHandler (int iCommandType)$/;"	f	class:CHandleMessage
 getId	content/course.cpp	/^int CCourse::getId (void)$/;"	f	class:CCourse
 getId	content/courseitem.cpp	/^int CCourseItem::getId (void)$/;"	f	class:CCourseItem
 getId	content/student.cpp	/^int CStudent::getId() {$/;"	f	class:CStudent
 getInstance	content/roommanager.cpp	/^CRoomManager* CRoomManager::getInstance (void)$/;"	f	class:CRoomManager
-getIsUsed	content/room.cpp	/^int CRoom::getIsUsed ()$/;"	f	class:CRoom
 getName	content/course.cpp	/^string CCourse::getName (void)$/;"	f	class:CCourse
 getName	content/courseitem.cpp	/^string CCourseItem::getName (void)$/;"	f	class:CCourseItem
 getName	content/grade.cpp	/^string cGrade::getName (void)$/;"	f	class:cGrade
@@ -478,7 +474,7 @@ getPictureName	content/student.cpp	/^string CStudent::getPictureName (void)$/;"	
 getPthreadMutex	Mutex.h	/^        pthread_mutex_t* getPthreadMutex() { $/;"	f	class:MutexLock
 getSocket	content/student.cpp	/^int CStudent::getSocket() {$/;"	f	class:CStudent
 getSocket	content/teacher.cpp	/^int CTeacher::getSocket() {$/;"	f	class:CTeacher
-getStatement	database.cpp	/^Statement* DataBase::getStatement()$/;"	f	class:DataBase
+getStatement	database.cpp	/^Statement* DataBase::getStatement() {$/;"	f	class:DataBase
 getStudentStatus	content/student.cpp	/^eClientStatus CStudent::getStudentStatus (void)$/;"	f	class:CStudent
 get_class_name	content/room.cpp	/^string CRoom::get_class_name()$/;"	f	class:CRoom
 get_course_by_id	content/room.cpp	/^CCourse* CRoom::get_course_by_id (int id)$/;"	f	class:CRoom
@@ -624,7 +620,7 @@ initHandlers	handler/HandleMessage.h	/^    static void initHandlers (void)$/;"	f
 init_buildhouse_group	content/room.cpp	/^void CRoom::init_buildhouse_group (int numsOfStudent)$/;"	f	class:CRoom
 instance	Config.cpp	/^Config* Config::instance() {$/;"	f	class:Config
 instance	Single.cpp	/^Single* Single::instance() $/;"	f	class:Single
-instance	database.cpp	/^DataBase* DataBase::instance()$/;"	f	class:DataBase
+instance	database.cpp	/^DataBase* DataBase::instance() {$/;"	f	class:DataBase
 io	Evloop.h	/^    struct ev_io* io;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
 ioarray	Evloop.cpp	/^struct ev_io_info Evloop::ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::	file:
 ioarray	Evloop.h	/^        static struct ev_io_info ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::ev_io_info
@@ -639,7 +635,7 @@ layer_up	content/makehouse.cpp	/^int CMakeHouse::layer_up(int node_id, int count
 level	protocol.h	/^    int level;  \/\/ VALUE: 0 (待机), 1, 2, 3, 4 (下一节)$/;"	m	struct:sControlLevel
 listenfd_	Evloop.h	/^        int listenfd_;$/;"	m	class:Evloop
 lock	Mutex.h	/^        void lock() { $/;"	f	class:MutexLock
-lock	ProcessManager.cpp	/^bool ProcessManager::lock(int mode)$/;"	f	class:ProcessManager
+lock	ProcessManager.cpp	/^bool ProcessManager::lock(int mode) {$/;"	f	class:ProcessManager
 lock	content/makehouse.cpp	/^bool CMakeHouse::lock(int client_fd, int node_id)$/;"	f	class:CMakeHouse
 lock	content/makehouse.cpp	/^bool CNode::lock(int client_fd) {$/;"	f	class:CNode
 lock_	AtomicT.h	/^        MutexLock lock_;$/;"	m	class:AtomicT
@@ -681,7 +677,6 @@ m_end_time	content/puzzle.h	/^        time_t m_end_time;$/;"	m	class:CPuzzle
 m_game_list	content/room.h	/^    GAMELIST   m_game_list;$/;"	m	class:CRoom
 m_group_name	content/makehouse.h	/^        string m_group_name;$/;"	m	class:CGroup
 m_host	database.h	/^        string m_host;$/;"	m	class:DataBase
-m_isUsed	content/room.h	/^    int m_isUsed;$/;"	m	class:CRoom
 m_itemName	content/courseitem.h	/^        string m_itemName;$/;"	m	class:CCourseItem
 m_layer	content/makehouse.h	/^        int m_layer; \/\/层次$/;"	m	class:CNode
 m_make_house	content/makehouse.h	/^        CMakeHouse m_make_house;$/;"	m	class:CGroup
@@ -720,7 +715,6 @@ m_white_board	content/room.h	/^    string m_white_board;$/;"	m	class:CRoom
 m_white_fd	content/room.h	/^    int m_white_fd;$/;"	m	class:CRoom
 m_white_position	content/makehouse.h	/^        int m_white_position;$/;"	m	class:CGroup
 m_zoom	content/makehouse.h	/^        float m_zoom; \/\/放大倍数$/;"	m	class:CNode
-main	client.c	/^int main(int argc, char* argv[]){$/;"	f
 main	content/main.cpp	/^int main (void)$/;"	f
 main	main.cpp	/^int main(int argc, char* argv[])$/;"	f
 malloc	PoolT.h	/^    TYPE* malloc() {$/;"	f	class:PoolT
@@ -737,10 +731,10 @@ notify	Mutex.h	/^        void notify(){$/;"	f	class:Condition
 notifyall	Mutex.h	/^        void notifyall(){$/;"	f	class:Condition
 num	protocol.h	/^	int num;$/;"	m	struct:sRainbowValley_House_Num
 operator !=	AtomicT.h	/^        bool operator!= (TYPE a){$/;"	f	class:AtomicT
-operator ++	AtomicT.h	/^        TYPE operator++ (int)   \/\/ parameter must is int$/;"	f	class:AtomicT
+operator ++	AtomicT.h	/^        TYPE operator++ (int){$/;"	f	class:AtomicT
 operator ++	AtomicT.h	/^        TYPE operator++ (void){$/;"	f	class:AtomicT
 operator +=	AtomicT.h	/^        TYPE operator+= (TYPE a){$/;"	f	class:AtomicT
-operator --	AtomicT.h	/^        TYPE operator-- (int){  \/\/ parameter must is int$/;"	f	class:AtomicT
+operator --	AtomicT.h	/^        TYPE operator-- (int){$/;"	f	class:AtomicT
 operator --	AtomicT.h	/^        TYPE operator-- (void){$/;"	f	class:AtomicT
 operator -=	AtomicT.h	/^        TYPE operator-= (TYPE a){$/;"	f	class:AtomicT
 operator <	AtomicT.h	/^        bool operator< (TYPE a){$/;"	f	class:AtomicT
@@ -772,8 +766,8 @@ postTeacherToAllStudent	handler/HandleMessage.cpp	/^bool CHandleMessage::postTea
 postTeacherToStudent	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToStudent (Buf* p, enum CommandType iCommandType, int iStuId)$/;"	f	class:CHandleMessage
 postTeacherToWhite	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
 postWhiteToTeacher	handler/HandleMessage.cpp	/^bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
-preStatement	database.cpp	/^PreparedStatement* DataBase::preStatement(string sql)$/;"	f	class:DataBase
-process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic(int argc, char** argv)$/;"	f	class:ProcessManager
+preStatement	database.cpp	/^PreparedStatement* DataBase::preStatement(string sql) {$/;"	f	class:DataBase
+process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic(int argc, char** argv) {$/;"	f	class:ProcessManager
 protocols	task.h	/^    static struct sDebugProtocol protocols[] =$/;"	v	typeref:struct:sDebugProtocol
 ptr	Buf.h	/^    void* ptr() {$/;"	f	class:Buf
 ptr_	Buf.h	/^    void* ptr_;$/;"	m	class:Buf
@@ -782,15 +776,13 @@ puzzle_end	content/room.cpp	/^void CRoom::puzzle_end() {$/;"	f	class:CRoom
 puzzle_start	content/room.cpp	/^void CRoom::puzzle_start() {$/;"	f	class:CRoom
 queue_	PoolT.h	/^    queue<TYPE*> queue_;$/;"	m	class:PoolT
 readconfig	Config.cpp	/^void Config::readconfig(string file){$/;"	f	class:Config
-recv_cb	Evloop.cpp	/^void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents)$/;"	f	class:Evloop
-recv_n	Sock.c	/^ssize_t recv_n(int fd,$/;"	f
-recv_v	Sock.c	/^int recv_v(int fd,$/;"	f
+recv_cb	Evloop.cpp	/^void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents) {$/;"	f	class:Evloop
 recvqueue	Single.h	/^        QueueT<Buf*> recvqueue;$/;"	m	class:Single
 reset	Buf.h	/^    void reset() {$/;"	f	class:Buf
 reset	content/room.cpp	/^int CRoom::reset() {$/;"	f	class:CRoom
 rowCount	protocol.h	/^	int	rowCount;$/;"	m	struct:sJigsawInitData
 rowCount	protocol.h	/^    unsigned int rowCount;$/;"	m	struct:sPuzzleSize
-run	ProcessManager.cpp	/^int ProcessManager::run()$/;"	f	class:ProcessManager
+run	ProcessManager.cpp	/^int ProcessManager::run() {$/;"	f	class:ProcessManager
 sAccount	protocol.h	/^    char sAccount[20];$/;"	m	struct:sGetStudentDetailInfo
 sBuildHouseCaiHongXiaoWu	protocol.h	/^struct sBuildHouseCaiHongXiaoWu$/;"	s
 sBuildHouseSetStuGroup	protocol.h	/^struct sBuildHouseSetStuGroup$/;"	s
@@ -859,8 +851,6 @@ sTeacherName	protocol.h	/^    char sTeacherName[20];$/;"	m	struct:sLoginOutClass
 sText	protocol.h	/^    char sText[12];$/;"	m	struct:sBuildHouseCaiHongXiaoWu
 school_id	Config.h	/^        int school_id;$/;"	m	class:Config
 sendToOtherStudent	content/makehouse.cpp	/^void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)$/;"	f	class:CGroup
-send_n	Sock.c	/^ssize_t send_n(int fd,$/;"	f
-send_v	Sock.c	/^int send_v(int fd,$/;"	f
 sendqueue	Single.h	/^        QueueT<Buf*> sendqueue;$/;"	m	class:Single
 server_ip	Config.h	/^        string server_ip;$/;"	m	class:Config
 server_port	Config.h	/^        int server_port;$/;"	m	class:Config
@@ -870,7 +860,6 @@ setHandler	handler/HandleMessage.h	/^    static void setHandler (int iCommandTyp
 setId	content/course.cpp	/^void CCourse::setId (int id)$/;"	f	class:CCourse
 setId	content/courseitem.cpp	/^void CCourseItem::setId (int id)$/;"	f	class:CCourseItem
 setId	content/student.cpp	/^void CStudent::setId(int id) {$/;"	f	class:CStudent
-setIsUsed	content/room.cpp	/^void CRoom::setIsUsed (int used)$/;"	f	class:CRoom
 setName	content/course.cpp	/^void CCourse::setName (string sName)$/;"	f	class:CCourse
 setName	content/courseitem.cpp	/^void CCourseItem::setName (string name)$/;"	f	class:CCourseItem
 setName	content/grade.cpp	/^void cGrade::setName (string& sName)$/;"	f	class:cGrade
@@ -893,10 +882,10 @@ set_white_fd	content/room.cpp	/^void CRoom::set_white_fd(int fd) {$/;"	f	class:C
 setfd	Buf.h	/^    void setfd(int fd) {$/;"	f	class:Buf
 setid	Buf.h	/^    void setid(int id) {$/;"	f	class:Buf
 setnodelay	Evloop.cpp	/^void Evloop::setnodelay (int fd)$/;"	f	class:Evloop
-setnonblock	Evloop.cpp	/^void Evloop::setnonblock(int fd)$/;"	f	class:Evloop
+setnonblock	Evloop.cpp	/^void Evloop::setnonblock(int fd) {$/;"	f	class:Evloop
 setreuseaddr	Evloop.cpp	/^void Evloop::setreuseaddr(int fd)$/;"	f	class:Evloop
 setsize	Buf.h	/^    size_t setsize(size_t in) {$/;"	f	class:Buf
-sig_term	ProcessManager.cpp	/^void ProcessManager::sig_term(int signo)$/;"	f	class:ProcessManager
+sig_term	ProcessManager.cpp	/^void ProcessManager::sig_term(int signo) {$/;"	f	class:ProcessManager
 sighandle	ThreadPool.cpp	/^void ThreadPool::sighandle(int signo) {$/;"	f	class:ThreadPool
 size	Buf.h	/^    size_t size() {$/;"	f	class:Buf
 size	PoolT.h	/^    int size() {$/;"	f	class:PoolT
@@ -907,7 +896,7 @@ stFirstName	protocol.h	/^    char stFirstName[20];$/;"	m	struct:sGetStudentDetai
 stLastName	protocol.h	/^    char stLastName[20];$/;"	m	struct:sGetStudentDetailInfo
 start	ThreadPool.cpp	/^int ThreadPool::start() {$/;"	f	class:ThreadPool
 start	content/puzzle.cpp	/^void CPuzzle::start() {$/;"	f	class:CPuzzle
-startlisten	Evloop.cpp	/^int Evloop::startlisten()$/;"	f	class:Evloop
+startlisten	Evloop.cpp	/^int Evloop::startlisten() {$/;"	f	class:Evloop
 state_	ThreadPool.h	/^        AtomicT<int> state_;$/;"	m	class:ThreadPool
 status	protocol.h	/^    int status;$/;"	m	struct:sPuzzleIconStatus
 status	protocol.h	/^    unsigned int status;$/;"	m	struct:ST_SendStudentStatusReq
@@ -923,7 +912,7 @@ teacher_disconnect	content/room.cpp	/^void CRoom::teacher_disconnect() {$/;"	f	c
 thread	ThreadPool.cpp	/^void* ThreadPool::thread(void* p) {$/;"	f	class:ThreadPool
 threads_	ThreadPool.h	/^        list<pthread_t> threads_;$/;"	m	class:ThreadPool
 thrpool_	ProcessManager.h	/^    ThreadPool* thrpool_;   \/**线程池*\/$/;"	m	class:ProcessManager
-time_cb	Evloop.cpp	/^void Evloop::time_cb(struct ev_loop* loop, struct ev_timer *timer, int revents)$/;"	f	class:Evloop
+time_cb	Evloop.cpp	/^void Evloop::time_cb(struct ev_loop* loop, struct ev_timer *timer, int revents) {$/;"	f	class:Evloop
 type	protocol.h	/^    int  type;$/;"	m	struct:sLoginOutClassRoom
 type	protocol.h	/^    int type;   \/\/ 客户端的类型(学生,教师或白板)$/;"	m	struct:sLogin
 type	protocol.h	/^    int type; \/\/ 客户端的类型(学生,教师或白板)$/;"	m	struct:sLogout
@@ -942,9 +931,9 @@ value	AtomicT.h	/^        TYPE value() {$/;"	f	class:AtomicT
 value_	AtomicT.h	/^        TYPE value_;$/;"	m	class:AtomicT
 wait	Mutex.h	/^        int wait(){$/;"	f	class:Condition
 wait	Mutex.h	/^        int wait(time_t t){$/;"	f	class:Condition
-work	Evloop.cpp	/^int Evloop::work()$/;"	f	class:Evloop
+work	Evloop.cpp	/^int Evloop::work() {$/;"	f	class:Evloop
 work	RecvTask.cpp	/^int RecvTask::work ()$/;"	f	class:RecvTask
-work	SendTask.cpp	/^int SendTask::work()$/;"	f	class:SendTask
+work	SendTask.cpp	/^int SendTask::work() {$/;"	f	class:SendTask
 x	protocol.h	/^	float  x;$/;"	m	struct:sRainbowValley_HouseItem_Info
 x	protocol.h	/^    float x;$/;"	m	struct:Make_House_Add_Pic
 x	protocol.h	/^    float x;$/;"	m	struct:Make_House_Update
@@ -965,13 +954,13 @@ zoom	protocol.h	/^    float zoom;$/;"	m	struct:Make_House_Update
 ~CStudent	content/student.cpp	/^CStudent::~CStudent () {$/;"	f	class:CStudent
 ~Condition	Mutex.h	/^        ~Condition(){$/;"	f	class:Condition
 ~Config	Config.cpp	/^Config::~Config(){$/;"	f	class:Config
-~DataBase	database.cpp	/^DataBase::~DataBase()$/;"	f	class:DataBase
-~Evloop	Evloop.cpp	/^Evloop::~Evloop()$/;"	f	class:Evloop
+~DataBase	database.cpp	/^DataBase::~DataBase() {$/;"	f	class:DataBase
+~Evloop	Evloop.cpp	/^Evloop::~Evloop() {$/;"	f	class:Evloop
 ~LoginCheck	content/LoginCheck.cpp	/^LoginCheck::~LoginCheck() {$/;"	f	class:LoginCheck
 ~MutexLock	Mutex.h	/^        ~MutexLock() { $/;"	f	class:MutexLock
 ~MutexLockGuard	Mutex.h	/^        ~MutexLockGuard() { $/;"	f	class:MutexLockGuard
 ~PoolT	PoolT.h	/^    ~PoolT() {$/;"	f	class:PoolT
-~ProcessManager	ProcessManager.cpp	/^ProcessManager::~ProcessManager()$/;"	f	class:ProcessManager
+~ProcessManager	ProcessManager.cpp	/^ProcessManager::~ProcessManager() {$/;"	f	class:ProcessManager
 ~QueueT	QueueT.h	/^    ~QueueT() {$/;"	f	class:QueueT
 ~RecvTask	RecvTask.cpp	/^RecvTask::~RecvTask ()$/;"	f	class:RecvTask
 ~SendTask	SendTask.cpp	/^SendTask::~SendTask() $/;"	f	class:SendTask

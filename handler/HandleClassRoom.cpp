@@ -443,7 +443,8 @@ void CHandleMessage::handleLoginClassRoom (Buf* p)
     }
 
     proom->set_teacher_fd(p->getfd());
-    proom->set_teacher_name(st_login_class_room.sTeacherName);
+    if (st_login_class_room.sTeacherName[0] != 0x00)
+        proom->set_teacher_name(st_login_class_room.sTeacherName);
     proom->set_class_name(st_login_class_room.sClassName);
     printf("Teacher login class room [%d] success!\n", proom->get_room_id());
     proom->setIsUsed (1);
@@ -461,9 +462,6 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
     CRoom* room = ROOMMANAGER->get_room_by_fd (p->getfd());
     if (room != NULL) {
         if (room->get_teacher_by_fd (p->getfd ())) {
-            room->set_teacher_fd (0);   // set teacher fd to INVALID
-            room->setIsUsed (0);
-            room->reset ();
             // send teacher logout information to all students.
             // TODO:
             MSG_HEAD* head = (MSG_HEAD*) ((char*)p->ptr());
@@ -484,6 +482,10 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
             head->cType = ST_ConfirmIntoClassRoom;
             *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
             CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
+
+            room->set_teacher_fd (0);   // set teacher fd to INVALID
+            room->setIsUsed (0);
+            room->reset ();
         }
     }
     return;
@@ -741,7 +743,7 @@ void CHandleMessage::handleSelectedClassRoom (Buf* p)
     if (MCT_STUDENT == pp->client_type) {
         CStudent* pstudent = new CStudent();
         pstudent->setId (0);
-        pstudent->setOnLine (false);
+        pstudent->setOnLine (true);
         pstudent->setStudentStatus (eCS_OFFLINE);
         if (ROOMMANAGER->get_room_by_fd (p->getfd()))
         {
