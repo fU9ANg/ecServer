@@ -12,37 +12,60 @@
 
 using namespace std;
 
+#define ERRORNODEID     -1
+#define ERRORLAYER      -1
+
 class CNode
 {
     public:
         CNode(int client_fd);
         CNode(int client_fd, float x, float y);
         CNode(int client_fd, float x, float y, float angle);
-        CNode(int client_fd, float x, float y, float angle, float zoom);
+        CNode(int client_fd, float x, float y, float angle, float scale);
         ~CNode();
-        int  update (int client_fd, float x, float y, float angle, float zoom);
+#ifdef _OLD_MAKEHOUSE_GAME 
+        int  update (int client_fd, float x, float y, float angle, float scale);
+#else
+        int  modifyScale (float scale);
+        int  modifyAngle (float angle);
+        int  modifyMove (float x, float y);
+#endif
         bool lock(int client_fd);
         bool unlock(int client_fd);
         int  get_node_id();
         void set_node_id(int node_id);
         void set_name(string name);
+        string get_name (void);
         void get_location(float& x, float& y);
-        void get_location(float& x, float& y, float& angle, float& zoom);
+        void get_location(float& x, float& y, float& angle, float& scale);
+
+        int  get_layer (void);
+        float get_scale (void);
+        float get_angle (void);
+
+        void  set_layer (int);
+        void  set_scale (float);
+        void  set_angle (float);
+
+        int   get_fd (void);
+        void  set_fd (int);
+
         friend class CHandleMessage;    //fck code;
     private:
         float m_position_x; /**x*/
         float m_position_y;
-        int m_layer; //层次
-        int m_client_fd;  // client_fd
-        int m_node_id;
+        int   m_layer; //层次
+        int   m_client_fd;  // client_fd
+        int   m_node_id;
         float m_angle; //角度
-        float m_zoom; //放大倍数
+        float m_scale; //放大倍数
         char   m_path[512];
         string m_name;
 };
 
 class CMakeHouse
 {
+    friend class CGroup;
     public:
         typedef std::map<int, CNode*> NODEMAP; // node_id, CNode
         typedef std::list<CNode*> NODELIST;
@@ -59,7 +82,16 @@ class CMakeHouse
         bool unlock (int client_fd, int node_id);
         int  add (int node_id, CNode* p_node);
         int  del (int node_id);
-        int  update (int clientfd, int node_id, float x, float y, float angle, float zoom);
+#ifdef _OLD_MAKEHOUSE_GAME 
+        int  update (int clientfd, int node_id, float x, float y, float angle, float scale);
+#else
+        int  modifyScale (int node_id, float scale);
+        int  modifyAngle (int node_id, float angle);
+        int  modifyMove (int node_id, float x, float y);
+#endif
+
+        int  get_node_id_by_layer (int layer);
+        int  get_layer_by_node_id (int node_id);
 
         /**
          * @brief 将节点上移count层
@@ -96,6 +128,8 @@ class CGroup
         bool add_student_to_group (int fd, CStudent* stu);
         CGroup* get_group_by_fd (int fd);
         CStudent* get_student_by_fd (int fd);
+
+        int  set_buf (Buf* p);
         void broadcast(Buf* p);
         void sendToOtherStudent (Buf* p, enum CommandType eType);       
 };

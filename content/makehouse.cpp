@@ -1,5 +1,6 @@
 
 #include "makehouse.h"
+#include "DataTool.h"
 
 CNode::CNode(int client_fd)
 {
@@ -7,7 +8,7 @@ CNode::CNode(int client_fd)
     m_position_x = 0.f;
     m_position_y = 0.f;
     m_angle = 0.f;
-    m_zoom = 0.f;
+    m_scale = 0.f;
 };
 
 CNode::CNode(int client_fd, float x, float y)
@@ -25,26 +26,27 @@ CNode::CNode(int client_fd, float x, float y, float angle)
     m_angle = angle;
 };
 
-CNode::CNode(int client_fd, float x, float y, float angle, float zoom)
+CNode::CNode(int client_fd, float x, float y, float angle, float scale)
 {
     m_client_fd = client_fd;
     m_position_x = x;
     m_position_y = y;
     m_angle = angle;
-    m_zoom = zoom;
+    m_scale = scale;
 };
 
 CNode::~CNode()
 {
 }
 
-int CNode::update (int client_fd, float x, float y, float angle, float zoom)
+#ifdef _OLD_MAKEHOUSE_GAME 
+int CNode::update (int client_fd, float x, float y, float angle, float scale)
 {
     if (this->m_client_fd == client_fd) {
         m_position_x = x;
         m_position_y = y;
         m_angle = angle;
-        m_zoom = zoom;
+        m_scale = scale;
     }
     else {
         cout << "update node 'client_fd != m_client_fd' in CNode::update" << endl;
@@ -52,16 +54,28 @@ int CNode::update (int client_fd, float x, float y, float angle, float zoom)
     }
     return (0);
 }
-
-int CMakeHouse::update (int client_fd, int node_id, float x, float y, float angle, float zoom)
+#else
+int  CNode::modifyScale (float scale)
 {
-    NODEMAP::iterator it = m_node_map.find (node_id);
-    if (it != m_node_map.end()) {
-        return (it->second->update (client_fd, x, y, angle, zoom));
-    }
+    this->set_scale (scale);
 
-    return (1);
+    return (0);
 }
+
+int  CNode::modifyAngle (float angle)
+{
+    this->set_angle (angle);
+    return (0);
+}
+
+int  CNode::modifyMove (float x, float y)
+{
+    m_position_x = x;
+    m_position_y = y;
+    return (0);
+}
+
+#endif
 
 bool CNode::lock(int client_fd) {
     if ( 0 == m_client_fd) {
@@ -90,16 +104,78 @@ void CNode::set_name(string name) {
     m_name = name;
 }
 
+string CNode::get_name (void)
+{
+    return (m_name);
+}
+
 void CNode::get_location(float& x, float& y) {
     x = m_position_x;
     y = m_position_y;
 }
-void CNode::get_location(float& x, float& y, float& angle, float& zoom)
+void CNode::get_location(float& x, float& y, float& angle, float& scale)
 {
     x = m_position_x;
     y = m_position_y;
     angle = m_angle;
-    zoom = m_zoom;
+    scale = m_scale;
+}
+
+int CNode::get_layer (void)
+{
+    if (m_layer < 1)
+    {
+        cout << "error: in get_layer()" << endl;
+    }
+    return (m_layer);
+}
+
+float CNode::get_scale (void)
+{
+    return (m_scale);
+}
+
+float CNode::get_angle (void)
+{
+    return (m_angle);
+}
+
+void  CNode::set_layer (int layer)
+{
+    if (layer < 1)
+    {
+        cout << "error: in set_layer()" << endl;
+    }
+    m_layer = layer;
+}
+
+void  CNode::set_scale (float scale)
+{
+    if (scale < 0.0f)
+    {
+        cout << "error: in set_scale()" << endl;
+    }
+    m_scale = scale;
+}
+
+void  CNode::set_angle (float angle)
+{
+    if (angle < 0.0f)
+    {
+        cout << "error: in set_angle()" << endl;
+    }
+    m_angle= angle;
+}
+
+int   CNode::get_fd (void)
+{
+    return (m_client_fd);
+}
+
+void  CNode::set_fd (int fd)
+{
+    if (fd > 0)
+        m_client_fd = fd;
 }
 
 CMakeHouse::CMakeHouse()
@@ -109,6 +185,71 @@ CMakeHouse::CMakeHouse()
 CMakeHouse::~CMakeHouse()
 {
 }
+
+int  CMakeHouse::get_node_id_by_layer (int layer)
+{
+    NODEMAP::iterator it;
+    for (it = m_node_map.begin(); it != m_node_map.end(); it++)
+    {
+        if (it->second->get_layer() == layer)
+            return (it->first);
+    }
+
+    cout << "[Warning]: can't found node_id by layer =" << layer << endl;
+    return (ERRORNODEID);
+}
+
+int  CMakeHouse::get_layer_by_node_id (int node_id)
+{
+    NODEMAP::iterator it;
+    for (it = m_node_map.begin(); it != m_node_map.end(); it++)
+    {
+        if (it->first == node_id)
+            return (it->second->get_layer());
+    }
+
+    cout << "[Warning]: can't found layer by node_id =" << node_id << endl;
+    return (ERRORLAYER);
+}
+
+#ifdef _OLD_MAKEHOUSE_GAME
+int CMakeHouse::update (int client_fd, int node_id, float x, float y, float angle, float scale)
+{
+    NODEMAP::iterator it = m_node_map.find (node_id);
+    if (it != m_node_map.end()) {
+        return (it->second->update (client_fd, x, y, angle, scale));
+    }
+
+    return (1);
+}
+
+#else
+int  CMakeHouse::modifyScale (int node_id, float scale)
+{
+    NODEMAP::iterator it = m_node_map.find (node_id);
+    if (it != m_node_map.end ())
+        return (it->second->modifyScale (scale));
+
+    return (1);
+}
+
+int  CMakeHouse::modifyAngle (int node_id, float angle)
+{
+    NODEMAP::iterator it = m_node_map.find (node_id);
+    if (it != m_node_map.end())
+        return (it->second->modifyAngle (angle));
+    return (1);
+}
+
+int  CMakeHouse::modifyMove (int node_id, float x, float y)
+{
+    NODEMAP::iterator it = m_node_map.find (node_id);
+    if (it != m_node_map.end ())
+        return (it->second->modifyMove (x, y));
+    return (1);
+}
+
+#endif
 
 bool CMakeHouse::lock(int client_fd, int node_id)
 {
@@ -248,6 +389,44 @@ CStudent* CGroup::get_student_by_fd (int fd)
     }
 #endif
     return NULL;
+}
+
+int  CGroup::set_buf (Buf* p)
+{
+    if (p == NULL)
+    {
+        cout << "[ERROR]: p is NULL" << endl;
+        return (1);
+    }
+
+    std::map<int, CNode*>::iterator it; // node_id, CNode
+    long long ll;
+    struct Picture pic;
+    char* pdata = ((char*) p->ptr()) + MSG_HEAD_LEN;
+    MSG_HEAD* head = (MSG_HEAD*) ((char*)p->ptr());
+    int icount = 0;
+    *(int*) pdata = icount;
+    pdata += sizeof (int);
+
+    for (it = m_make_house.m_node_map.begin (); it != m_make_house.m_node_map.end (); it++)
+    {
+        (void) memset (&pic, 0x00, sizeof (pic));
+        it->second->get_location (pic.x, pic.y, pic.angle, pic.scale);
+        pic.layer = it->second->get_layer();
+        pic.name = it->second->get_name ();
+
+        DataTool dt(pic);
+        ll = dt.getData ();
+
+        *(long long*) pdata = ll;
+        pdata += sizeof (long long);
+
+        icount++;
+
+    }
+
+    head->cLen = MSG_HEAD_LEN + sizeof (int) + sizeof (long long) * icount;
+    return (0);   
 }
 
 void CGroup::broadcast(Buf* p)
