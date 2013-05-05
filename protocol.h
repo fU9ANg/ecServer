@@ -135,6 +135,13 @@ enum CommandType
     CT_BuildHouse_EmailAmerica,         // 启动邮件2 (教师端) *
     ST_BuildHouse_EmailAmerica,         // 显示邮件2信息 (白板端) *
 
+    CT_BuildHouse_Move,               // 更新操作 (包括 移动)
+    ST_BuildHouse_Move,               // 服务器->关联的学生端
+    CT_BuildHouse_Angle,               // 更新操作 (包括 旋转)
+    ST_BuildHouse_Angle,               // 服务器->关联的学生端
+    CT_BuildHouse_Scale,               // 更新操作 (包括 缩放)
+    ST_BuildHouse_Scale,               // 服务器->关联的学生端
+
     CT_BuildHouse_Update,               // 更新操作 (包括 移动,旋转,缩放)
     ST_BuildHouse_Update,               // 服务器->关联的学生端
     CT_BuildHouse_Change_Layer,         // 更新层次
@@ -672,6 +679,41 @@ typedef struct sRainbowValley_HouseItem_Info{
 	float angle;
 	char picture_name[40];
 }THouseItem_Info;
+
+
+// make house
+
+struct AddPic{
+	int studentId;
+	float x;
+	float y;
+	char picName[4];
+};//添加
+struct movePic{
+	int layer; //层作为图片标识符
+	float toX;
+	float toY;
+};//移动
+
+struct scalePic{
+   int layer;
+	float toScale;
+};//缩放
+
+struct rotatePic{
+int layer;
+float toAngle;
+};//旋转
+
+struct putLayerPic{
+	int layer;
+	int toLayer;
+};//调整层次
+
+struct deletePic{
+	int layer;
+
+};//删除素材
 
 #define MSG_HEAD_LEN sizeof(struct sSubmitData)
 
