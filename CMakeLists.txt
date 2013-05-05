@@ -56,6 +56,7 @@ SET (SRC_LIST
     ./content/LoginCheck.cpp
     ./content/makehouse.cpp
     ./content/puzzle.cpp
+    ./content/DataTool.cpp
 )
 
 # libraries for linker

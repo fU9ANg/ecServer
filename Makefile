@@ -15,6 +15,10 @@ CFLAGS  = -Wall -Werror
 # is debug? (for development)
 CDEBUG  = -g
 
+# macro
+CMACRO	= 
+#-D_OLD_MAKEHOUSE_GAME
+
 # objects
 OBJS    = main.o \
     Config.o \
@@ -44,7 +48,8 @@ OBJS    = main.o \
     content/roommanager.o \
     content/LoginCheck.o \
     content/makehouse.o \
-    content/puzzle.o
+    content/puzzle.o \
+	content/DataTool.o
 
 # binary
 BIN	    = server
@@ -61,11 +66,11 @@ all:$(BIN)
 # how to compiling programs
 $(BIN):$(OBJS)
 #	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(OBJS)
-	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(OBJS) $(LINK)
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) -o $@ $(OBJS) $(LINK)
 %.o:%.cpp
-	$(CPP) $(CFLAGS) $(CDEBUG) $(INC) -o $@ -c $<
+	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
 %.o:%.c
-	$(CC)  $(CFLAGS) $(CDEBUG) $(INC) -o $@ -c $<
+	$(CC)  $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
 
 .PHONY: clean
 
