@@ -55,8 +55,8 @@ float DataTool::getScale() {
 	scale /= 10;
 	return scale;
 }
-string DataTool::getName() {
-	string name;
+short DataTool::getName() {
+   short name;
 	stringstream ss;
 	ss << string(m_sdata, m_length - 15, 4);
 	ss >> name;
@@ -100,12 +100,9 @@ void DataTool::setData() {
 	m_data += ((int) m_pic.y) * 1000;
 	m_data += ((int) m_pic.angle) * 1000000;
 	m_data += (long long) (m_pic.scale * 10) * 1000000000;
-	stringstream ss;
-	long long name;
-	ss << m_pic.name;
-	ss >> name;
-	m_data += name * 100000000000;
-	m_data += m_pic.layer * 1000000000000000;
+
+    m_data += m_pic.name * 100000000000;
+	m_data += m_pic.layer *   1000000000000000;
 	m_data +=m_pic.studentId*100000000000000000;
 }
 long long DataTool::getData() {

@@ -42,13 +42,15 @@ CNode::~CNode()
 #ifdef _OLD_MAKEHOUSE_GAME 
 int CNode::update (int client_fd, float x, float y, float angle, float scale)
 {
-    if (this->m_client_fd == client_fd) {
+    if (this->m_client_fd == client_fd)
+    {
         m_position_x = x;
         m_position_y = y;
         m_angle = angle;
         m_scale = scale;
     }
-    else {
+    else
+    {
         cout << "update node 'client_fd != m_client_fd' in CNode::update" << endl;
         return (1);
     }
@@ -100,7 +102,8 @@ void CNode::set_node_id(int node_id) {
     m_node_id = node_id;
 }
 
-void CNode::set_name(string name) {
+void CNode::set_name(string name)
+{
     m_name = name;
 }
 
@@ -109,11 +112,22 @@ string CNode::get_name (void)
     return (m_name);
 }
 
-void CNode::get_location(float& x, float& y) {
+void CNode::set_sname (short name) {
+    m_sname = name;
+}
+
+short CNode::get_sname (void)
+{
+    return (m_sname);
+}
+
+void CNode::get_location (float& x, float& y)
+{
     x = m_position_x;
     y = m_position_y;
 }
-void CNode::get_location(float& x, float& y, float& angle, float& scale)
+
+void CNode::get_location (float& x, float& y, float& angle, float& scale)
 {
     x = m_position_x;
     y = m_position_y;
@@ -180,10 +194,13 @@ void  CNode::set_fd (int fd)
 
 CMakeHouse::CMakeHouse()
 {
+    // TODO:
+    m_current_layer = 1;
 }
 
 CMakeHouse::~CMakeHouse()
 {
+    // TODO:
 }
 
 int  CMakeHouse::get_node_id_by_layer (int layer)
@@ -213,6 +230,7 @@ int  CMakeHouse::get_layer_by_node_id (int node_id)
 }
 
 #ifdef _OLD_MAKEHOUSE_GAME
+
 int CMakeHouse::update (int client_fd, int node_id, float x, float y, float angle, float scale)
 {
     NODEMAP::iterator it = m_node_map.find (node_id);
@@ -224,6 +242,7 @@ int CMakeHouse::update (int client_fd, int node_id, float x, float y, float angl
 }
 
 #else
+
 int  CMakeHouse::modifyScale (int node_id, float scale)
 {
     NODEMAP::iterator it = m_node_map.find (node_id);
@@ -236,8 +255,9 @@ int  CMakeHouse::modifyScale (int node_id, float scale)
 int  CMakeHouse::modifyAngle (int node_id, float angle)
 {
     NODEMAP::iterator it = m_node_map.find (node_id);
-    if (it != m_node_map.end())
+    if (it != m_node_map.end ())
         return (it->second->modifyAngle (angle));
+
     return (1);
 }
 
@@ -251,30 +271,33 @@ int  CMakeHouse::modifyMove (int node_id, float x, float y)
 
 #endif
 
-bool CMakeHouse::lock(int client_fd, int node_id)
+bool CMakeHouse::lock (int client_fd, int node_id)
 {
     return true;
 }
 
-bool CMakeHouse::unlock(int client_fd, int node_id)
+bool CMakeHouse::unlock (int client_fd, int node_id)
 {
     return true;
 }
 
-int CMakeHouse::add(int node_id, CNode* p_node)
+int CMakeHouse::add (int node_id, CNode* p_node)
 {
     if (p_node == NULL)
         return (1);
 
-    m_node_map.insert(pair<int, CNode*>(node_id, p_node));
+    m_node_layer_list.push_back (p_node);
+    m_node_map.insert (pair<int, CNode*>(node_id, p_node));
     return 0;
 }
 
-int CMakeHouse::del(int node_id)
+int CMakeHouse::del (int node_id)
 {
     NODEMAP::iterator it;
     it = m_node_map.find (node_id);
-    if (it != m_node_map.end()) {
+
+    if (it != m_node_map.end())
+    {
         delete it->second;
         m_node_map.erase(node_id);
         return (0);
@@ -282,11 +305,13 @@ int CMakeHouse::del(int node_id)
     return (1);
 }
 
-std::list <CNode*>::iterator CMakeHouse::get_iterator_by_node_id(int node_id)
+std::list <CNode*>::iterator CMakeHouse::get_iterator_by_node_id (int node_id)
 {
     std::list <CNode*>::iterator iter;
-    for( iter = m_node_layer_list.begin();
-         iter != m_node_layer_list.end(); iter++ ) {
+    for (iter  = m_node_layer_list.begin();
+         iter != m_node_layer_list.end();
+         iter++)
+    {
         if ( (*iter)->get_node_id() == node_id) {
             return iter;
         }
@@ -294,7 +319,7 @@ std::list <CNode*>::iterator CMakeHouse::get_iterator_by_node_id(int node_id)
     return m_node_layer_list.end();
 }
 
-int CMakeHouse::layer_up(int node_id, int count)
+int CMakeHouse::layer_up (int node_id, int count)
 {
     MutexLockGuard guard(this->m_node_layer_list_lock);
     NODELIST::iterator iter = get_iterator_by_node_id(node_id);
@@ -312,7 +337,7 @@ int CMakeHouse::layer_up(int node_id, int count)
     return i;
 }
 
-int CMakeHouse::layer_down(int node_id, int count)
+int CMakeHouse::layer_down (int node_id, int count)
 {
     MutexLockGuard guard(this->m_node_layer_list_lock);
     NODELIST::iterator iter = get_iterator_by_node_id(node_id);
@@ -330,9 +355,32 @@ int CMakeHouse::layer_down(int node_id, int count)
     return i;
 }
 
+int CMakeHouse::set_current_layer (unsigned int layer)
+{
+    if (layer < 1)
+    {
+        cout << "[ERROR]: layer < 1" << endl;
+        return (1);
+    }
+    m_current_layer = layer;
+    return (0);
+}
+
+unsigned int CMakeHouse::get_current_layer (void)
+{
+    return (m_current_layer);
+}
+
 ////////// Class CGroup //////////
+
+CGroup::CGroup ()
+{
+    m_auto_nodeid = 1;
+}
+
 CGroup::CGroup (string name) : m_group_name(name)
 {
+    m_auto_nodeid = 1;
 }
 
 CGroup::~CGroup (void)
@@ -354,7 +402,7 @@ bool CGroup::add_student_to_group (int fd, CStudent* stu)
     }
     else
     {
-        cout << "ERROR: add_student_to_group() " << endl;
+        cout << "[ERROR]: add_student_to_group() " << endl;
     }
 
     return false;
@@ -412,11 +460,24 @@ int  CGroup::set_buf (Buf* p)
     {
         (void) memset (&pic, 0x00, sizeof (pic));
         it->second->get_location (pic.x, pic.y, pic.angle, pic.scale);
-        pic.layer = it->second->get_layer();
-        pic.name = it->second->get_name ();
+        pic.layer = it->second->get_layer ();
+        pic.name = it->second->get_sname ();
+        pic.studentId = get_student_by_fd (p->getfd())->getId ();
 
-        DataTool dt(pic);
+        cout << "StudentId" << pic.studentId << endl;
+        cout << "x=" << pic.x << endl;
+        cout << "y=" << pic.y << endl;
+        cout << "angle=" << pic.angle << endl;
+        cout << "scale=" << pic.scale << endl;
+        cout << "layer=" << pic.layer << endl;
+        cout << "name=" << pic.name << endl;
+
+        DataTool dt (pic);
+        cout << "into getData()" << time(NULL) << endl;
         ll = dt.getData ();
+        cout << "out getData()" << time(NULL) << endl;
+
+        cout << "ll = " << ll << endl;
 
         *(long long*) pdata = ll;
         pdata += sizeof (long long);
@@ -425,19 +486,31 @@ int  CGroup::set_buf (Buf* p)
 
     }
 
+    *(int *) (((char*) p->ptr()) + MSG_HEAD_LEN) = icount;
     head->cLen = MSG_HEAD_LEN + sizeof (int) + sizeof (long long) * icount;
     return (0);   
 }
 
 void CGroup::broadcast(Buf* p)
 {
+    if (p == NULL)
+    {
+        cout << "[Warning] - p is NULL" << endl;
+        return;
+    }
+
     STUDENTMAP::iterator it;
     Buf* p_buf = NULL;
     MSG_HEAD* head = NULL;
     char* pp = NULL;
 
-    for (it=m_student_map.begin(); it!=m_student_map.end(); ++it) {
-        p_buf = SINGLE->bufpool.malloc();
+    for (it=m_student_map.begin(); it!=m_student_map.end(); ++it)
+    {
+        if ((p_buf = SINGLE->bufpool.malloc()) == NULL)
+        {
+            cout << "[Error] - out of memory" << endl;
+            return;
+        }
         head = (MSG_HEAD*)((char*) p_buf->ptr());
         pp = ((char*)p_buf->ptr()) + MSG_HEAD_LEN;
 
@@ -453,10 +526,18 @@ void CGroup::broadcast(Buf* p)
         (void) memcpy (pp, ((char*)p->ptr()) + MSG_HEAD_LEN, head->cLen);
         SINGLE->sendqueue.enqueue (p_buf);
     }
+
+    SINGLE->bufpool.free (p);
 }
 
 void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 {
+    if (p == NULL)
+    {
+        cout << "[Warning] - p is NULL" << endl;
+        return;
+    }
+
     STUDENTMAP::iterator it;
     Buf* p_buf = NULL;
     MSG_HEAD* head = NULL;
@@ -464,9 +545,13 @@ void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 
     for (it=m_student_map.begin(); it!=m_student_map.end(); ++it) {
 
-        if (p->getfd() == it->first) continue;
+        //if (p->getfd() == it->first) continue;
 
-        p_buf = SINGLE->bufpool.malloc();
+        if ((p_buf = SINGLE->bufpool.malloc()) == NULL)
+        {
+            cout << "[Error] - out of memory" << endl;
+            return;
+        }
         head = (MSG_HEAD*)((char*) p_buf->ptr());
         pp = ((char*)p_buf->ptr()) + MSG_HEAD_LEN;
 
@@ -508,4 +593,28 @@ void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 
     return;
 #endif
+}
+
+void CGroup::setName (string name)
+{
+    m_group_name = name;
+}
+
+string CGroup::getName (void)
+{
+    return (m_group_name);
+}
+
+unsigned int CGroup::getAutoNodeId ()
+{
+    MutexLockGuard guard (m_lock);
+
+    return (m_auto_nodeid++);
+}
+
+unsigned int CGroup::getAutoLayer ()
+{
+    MutexLockGuard guard (m_lock);
+
+    return (m_auto_layer++);
 }

@@ -9,6 +9,7 @@
 #include "makehouse.h"
 #include "roommanager.h"
 #include "protocol.h"
+#include <time.h>
 
 /*
    =====================
@@ -223,6 +224,7 @@ void CHandleMessage::handleBuildHouse_GetStuGroup (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 {
+#if 0
 	if (NULL == p)
 	{
 		return;
@@ -242,6 +244,17 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 	if (head->cType == CT_BuildHouse_GameStart) {
 		CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_GameStart);
 	}
+#else
+	if (NULL == p)
+	{
+		return;
+	}
+
+	cout << "process: CT_BuildHouse_GameStart" << endl;
+	CStudent* student = new CStudent;
+    student->setId (22);
+	test_group.add_student_to_group(p->getfd(), student);
+#endif
 
 	return;
 }
@@ -496,6 +509,7 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
 // 移动房屋。
 void CHandleMessage::handleBuildHouse_Move (Buf* p)
 {
+#ifdef _BUILD_HOUSE_GMAE
 	if (NULL == p)
 	{
 		return;
@@ -533,11 +547,21 @@ void CHandleMessage::handleBuildHouse_Move (Buf* p)
 	// 同步同一组所有图片。
 	p_group->set_buf (p);
 	p_group->sendToOtherStudent (p, ST_BuildHouse_Move);
+#else
+	movePic *p_move_pic = (movePic *)((char *)p->ptr() + MSG_HEAD_LEN);
+
+	CMakeHouse *p_make_house = test_group.get_make_house();
+	p_make_house->modifyMove(p_make_house->get_node_id_by_layer(p_move_pic->layer), p_move_pic->toX, p_move_pic->toY);
+
+	test_group.set_buf(p);
+	test_group.sendToOtherStudent(p, ST_BuildHouse_Update);
+#endif
 }
 
 // 缩放房屋。
 void CHandleMessage::handleBuildHouse_Scale (Buf* p)
 {
+#if _BUILD_HOUSE_GMAE
 	if (NULL == p)
 	{
 		return;
@@ -574,11 +598,21 @@ void CHandleMessage::handleBuildHouse_Scale (Buf* p)
 	// 同步同一组所有图片。
 	p_group->set_buf(p);
 	p_group->sendToOtherStudent (p, ST_BuildHouse_Scale);
+#else
+	scalePic *p_scale_pic = (scalePic *)((char *)p->ptr() + MSG_HEAD_LEN);
+
+	CMakeHouse *p_make_house = test_group.get_make_house();
+	p_make_house->modifyScale(p_make_house->get_node_id_by_layer(p_scale_pic->layer), p_scale_pic->toScale);
+
+	test_group.set_buf(p);
+	test_group.sendToOtherStudent(p, ST_BuildHouse_Update);
+#endif
 }
 
 // 旋转房屋。
 void CHandleMessage::handleBuildHouse_Angle (Buf* p)
 {
+#if _BUILD_HOUSE_GMAE
 	if (NULL == p)
 	{
 		return;
@@ -615,18 +649,25 @@ void CHandleMessage::handleBuildHouse_Angle (Buf* p)
 	// 同步同一组所有图片。
 	p_group->set_buf(p);
 	p_group->sendToOtherStudent (p, ST_BuildHouse_Angle);
+#else
+	rotatePic *p_rotate_pic = (rotatePic *)((char *)p->ptr() + MSG_HEAD_LEN);
+
+	CMakeHouse *p_make_house = test_group.get_make_house();
+	p_make_house->modifyAngle(p_make_house->get_node_id_by_layer(p_rotate_pic->layer), p_rotate_pic->toAngle);
+
+	test_group.set_buf(p);
+	test_group.sendToOtherStudent(p, ST_BuildHouse_Update);
+#endif
 }
 
 // 调整层次
 void CHandleMessage::handleBuildHouse_Change_Layer(Buf* p)
 {
-	cout << "CT_BuildHouse_Change_Layer" << endl;
-
+#if _BUILD_HOUSE_GMAE
 	if (NULL == p)
 	{
 		return;
 	}
-
 
 	CRoom* p_room = ROOMMANAGER->get_room_by_fd(p->getfd());
 	if ( NULL == p_room)
@@ -695,11 +736,35 @@ void CHandleMessage::handleBuildHouse_Change_Layer(Buf* p)
 	// 同步同一组所有图片。
 	p_group->set_buf(p);
 	p_group->sendToOtherStudent(p, ST_BuildHouse_Change_Layer);
+#else
+	putLayerPic *p_putLayerPic = (putLayerPic *)((char *)p->ptr() + MSG_HEAD_LEN);
+
+	CMakeHouse *p_make_house = test_group.get_make_house();
+	int id = p_make_house->get_node_id_by_layer(p_putLayerPic->layer);
+	int count = p_putLayerPic->layer - p_putLayerPic->toLayer;
+
+	if (count > 0)
+	{
+		p_make_house->layer_down(id, count);
+	}
+	else if (count < 0)
+	{
+		p_make_house->layer_up(id, count);
+	}
+	else // 同层。
+	{
+		return;
+	}
+
+	test_group.set_buf(p);
+	test_group.sendToOtherStudent(p, ST_BuildHouse_Update);
+#endif
 }
 
 // 添加一张图片
 void CHandleMessage::handleBuildHouse_Add_Pic(Buf* p)
 {
+#if _BUILD_HOUSE_GMAE
 	cout << "CT_BuildHouse_Add_Pic" << endl;
 
 	if (NULL == p)
@@ -737,7 +802,7 @@ void CHandleMessage::handleBuildHouse_Add_Pic(Buf* p)
 	 *     p_group->sendToOtherStudent (p, ST_BuildHouse_Add_Pic);
 	 */
 
-	AddPic *p_add_pic = (AddPic *)((char *)p->ptr() + MSG_HEAD_LEN);
+	AddPic *p_add_pic = (AddPic *) (((char *)p->ptr())+ MSG_HEAD_LEN);
 	if (NULL == p_add_pic)
 	{
 		return;
@@ -752,6 +817,8 @@ void CHandleMessage::handleBuildHouse_Add_Pic(Buf* p)
 	cout << p_add_pic->y << ", ";
 	cout << endl;
 #endif
+    //CStudent* stu = get_student_by_fd (p->getfd());
+    //stu->setId (p_add_pic->studentId);
 
 	CNode *p_node = new CNode(p->getfd(), p_add_pic->x, p_add_pic->y);
 	if (NULL == p_node)
@@ -760,7 +827,7 @@ void CHandleMessage::handleBuildHouse_Add_Pic(Buf* p)
 	}
 
 	p_node->set_node_id(p_room->getAutoNodeId());
-	p_node->set_name(p_add_pic->picName);
+	p_node->set_sname(p_add_pic->picName);
 	p_group->get_make_house()->add(p_node->get_node_id(), p_node);
 
 
@@ -770,11 +837,44 @@ void CHandleMessage::handleBuildHouse_Add_Pic(Buf* p)
 
 	delete p_node;
 	p_node = NULL;
+
+#else
+
+	AddPic *p_add_pic = (AddPic *) (((char *)p->ptr()) + MSG_HEAD_LEN);
+
+#ifdef DEBUG
+	// 打印结构体。
+	cout << "Add_Pic : ";
+	cout << p_add_pic->studentId << ", ";
+	cout << p_add_pic->picName << ", ";
+	cout << p_add_pic->x << ", ";
+	cout << p_add_pic->y << ", ";
+	cout << endl;
+#endif
+
+	CNode *p_node = new CNode (p->getfd(), p_add_pic->x, p_add_pic->y);
+    p_node->set_angle (0.0f);
+    p_node->set_scale (1.0f);
+	p_node->set_node_id (test_group.getAutoNodeId ()); //???????????????????????
+    p_node->set_layer (test_group.get_make_house()->get_current_layer ());
+    test_group.get_make_house()->set_current_layer (\
+            test_group.get_make_house()->get_current_layer () + 1);
+	p_node->set_sname (p_add_pic->picName);
+
+	test_group.get_make_house()->add (p_node->get_node_id(), p_node);
+
+	test_group.set_buf (p);
+	test_group.sendToOtherStudent (p, ST_BuildHouse_Update);
+
+	delete p_node;
+	p_node = NULL;
+#endif
 }
 
 // 删除一张图片
 void CHandleMessage::handleBuildHouse_Del_Pic(Buf* p)
 {
+#if _BUILD_HOUSE_GMAE
 	cout << "CT_BuildHouse_Del_Pic" << endl;
 
 	if (NULL == p)
@@ -827,4 +927,17 @@ void CHandleMessage::handleBuildHouse_Del_Pic(Buf* p)
 	// 同步同一组所有图片。
 	p_group->set_buf(p);
 	p_group->sendToOtherStudent(p, CT_BuildHouse_Del_Pic);
+#else
+	deletePic *p_del_pic = (deletePic *)((char *)p->ptr() + MSG_HEAD_LEN);
+
+	CMakeHouse *p_make_house = test_group.get_make_house();
+	if (0 != p_make_house->del(p_make_house->get_node_id_by_layer(p_del_pic->layer)))
+	{
+		cout << "CT_BuildHouse_Del_Pic Failure!" << endl;
+		return;
+	}
+
+	test_group.set_buf(p);
+	test_group.sendToOtherStudent(p, ST_BuildHouse_Update);
+#endif
 }

@@ -94,7 +94,6 @@ void CHandleMessage::handleTest (Buf* p)
             info->x = cit->second->m_position_x;
             info->y = cit->second->m_position_y;
             info->angle = cit->second->m_angle;
-            //info->zoom = cit->second->m_zoom;
             info->zoom = cit->second->m_scale;
             info->layer = cit->second->m_layer;
             strcpy (info->picture_name, cit->second->m_name.c_str());

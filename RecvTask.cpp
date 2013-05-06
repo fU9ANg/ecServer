@@ -27,7 +27,7 @@ int RecvTask::work ()
         if (head != NULL)
         {
             debugProtocol (p);
-            //cout << "recvTask: cType=" << head->cType << endl;
+            cout << "recvTask: cType=" << head->cType << endl;
             handlefunc pfun = CHandleMessage::getHandler (head->cType); 
             if (NULL == pfun) {
                 printf("ERROR: the pointer of callback, cType=[%d]\n",head->cType);

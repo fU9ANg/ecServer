@@ -550,7 +550,9 @@ void CRoom::init_buildhouse_group (int numsOfStudent)
     }
 }
 
+#if 0 /* move function to group class */
 unsigned int CRoom::getAutoNodeId ()
 {
     return (m_node_id++);
 }
+#endif

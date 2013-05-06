@@ -687,7 +687,8 @@ struct AddPic{
 	int studentId;
 	float x;
 	float y;
-	char picName[4];
+	//char picName[4];
+    short picName;
 };//添加
 struct movePic{
 	int layer; //层作为图片标识符

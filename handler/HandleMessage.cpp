@@ -12,7 +12,7 @@
 
 /////////////////////
 HANDLEMAP CHandleMessage::m_HandleMap;
-
+CGroup CHandleMessage::test_group;
 
 /*
 =====================

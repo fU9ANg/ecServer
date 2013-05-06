@@ -34,8 +34,12 @@ class CNode
         bool unlock(int client_fd);
         int  get_node_id();
         void set_node_id(int node_id);
+
+        void set_sname(short name);
+        short get_sname (void);
         void set_name(string name);
         string get_name (void);
+
         void get_location(float& x, float& y);
         void get_location(float& x, float& y, float& angle, float& scale);
 
@@ -61,6 +65,7 @@ class CNode
         float m_scale; //放大倍数
         char   m_path[512];
         string m_name;
+        short m_sname;
 };
 
 class CMakeHouse
@@ -69,6 +74,9 @@ class CMakeHouse
     public:
         typedef std::map<int, CNode*> NODEMAP; // node_id, CNode
         typedef std::list<CNode*> NODELIST;
+
+        int set_current_layer(unsigned int);
+        unsigned int get_current_layer (void);
 
     private:
         NODEMAP   m_node_map;
@@ -109,6 +117,9 @@ class CMakeHouse
         
     private:
         NODELIST::iterator get_iterator_by_node_id(int node_id);
+
+    private:
+        unsigned int m_current_layer;
 };
 
 class CGroup
@@ -123,6 +134,7 @@ class CGroup
 
     public:
         CGroup (string name);
+        CGroup ();
         ~CGroup ();
         CMakeHouse* get_make_house (void);
         bool add_student_to_group (int fd, CStudent* stu);
@@ -131,7 +143,22 @@ class CGroup
 
         int  set_buf (Buf* p);
         void broadcast(Buf* p);
-        void sendToOtherStudent (Buf* p, enum CommandType eType);       
+        void sendToOtherStudent (Buf* p, enum CommandType eType);
+
+        unsigned int getAutoNodeId ();
+        unsigned int getAutoLayer ();
+    public:
+        void setName (string name);
+        string getName (void);
+
+        unsigned int get_current_layer ();
+        void set_current_layer (unsigned int layer);
+
+    private:
+        MutexLock m_lock;
+        unsigned int m_auto_nodeid;
+        unsigned int m_auto_layer;
+        unsigned int m_current_layer;
 };
 
 #endif

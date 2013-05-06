@@ -12,8 +12,12 @@ CC      = ccache cc
 # options for compiler
 CFLAGS  = -Wall -Werror
 
+# flags of buildhouse
+BHFLAGS	= 
+#-D_BUILD_HOUSE_GMAE
+
 # is debug? (for development)
-CDEBUG  = -g
+CDEBUG  = -g -DDEBUG
 
 # macro
 CMACRO	= 
@@ -61,16 +65,16 @@ INC	    = -I. -I./includes -I./handler -I./content
 #LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so
 LINK        = -lev -lglog -lmysqlcppconn -llua5.2
 # rock..
-all:$(BIN)
+all: clean $(BIN)
 
 # how to compiling programs
 $(BIN):$(OBJS)
 #	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(OBJS)
-	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) -o $@ $(OBJS) $(LINK)
+	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) -o $@ $(OBJS) $(LINK)
 %.o:%.cpp
-	$(CPP) $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) $(INC) -o $@ -c $<
 %.o:%.c
-	$(CC)  $(CFLAGS) $(CDEBUG) $(CMACRO) $(INC) -o $@ -c $<
+	$(CC)  $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) $(INC) -o $@ -c $<
 
 .PHONY: clean
 

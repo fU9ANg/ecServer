@@ -14,7 +14,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
+#if 1
+#include "makehouse.h"
+#endif
 #include "protocol.h"
 #include "Single.h"
 #include "Buf.h"
@@ -74,6 +76,8 @@ private:
 
 private:
     static HANDLEMAP m_HandleMap;
+
+    static CGroup test_group;
 };
 
 

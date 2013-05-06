@@ -13,7 +13,7 @@ struct Picture {
 	float y; //Y坐标
 	float angle; //顺时针旋转角度值
 	float scale; //缩放比例
-	std::string name; //图片名称
+	short name; //图片名称
 	int layer; //层次与编号统一，不大于99
 	int studentId; //学生编号，用于身份识别
 };
@@ -39,7 +39,7 @@ class DataTool {
 	float getAngle();
 
 	float getScale();
-	std::string getName();
+	short getName();
 
 	int getLayer();
 public:
