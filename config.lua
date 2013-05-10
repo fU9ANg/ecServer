@@ -1,4 +1,5 @@
 db_host="tcp://127.0.0.1:3306";
+--db_host="tcp://222.186.50.76:3306";
 db_username="root";
 db_password="123123";
 db_database="teaching_db";

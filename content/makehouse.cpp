@@ -192,6 +192,18 @@ void  CNode::set_fd (int fd)
         m_client_fd = fd;
 }
 
+int   CNode::get_student_id (void)
+{
+    return (m_student_id);
+}
+
+void  CNode::set_student_id (int sid)
+{
+    m_student_id = sid;
+}
+
+///////////////////////////// CMakeHouse /////////////////////////////////
+//
 CMakeHouse::CMakeHouse()
 {
     // TODO:
@@ -245,6 +257,8 @@ int CMakeHouse::update (int client_fd, int node_id, float x, float y, float angl
 
 int  CMakeHouse::modifyScale (int node_id, float scale)
 {
+    MutexLockGuard guard (m_node_lock); // scale picture
+
     NODEMAP::iterator it = m_node_map.find (node_id);
     if (it != m_node_map.end ())
         return (it->second->modifyScale (scale));
@@ -254,6 +268,8 @@ int  CMakeHouse::modifyScale (int node_id, float scale)
 
 int  CMakeHouse::modifyAngle (int node_id, float angle)
 {
+    MutexLockGuard gurad (m_node_lock); // rotate picture
+
     NODEMAP::iterator it = m_node_map.find (node_id);
     if (it != m_node_map.end ())
         return (it->second->modifyAngle (angle));
@@ -263,6 +279,8 @@ int  CMakeHouse::modifyAngle (int node_id, float angle)
 
 int  CMakeHouse::modifyMove (int node_id, float x, float y)
 {
+    MutexLockGuard guard (m_node_lock); // move picture
+
     NODEMAP::iterator it = m_node_map.find (node_id);
     if (it != m_node_map.end ())
         return (it->second->modifyMove (x, y));
@@ -283,16 +301,30 @@ bool CMakeHouse::unlock (int client_fd, int node_id)
 
 int CMakeHouse::add (int node_id, CNode* p_node)
 {
+    MutexLockGuard guard (m_node_lock); // add picture to node map
+
     if (p_node == NULL)
         return (1);
 
+    cout << "nodeid=" << node_id << endl;
     m_node_layer_list.push_back (p_node);
+#if 1
+    std::map<int, CNode*>::iterator it;
+    for (it = m_node_map.begin(); it != m_node_map.end(); it++)
+    {
+        cout << "-- node_id = " << it->first << endl;
+        cout << "-- node = " << it->second << endl;
+        cout << "---- layer = " << it->second->get_layer() << endl;
+    }
+#endif
     m_node_map.insert (pair<int, CNode*>(node_id, p_node));
     return 0;
 }
 
 int CMakeHouse::del (int node_id)
 {
+    MutexLockGuard guard (m_node_lock); // delete picture from node map
+
     NODEMAP::iterator it;
     it = m_node_map.find (node_id);
 
@@ -423,24 +455,19 @@ CGroup* CGroup::get_group_by_fd (int fd)
 CStudent* CGroup::get_student_by_fd (int fd)
 {
     STUDENTMAP::iterator it;
-#if 1
+
     it = m_student_map.find (fd);
     if (it != m_student_map.end())
     {
         return it->second;
     }
-#else
-    for (it = m_student_map.begin(); it != m_student_map.end(); it++)
-    {
-        if (it->first == fd)
-            return it->second;
-    }
-#endif
+
     return NULL;
 }
 
 int  CGroup::set_buf (Buf* p)
 {
+    MutexLockGuard guard (m_lock);
     if (p == NULL)
     {
         cout << "[ERROR]: p is NULL" << endl;
@@ -458,12 +485,14 @@ int  CGroup::set_buf (Buf* p)
 
     for (it = m_make_house.m_node_map.begin (); it != m_make_house.m_node_map.end (); it++)
     {
+        //cout << "+++++++++++++++++++" << endl;
         (void) memset (&pic, 0x00, sizeof (pic));
         it->second->get_location (pic.x, pic.y, pic.angle, pic.scale);
         pic.layer = it->second->get_layer ();
         pic.name = it->second->get_sname ();
-        pic.studentId = get_student_by_fd (p->getfd())->getId ();
-
+        //pic.studentId = get_student_by_fd (p->getfd())->getId ();
+        pic.studentId = it->second->get_student_id();
+#if 0
         cout << "StudentId" << pic.studentId << endl;
         cout << "x=" << pic.x << endl;
         cout << "y=" << pic.y << endl;
@@ -471,11 +500,11 @@ int  CGroup::set_buf (Buf* p)
         cout << "scale=" << pic.scale << endl;
         cout << "layer=" << pic.layer << endl;
         cout << "name=" << pic.name << endl;
-
+#endif
         DataTool dt (pic);
-        cout << "into getData()" << time(NULL) << endl;
+        //cout << "into getData()" << time(NULL) << endl;
         ll = dt.getData ();
-        cout << "out getData()" << time(NULL) << endl;
+        //cout << "out getData()" << time(NULL) << endl;
 
         cout << "ll = " << ll << endl;
 
@@ -488,11 +517,14 @@ int  CGroup::set_buf (Buf* p)
 
     *(int *) (((char*) p->ptr()) + MSG_HEAD_LEN) = icount;
     head->cLen = MSG_HEAD_LEN + sizeof (int) + sizeof (long long) * icount;
+    p->setsize (head->cLen);
     return (0);   
 }
 
 void CGroup::broadcast(Buf* p)
 {
+    MutexLockGuard guard (m_lock);
+
     if (p == NULL)
     {
         cout << "[Warning] - p is NULL" << endl;
@@ -532,6 +564,7 @@ void CGroup::broadcast(Buf* p)
 
 void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 {
+    MutexLockGuard guard (m_lock);
     if (p == NULL)
     {
         cout << "[Warning] - p is NULL" << endl;

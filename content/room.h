@@ -132,6 +132,11 @@ private:
     SceneState  m_current_ss;
 
     unsigned int m_node_id;
+
+private:
+    MutexLock m_lock;
+public:
+    int bh_sync_data (void);
 };
 
 #endif //_C_ROOM_H

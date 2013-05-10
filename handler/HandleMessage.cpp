@@ -194,7 +194,7 @@ bool CHandleMessage::postTeacherToAllStudent (Buf* p, enum CommandType iCommandT
     }
     else {
         cout << __FILE__ << ":" <<__FUNCTION__<< ":" << __LINE__<<"Error: not found 'teacher_fd' in Room" << endl;
-        p->reset();
+        //p->reset();
         SINGLE->bufpool.free(p);
         return false;
     }
@@ -564,7 +564,7 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
         }
 #if 1   // send finished flags
         do {
-            usleep (100);
+            sleep (1);
             //cout << "send finished flags -----------" << endl;
             Buf* p = SINGLE->bufpool.malloc ();
             MSG_HEAD* phead = (MSG_HEAD*)p->ptr();

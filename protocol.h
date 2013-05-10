@@ -1,3 +1,4 @@
+
 //
 // Opcodes
 //
@@ -135,8 +136,8 @@ enum CommandType
     CT_BuildHouse_EmailAmerica,         // 启动邮件2 (教师端) *
     ST_BuildHouse_EmailAmerica,         // 显示邮件2信息 (白板端) *
 
-    CT_BuildHouse_Move,               // 更新操作 (包括 移动)
-    ST_BuildHouse_Move,               // 服务器->关联的学生端
+    CT_BuildHouse_Move,                // 更新操作 (包括 移动)
+    ST_BuildHouse_Move,                // 服务器->关联的学生端
     CT_BuildHouse_Angle,               // 更新操作 (包括 旋转)
     ST_BuildHouse_Angle,               // 服务器->关联的学生端
     CT_BuildHouse_Scale,               // 更新操作 (包括 缩放)

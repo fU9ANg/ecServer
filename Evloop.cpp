@@ -127,7 +127,7 @@ void Evloop::recv_cb(struct ev_loop *loop, ev_io *w, int revents)
     int *p = (int*)buf->ptr();
     i = recv_v(w->fd, (char*)buf->ptr() + sizeof(int), *p - sizeof(unsigned int));
 
-    if ( (*p - sizeof(unsigned int)) != i) {
+    if ( (*p - sizeof(unsigned int)) != (unsigned int)i) {
         LOG(ERROR) << w->fd <<":recv body error! hope = "<< *p <<" actually received len = "<< i 
             <<" info = "<< strerror(errno) <<endl;
         SINGLE->bufpool.free (buf);

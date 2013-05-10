@@ -121,10 +121,10 @@ void CHandleMessage::handleConfirmIntoClassRoom (Buf* p)
             cout << "Warning: not found class room" << endl;
             return;
         }
-        if (proom->get_teacher_fd() <= 0)
-            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
-        else
+        if ((proom->get_teacher_fd() > 0) && (proom->getIsUsed() == 1))
             *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = TT_LOGIN_CLASSROOM;
+        else
+            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
 
         p->setsize (MSG_HEAD_LEN + sizeof (sCommonStruct));
         //p->setfd (p->getfd());
@@ -259,6 +259,8 @@ void CHandleMessage::handleSetCourseGroup (Buf* p)
     head = (MSG_HEAD*) ((char*) pp->ptr());
     head->cLen = MSG_HEAD_LEN + sizeof (int);
     head->cType = ST_ConfirmIntoClassRoom;
+    pp->setsize (head->cLen);
+    pp->setfd (p->getfd());
     *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
     CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
 }
@@ -442,13 +444,13 @@ void CHandleMessage::handleLoginClassRoom (Buf* p)
         return;
     }
 
-    proom->set_teacher_fd(p->getfd());
+    proom->set_teacher_fd (p->getfd());
     if (st_login_class_room.sTeacherName[0] != 0x00)
         proom->set_teacher_name(st_login_class_room.sTeacherName);
-    proom->set_class_name(st_login_class_room.sClassName);
-    printf("Teacher login class room [%d] success!\n", proom->get_room_id());
+    proom->set_class_name (st_login_class_room.sClassName);
+    printf("Teacher fd = [%d], login class room [%d] success!\n", proom->get_teacher_fd(), proom->get_room_id());
     proom->setIsUsed (1);
-    SINGLE->bufpool.free(p);
+    SINGLE->bufpool.free (p);
     //todo:
 }
 
@@ -483,7 +485,8 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
             *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
             CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
 
-            room->set_teacher_fd (0);   // set teacher fd to INVALID
+            //sleep (2);
+            //room->set_teacher_fd (0);   // set teacher fd to INVALID
             room->setIsUsed (0);
             room->reset ();
         }

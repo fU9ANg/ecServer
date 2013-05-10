@@ -1,3 +1,6 @@
+
+# makefile for cmake
+
 cmake_minimum_required (VERSION 2.8)
 project (server)
 
@@ -5,28 +8,30 @@ project (server)
 SET (CMAKE_CXX_FLAGS_DEBUG " -O0 -Wall -g -ggdb")
 SET (CMAKE_C_FLAGS_DEBUG " -O0 -Wall -Werror -g -ggdb")
 # is debug?
+
 SET (CMAKE_BUILD_TYPE Debug )
 
 # which c plus plus compiler
-#SET (CMAKE_CXX_COMPILER "clang")
+#SET (CMAKE_CXX_COMPILER "clang") # apple clang compiler
 SET (CMAKE_CXX_COMPILER "ccache")
 SET (CMAKE_CXX_COMPILER_ARG1 "g++")
 
 # which c compiler
-#SET (CMAKE_C_COMPILER "clang")
+#SET (CMAKE_C_COMPILER "clang")   # apple clang compiler
 SET (CMAKE_C_COMPILER "ccache")
 SET (CMAKE_C_COMPILER_ARG1 "gcc")
 
 # directory for includes
 INCLUDE_DIRECTORIES (
-    content
-    handler
-    ./includes
     ./
+    ./content
+    ./includes
+    ./handler
+    ./handler/task
 )
 
 # source code list
-SET (SRC_LIST 
+SET (SRC_LIST
     ./main.cpp
     ./Config.cpp
     ./SendTask.cpp
@@ -44,6 +49,7 @@ SET (SRC_LIST
     ./handler/HandlePuzzle.cpp
     ./handler/HandleMessage.cpp
     ./handler/HandleRainbowValley.cpp
+    ./handler/task/BHSyncTask.cpp
     ./ProcessManager.cpp
     ./content/course.cpp
     ./content/courseitem.cpp

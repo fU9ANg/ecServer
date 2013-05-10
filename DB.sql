@@ -10,7 +10,7 @@
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
 
-# Host: 192.168.0.177    Database: teaching_db
+# Host: 192.168.0.254    Database: teaching_db
 # ------------------------------------------------------
 # Server version 5.5.29-0ubuntu0.12.04.1
 
@@ -286,13 +286,13 @@ LOCK TABLES `course_item` WRITE;
 /*!40000 ALTER TABLE `course_item` DISABLE KEYS */;
 # INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,13, '开始,停止,进入下一阶段', '说明:暖身操(暖身串场)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,6, '返回上一阶段,开始,停止', '说明:暖身操(暖身操)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,2, '返回上一阶段,进入,停留,离开,进入下一阶段', '说明:动画片(动画串场)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,7, '返回上一阶段,大幕拉开,开始,停止', '说明:动画片(动画剧院)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '返回上一阶段,进入,停留,离开,进入下一章,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,进入下一阶段', '说明:造房子(造房串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,2, '返回上一阶段,离开,进入下一阶段', '说明:动画片(动画串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,7, '返回上一阶段,开始,停止', '说明:动画片(动画剧院)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '返回上一阶段,离开,进入下一章,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,进入下一阶段', '说明:造房子(造房串场)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,10, '', '说明:造房子(示范造房)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,11, '', '说明:造房子(学生造房)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,4, '返回上一阶段,造房监视,彩虹谷场景,进入下一阶段', '说明:造房子(互动)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '返回上一阶段,盖章,咔嚓,进入下一阶段', '说明:造房子(拍照)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,4, '返回上一阶段,彩虹谷场景,进入下一阶段', '说明:造房子(互动)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '返回上一阶段,进入下一阶段', '说明:造房子(拍照)');
 # INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,14, '返回上一阶段,待机,进入下一阶段', '说明:拼图(拼图串场)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '返回上一阶段,方块,凹凸,12块,20块,启动,拼图监视,结束', '说明:拼图(拼图)');
 /*!40000 ALTER TABLE `course_item` ENABLE KEYS */;

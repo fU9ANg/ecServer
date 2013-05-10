@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
+#include <time.h>
 
 #include "task.h"
 #include "Sock.h"
@@ -22,8 +23,10 @@
 #include "HandleMessage.h"
 #include "protocol.h"
 
+#define  FPSVALUE  30 
+
 /**
- * @brief 处理线程
+ * @brief 同步创建房子数据线程
  */
 class BHSyncTask: public task
 {
@@ -31,6 +34,10 @@ class BHSyncTask: public task
         BHSyncTask();
         ~BHSyncTask();
         virtual int work();
+
+    private:
+        time_t m_oldtime;
+        int m_fps;
 };
 
 #endif

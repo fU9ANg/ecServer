@@ -24,42 +24,43 @@ CMACRO	=
 #-D_OLD_MAKEHOUSE_GAME
 
 # objects
-OBJS    = main.o \
-    Config.o \
-    SendTask.o \
-    database.o \
-    Evloop.o \
-    Sock.o \
-    Single.o \
-    ThreadPool.o \
-    RecvTask.o \
-    handler/HandleCartoon.o \
-    handler/HandleExercise.o \
-    handler/HandleClassRoom.o \
-    handler/HandleSprite.o \
-    handler/HandleBuildHouse.o \
-    handler/HandlePuzzle.o \
-    handler/HandleMessage.o \
-    handler/HandleRainbowValley.o \
-    ProcessManager.o \
-    content/course.o \
-    content/courseitem.o \
-    content/teacher.o \
-    content/room.o \
-    content/grade.o \
-    content/game.o \
-    content/student.o \
-    content/roommanager.o \
-    content/LoginCheck.o \
-    content/makehouse.o \
-    content/puzzle.o \
-	content/DataTool.o
+OBJS    = 	main.o \
+    		Config.o \
+    		SendTask.o \
+		    database.o \
+		    Evloop.o \
+		    Sock.o \
+		    Single.o \
+		    ThreadPool.o \
+		    RecvTask.o \
+		    handler/HandleCartoon.o \
+		    handler/HandleExercise.o \
+		    handler/HandleClassRoom.o \
+		    handler/HandleSprite.o \
+		    handler/HandleBuildHouse.o \
+		    handler/HandlePuzzle.o \
+		    handler/HandleMessage.o \
+		    handler/HandleRainbowValley.o \
+			handler/task/BHSyncTask.o \
+		    ProcessManager.o \
+		    content/course.o \
+		    content/courseitem.o \
+		    content/teacher.o \
+		    content/room.o \
+		    content/grade.o \
+		    content/game.o \
+		    content/student.o \
+		    content/roommanager.o \
+		    content/LoginCheck.o \
+		    content/makehouse.o \
+		    content/puzzle.o \
+			content/DataTool.o
 
 # binary
 BIN	    = server
 
 # where are include files kept
-INC	    = -I. -I./includes -I./handler -I./content
+INC	    = -I. -I./includes -I./handler -I./content -I./handler/task
 
 # for Linker
 #LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so
@@ -79,4 +80,4 @@ $(BIN):$(OBJS)
 .PHONY: clean
 
 clean:
-	-rm -rf $(OBJS) $(BIN) *~
+	-rm -rf $(OBJS) $(BIN) *~ logs .lock

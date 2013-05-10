@@ -6,6 +6,8 @@
 
 CRoom::CRoom(int id, string class_name, string white_board):
     m_room_id(id),m_room_name(class_name),m_white_board(white_board) {
+        m_white_fd = -1;
+        m_teacher_fd = -1;
         m_node_id = 1;
         m_isUsed = 0;
 }
@@ -347,9 +349,10 @@ int CRoom::reset() {
         delete *it2;
         m_game_list.erase(it2++);
     }
-    //m_white_fd = 0;
-    m_teacher_fd = 0;
+    //m_teacher_fd = 0;
+    m_isUsed = 0;
     //m_teacher_name.clear();
+    //m_white_fd = 0; // 老师退出电子教室时, 调用reset, 所有白板不用清理
     return 0;
 }
 

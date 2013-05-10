@@ -54,6 +54,9 @@ class CNode
         int   get_fd (void);
         void  set_fd (int);
 
+        int   get_student_id (void);
+        void  set_student_id (int);
+
         friend class CHandleMessage;    //fck code;
     private:
         float m_position_x; /**x*/
@@ -66,6 +69,7 @@ class CNode
         char   m_path[512];
         string m_name;
         short m_sname;
+        int  m_student_id;
 };
 
 class CMakeHouse
@@ -120,6 +124,7 @@ class CMakeHouse
 
     private:
         unsigned int m_current_layer;
+        MutexLock m_node_lock;
 };
 
 class CGroup

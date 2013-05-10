@@ -30,7 +30,7 @@ public:
      * @brief   constructor
      * @param[in] n 初始化对象的个数，即池子大小
      */
-    PoolT(int n = 2000) {
+    PoolT(int n = 20000) {
         this->size_ = n;
         for (int i = 0; i < this->size_; i++) {
             TYPE* p = new TYPE;

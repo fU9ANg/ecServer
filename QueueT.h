@@ -1,18 +1,20 @@
 
 /**
- * @author  liuyuncheng
+ * @author  liu
  * @version  1.0
  * @{
  */
 
 #ifndef _QUEUET_H_
 #define _QUEUET_H_
+
 #include <queue>
 #include <iostream>
 #include <time.h>
 #include <pthread.h>
 
 #include "Mutex.h"
+
 using namespace std;
 
 /**

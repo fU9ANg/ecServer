@@ -97,6 +97,7 @@ int ProcessManager::run()
   printf("server_ip = [%s] port = [%d]\n", CONFIG->server_ip.c_str(), CONFIG->server_port);
   RecvTask* precv = new RecvTask();
   SendTask* psend = new SendTask();
+  //BHSyncTask* psync = new BHSyncTask ();
 
   ROOMMANAGER->init();
   CHandleMessage::initHandlers();
@@ -106,7 +107,9 @@ int ProcessManager::run()
   thrpool_->push_task(precv);//数据处理线程
   //thrpool_->push_task(precv);//数据处理线程
   //thrpool_->push_task(psend);
-  thrpool_->push_task(psend);
+  thrpool_->push_task (psend);
+
+  //thrpool_->push_task (psync);
 
   LOG(INFO) << "server start success!";
 

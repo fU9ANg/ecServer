@@ -15,9 +15,10 @@ using namespace std;
 /**
  * @class 配置文件类
  */
-class Config {
+class Config
+{
     public:
-        ~Config();
+        ~Config ();
         static class Config* instance();
         /**
          * @brief 读取配置文件

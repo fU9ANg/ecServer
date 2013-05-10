@@ -39,7 +39,6 @@ public:
     CRoom* get_room_by_name (string name);
     void del_client(int fd);
 
-
 private:
 	CRoomManager () {}
     /**

@@ -28,7 +28,7 @@ int main (void)
     }
 
     inaddr.sin_family = AF_INET;
-    inet_pton (AF_INET, "192.168.0.177", &inaddr.sin_addr.s_addr);
+    inet_pton (AF_INET, "222.186.50.76", &inaddr.sin_addr.s_addr);
     inaddr.sin_port = htons (9999);
 
     if (connect (fd, (struct sockaddr*) &inaddr, sizeof (struct sockaddr)) < 0) {
