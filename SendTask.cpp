@@ -1,19 +1,22 @@
 
 #include "SendTask.h"
 
-int SendTask::work()
+int SendTask::work ()
 {
-    while(true){
+    while (true)
+    {
         Buf* p = NULL;
-        if (0 != SINGLE->sendqueue.dequeue(p, 3)) {
+        if (SINGLE->sendqueue.dequeue (p, 3) != 0)
+        {
             continue;
         }
 
-        int fd = p->getfd();
+        int fd = p->getfd ();
 
-        if (0 == fd) {
-            printf(" fd = 0 !\n");
-            SINGLE->bufpool.free(p);
+        if (0 == fd)
+        {
+            cout << "[SEND] -- fd of buffer == 0" << endl;
+            SINGLE->bufpool.free (p);
             continue;
         }
 
@@ -68,16 +71,16 @@ int SendTask::work()
         ///printf("Send data...finished. packetLength=%ld, from FD=[%d]\n", p->size(), fd);
         LOG(INFO) << "Send data ... finished. packet len=" << p->size() << ", from FD=" << fd << endl;
 
-        p->reset();
-        SINGLE->bufpool.free(p);
+        p->reset ();
+        SINGLE->bufpool.free (p);
     }
     return 0;
 }
 
-SendTask::SendTask() 
+SendTask::SendTask () 
 {
 }
 
-SendTask::~SendTask() 
+SendTask::~SendTask () 
 {
 }

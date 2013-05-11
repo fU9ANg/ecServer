@@ -28,9 +28,9 @@
 class RecvTask: public task
 {
     public:
-        RecvTask();
-        ~RecvTask();
-        virtual int work();
+        RecvTask ();
+        ~RecvTask ();
+        virtual int work ();
 };
 
 #endif

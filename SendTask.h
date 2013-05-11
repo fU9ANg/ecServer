@@ -26,9 +26,9 @@
 class SendTask: public task
 {
     public:
-        SendTask();
-        ~SendTask();
-        virtual int work();
+        SendTask ();
+        ~SendTask ();
+        virtual int work ();
 };
 
 #endif

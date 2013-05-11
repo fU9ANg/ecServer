@@ -12,13 +12,16 @@ RecvTask::~RecvTask ()
 
 int RecvTask::work ()
 {
-    while(true) {
+    while (true)
+    {
         Buf* p = NULL;
-        if (0 != SINGLE->recvqueue.dequeue(p, 3)) {
+        if (SINGLE->recvqueue.dequeue (p, 3) != 0)
+        {
             continue;
         }
 
-        if (p == NULL) {
+        if (p == NULL)
+        {
             cout << "ERROR: p==NULL in RecvTask::work()" << endl;
             return (0);
         }
@@ -29,11 +32,12 @@ int RecvTask::work ()
             debugProtocol (p);
             cout << "recvTask: cType=" << head->cType << endl;
             handlefunc pfun = CHandleMessage::getHandler (head->cType); 
-            if (NULL == pfun) {
-                printf("ERROR: the pointer of callback, cType=[%d]\n",head->cType);
+            if (NULL == pfun)
+            {
+                printf ("ERROR: the pointer of callback, cType=[%d]\n", head->cType);
                 continue;
             }
-            pfun(p);
+            pfun (p);
         }
     }
     return 0;

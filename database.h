@@ -4,8 +4,9 @@
  * @{
  */ 
 
-#ifndef _DATABASE_H_
-#define _DATABASE_H_
+#ifndef _ECSERVER_DATABASE_H_
+#define _ECSERVER_DATABASE_H_
+
 #include <string>
 #include <iostream>
 
@@ -29,7 +30,7 @@ using namespace std;
 class DataBase
 {
     public:
-        ~DataBase();
+        ~DataBase ();
         /**
          * @brief init the connection with mysql
          * @param[in] host      address of mysql
@@ -39,28 +40,28 @@ class DataBase
          * @retval    true      success
          * @retval    false     faild
          */
-        bool Init(string host, string username, string password, string database);
+        bool Init (string host, string username, string password, string database);
 
         /**
          * @brief get a Connection of mysql
          */
-        Connection* getConnection();
+        Connection* getConnection ();
 
         /**
          * @brief get a Statement of mysql
          */
-        Statement* getStatement();
+        Statement* getStatement ();
 
         /**
          * @brief get a prepare Statement of mysql
          */
-        PreparedStatement* preStatement(string sql);
+        PreparedStatement* preStatement (string sql);
 
-        static DataBase* instance();
+        static DataBase* instance ();
         MutexLock m_mutex;
 
     private:
-        DataBase();
+        DataBase ();
         Driver* m_pDriver;
         Connection* m_pConn;
         string m_host;

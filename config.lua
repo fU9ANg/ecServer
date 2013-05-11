@@ -1,12 +1,28 @@
+
+--[[
+--  config file of ecServer
+--]]
+
+-- Database host and port
 db_host="tcp://127.0.0.1:3306";
---db_host="tcp://222.186.50.76:3306";
+
+-- Username for connection to DB
 db_username="root";
+
+-- Password for connection to DB
 db_password="123123";
+
+-- Which name of Database
 db_database="teaching_db";
+
+-- ecServer Port
 server_port=9999;
---- server_ip="127.0.0.1";
+
+-- ecServer IP
 server_ip="192.168.0.254";
--- the school id 
+
+-- The school id (no used)
 school_id=8888;
--- the addition game number
+
+-- The addition game number (no used)
 game_count=7777;

@@ -13,16 +13,19 @@
 #include "ProcessManager.h"
 
 // it's rock
-int main(int argc, char* argv[])
+int main (int argc, char* argv[])
 {
-    ProcessManager* x = new ProcessManager();
-    if (x == NULL)
+    ProcessManager* process = NULL;
+
+    if ((process = new ProcessManager ()) == NULL)
     {
         cout << "ERROR: ProcessManager is NULL" << endl;
-        abort();
+        abort ();
     }
-    x->process_logic(argc, argv);
-    delete x;
+
+    process->process_logic (argc, argv);
+
+    delete process;
     return 0;
 }
 ///@}

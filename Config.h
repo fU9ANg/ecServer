@@ -3,13 +3,14 @@
  * @{
  */
 
-#ifndef _CONFIG_H_
-#define _CONFIG_H_
+#ifndef _ECSERVER_CONFIG_H_
+#define _ECSERVER_CONFIG_H_
 
 #include <stdio.h>
 #include <string>
 
 #include "lua5.2/lua.hppp"
+
 using namespace std;
 
 /**
@@ -19,24 +20,27 @@ class Config
 {
     public:
         ~Config ();
-        static class Config* instance();
+        static class Config* instance ();
         /**
          * @brief 读取配置文件
          * @param file 配置文件路径
          */
-        void readconfig(string file);
-        string db_host;
-        string db_username;
-        string db_password;
-        string db_database;
-        string server_ip;
-        int server_port;
-        int school_id;
-        int game_count;
+        void readconfig (string file);
+
+    public:
+        string  db_host;
+        string  db_username;
+        string  db_password;
+        string  db_database;
+        string  server_ip;
+
+        int     server_port;
+        int     school_id;
+        int     game_count;
 
     private:
         Config();
-        static class Config* p_;
+        static class Config* m_config;
 };
 
 #define CONFIG Config::instance()

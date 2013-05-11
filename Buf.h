@@ -1,78 +1,101 @@
 
-#ifndef _BUF_H_
-#define _BUF_H_
+/**
+ * @file Buf.h
+ */
+
+#ifndef _ECSERVER_BUF_H_
+#define _ECSERVER_BUF_H_
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+#define     MAX_BUF     5120
+
 class Buf 
 {
 public:
-    Buf(size_t inSize = 5120) {
-        size_ = inSize;
-        ptr_ = malloc(size_);
-        fd_ = 0;
-        id_ = 0;
+    Buf (size_t inSize = MAX_BUF)
+    {
+        m_size  = inSize;
+        m_ptr   = malloc (m_size);
+        m_fd    = 0;
+        m_id    = 0;
     };
 
-    ~Buf(){
-        if ( NULL != ptr_) {
-            free(ptr_);
-            ptr_ = NULL;
+    ~Buf ()
+    {
+        if  (m_ptr != NULL)
+        {
+            free (m_ptr);
+            m_ptr = NULL;
         }
     }
 
-    Buf(Buf& b) {
-        size_ = b.size_;
-        this->ptr_ = malloc(size_);
-        memcpy(this->ptr_, b.ptr_, size_);
+    Buf (Buf& b)
+    {
+        m_size = b.m_size;
+        this->m_ptr = malloc (m_size);
+        memcpy (this->m_ptr, b.m_ptr, m_size);
     };
 
-    void* ptr() {
-        return ptr_;
+    void* ptr ()
+    {
+        return m_ptr;
     }
 
-    size_t setsize(size_t in) {
-        return used_ = in;
+    size_t setsize (size_t in)
+    {
+        return m_used = in;
     }
 
-    size_t maxsize() {
-        return size_;
+    size_t maxsize ()
+    {
+        return m_size;
     }
 
-    size_t size() {
-        return used_;
+    size_t size ()
+    {
+        return m_used;
     }
 
-    void reset() {
-        memset(ptr_, 0x00, size_);
+    void reset ()
+    {
+        memset (m_ptr, 0x00, m_size);
     }
 
-    int getfd() {
-        return fd_;
-    }
-    void setfd(int fd) {
-        fd_ = fd;
+    int getfd ()
+    {
+        return m_fd;
     }
 
-    int getid() {
-        return id_;
-    }
-    void setid(int id) {
-        id_ = id;
+    void setfd (int fd)
+    {
+        m_fd = fd;
     }
 
-    Buf& operator= (Buf& b) {
-        memcpy(this->ptr_, b.ptr(), size_);
+    int getid ()
+    {
+        return m_id;
+    }
+
+    void setid (int id)
+    {
+        m_id = id;
+    }
+
+    Buf& operator=  (Buf& b)
+    {
+        memcpy (this->m_ptr, b.ptr (), m_size);
         return *this;
     }
+
 private:
-    void* ptr_;
-    size_t size_;
-    size_t used_;
-    int fd_;
-    int id_;
+    void*   m_ptr;
+    size_t  m_size;
+    size_t  m_used;
+    int     m_fd;
+    int     m_id;
 };
 
-#endif
+#endif  // _ECSERVER_BUF_H
