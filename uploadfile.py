@@ -1,6 +1,8 @@
 #!/usr/bin/python2.7
 import web
 
+# python script for up and down file
+
 urls = ('/upload', 'Upload',
         '/static/(.*)', 'Static')
 
