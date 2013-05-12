@@ -225,7 +225,7 @@ void CHandleMessage::handleBuildHouse_GetStuGroup (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 {
-#if 0
+#if _BUILD_HOUSE_GMAE_
 	if (NULL == p)
 	{
 		return;
@@ -242,10 +242,14 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 	//造房子开始
 	p_room->build_house_start();
 
+    // sync message to whiteboard that dispaly data
 	if (head->cType == CT_BuildHouse_GameStart) {
 		CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_GameStart);
 	}
+
 #else
+
+    // only for testing (set the ID of student to 20)
 	if (NULL == p)
 	{
 		return;

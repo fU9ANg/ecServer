@@ -26,6 +26,7 @@
 #include "HandleMessage.h"
 #include "puzzle.h"
 
+// number of student Per group
 #define NUMS_STU_OF_GROUP   5
 
 typedef enum SceneType

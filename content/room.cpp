@@ -481,15 +481,21 @@ void CRoom::puzzle_end() {
     printf("%s %d send stop to white!\n", __FILE__, __LINE__);
 }
 
-void CRoom::end_puzzle_by_fd(int fd) {
+void CRoom::end_puzzle_by_fd (int fd)
+{
     CPuzzle* p_puzzle = m_puzzle_map[fd];
     if (NULL != p_puzzle) {
         p_puzzle->end();
     }
 }
 
-void CRoom::build_house_start(){
-#if 1
+void CRoom::build_house_start ()
+{
+#if _BUILD_HOUSE_GMAE
+    init_buildhouse_group (NUMS_STU_OF_GROUP);
+#else
+
+    // only for testing
     CGroup* p_group = new CGroup("group1");
     STUDENTMAP::iterator iter;
     for(iter = m_student_map.begin(); iter != m_student_map.end(); ++iter) {
@@ -498,12 +504,11 @@ void CRoom::build_house_start(){
 
     //m_buildhouse_groups.insert (pair <int, CGroup*> (1, p_group));
     add_group (1, p_group);
-#else
-    init_buildhouse_group (NUMS_STU_OF_GROUP);
 #endif
 }
 
-void CRoom::build_house_end(){
+void CRoom::build_house_end ()
+{
 
     // clear groups of buildhouse
     GROUPMAP::iterator iter;
@@ -515,8 +520,8 @@ void CRoom::build_house_end(){
 
 void CRoom::init_buildhouse_group (int numsOfStudent)
 {
-    int icnt = 0;
-    int iGroup = 1;
+    int  icnt = 0;
+    int  iGroup = 1;
     char sGroupName[64];
 
     if (numsOfStudent < 1) {
@@ -528,7 +533,7 @@ void CRoom::init_buildhouse_group (int numsOfStudent)
     (void) memset (sGroupName, 0x00, sizeof (sGroupName));
     sprintf (sGroupName, "BuildHouse_Group%d", iGroup++);
     if ((p_group = new CGroup (sGroupName)) == NULL) {
-        cout << "ERROR: can't init build_house group" << endl;
+        cout << "ERROR: can't create build_house group" << endl;
         return;
     }
 
@@ -541,15 +546,32 @@ void CRoom::init_buildhouse_group (int numsOfStudent)
             (void) memset (sGroupName, 0x00, sizeof (sGroupName));
             sprintf (sGroupName, "BuildHouse_Group%d", iGroup++);
             if ((p_group = new CGroup (sGroupName)) == NULL) {
-                cout << "ERROR: can't init build_house group" << endl;
+                cout << "ERROR: can't create build_house group" << endl;
                 return;
             }
             icnt = 0;
+            cout << "insert group to map for buildhouse (in for)" << endl;
             m_buildhouse_groups.insert (std::pair <int, CGroup*> (iGroup -1, p_group));
             continue;
         }
 
         icnt++;
+    }
+
+    // added tail member
+    if ((icnt > 0) && (icnt < numsOfStudent))
+    {
+        (void) memset (sGroupName, 0x00, sizeof (sGroupName));
+        sprintf (sGroupName, "BuildHouse_Group%d", iGroup);
+        if (p_group != NULL)
+        {
+            cout << "insert group to map for buildhouse (out for)" << endl;
+            m_buildhouse_groups.insert (std::pair <int, CGroup*> (iGroup, p_group));
+        }
+        else
+        {
+            cout << "[WARNING]: p_group == NULL" << endl;
+        }
     }
 }
 
