@@ -51,6 +51,7 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
 {
     cout << "CT_ControlChangeScene\n";
     printf ("control change scene: %d\n", *(int *)((char *)p->ptr () + sizeof (MSG_HEAD)));
+
     Buf* pp = SINGLE->bufpool.malloc();
 
     pp->setfd (p->getfd());
@@ -66,7 +67,24 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
 
     if (pc != NULL && pc->get_teacher_fd() == pp->getfd()) 
     {
-        //cout << "hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
+        if (*(int *)((char *)p->ptr () + sizeof (MSG_HEAD)) == 16)
+        {
+            // send int to fk whiteboard
+            Buf* p_p = SINGLE->bufpool.malloc ();
+            p_p->setfd (pc->get_white_fd());
+            p_p->setsize (MSG_HEAD_LEN + sizeof (int));
+
+            MSG_HEAD* head = (MSG_HEAD*) ((char*) p_p->ptr());
+
+            *(int *) (((char*) p_p->ptr()) + MSG_HEAD_LEN) = 1;
+            head->cLen = MSG_HEAD_LEN + sizeof (int);
+            int ctype = 40000;
+            memcpy (&head->cType, &ctype, sizeof (int));
+            SINGLE->sendqueue.enqueue (p_p);
+
+            usleep (1000);
+        }
+        cout << "---------hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
     
         pp->setfd (pc->get_white_fd());
         //cout << "here len = " << head->cLen << endl;
@@ -77,6 +95,29 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
     {
         cout << "Error: not found 'teacher_fd' in Room" << endl;
         SINGLE->bufpool.free(pp);
+    }
+
+    // 如果是示范造房
+    if ((*(int *)((char *)p->ptr () + sizeof (MSG_HEAD)) == 15) && pc->m_is_show == 0)
+    {
+        pc->m_is_show = 1;
+        // only for testing (set the ID of student to 50)
+    	if (NULL == p)
+	    {
+		    return;
+    	}
+
+	    cout << "process: Single buildhouse" << endl;
+    	CStudent* student = new CStudent;
+        student->setId (50);
+        CHandleMessage::test_group.add_student_to_group (pc->get_white_fd(), student);
+
+    }
+    // 学生造房开始，就是示范造房结束
+    else if ((*(int *)((char *)p->ptr () + sizeof (MSG_HEAD)) == 16) && pc->m_is_show == 1)
+    {
+        pc->m_is_show = 0;
+        //CHandleMessage::test_group.del_student_from_group (pc->get_white_fd());
     }
 
     //CHandleMessage::postTeacherToWhite (pp, ST_ControlChangeScene);

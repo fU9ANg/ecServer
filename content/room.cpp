@@ -10,6 +10,7 @@ CRoom::CRoom(int id, string class_name, string white_board):
         m_teacher_fd = -1;
         m_node_id = 1;
         m_isUsed = 0;
+        m_is_show = 0;
 }
 
 int CRoom::getIsUsed ()
@@ -491,7 +492,7 @@ void CRoom::end_puzzle_by_fd (int fd)
 
 void CRoom::build_house_start ()
 {
-#if _BUILD_HOUSE_GMAE
+#if 1//_BUILD_HOUSE_GMAE
     init_buildhouse_group (NUMS_STU_OF_GROUP);
 #else
 

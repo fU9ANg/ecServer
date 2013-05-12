@@ -492,7 +492,7 @@ int  CGroup::set_buf (Buf* p)
         pic.name = it->second->get_sname ();
         //pic.studentId = get_student_by_fd (p->getfd())->getId ();
         pic.studentId = it->second->get_student_id();
-#if 0
+#if 1
         cout << "StudentId" << pic.studentId << endl;
         cout << "x=" << pic.x << endl;
         cout << "y=" << pic.y << endl;
@@ -562,6 +562,28 @@ void CGroup::broadcast(Buf* p)
     SINGLE->bufpool.free (p);
 }
 
+void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
+{
+    MutexLockGuard guard (m_lock);
+
+    if (p == NULL)
+    {
+        cout << "[Warning] -- p is NULL" << endl;
+        return;
+    }
+
+    MSG_HEAD* head = NULL;
+    head = (MSG_HEAD*) ((char*) p->ptr());
+    head->cType = eType;
+    p->setfd (w_fd);
+    p->setsize (head->cLen);
+    cout << "BH: white fd=" << w_fd <<endl;
+    cout << "head->cLen = " << head->cLen << endl;
+    cout << "head->cType = " << head->cType << endl;
+
+    SINGLE->sendqueue.enqueue (p);
+}
+
 void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
 {
     MutexLockGuard guard (m_lock);
@@ -577,6 +599,8 @@ void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
     char* pp = NULL;
 
     for (it=m_student_map.begin(); it!=m_student_map.end(); ++it) {
+
+        cout << "student fd = " << it->first;
 
         //if (p->getfd() == it->first) continue;
 
@@ -595,7 +619,7 @@ void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)
         
         p_buf->setfd (it->first);
         p_buf->setsize (head->cLen);
-
+        cout << "head->cLen = " << head->cLen << endl;
         (void) memcpy (pp, ((char*)p->ptr()) + MSG_HEAD_LEN, head->cLen);
         SINGLE->sendqueue.enqueue (p_buf);
     }

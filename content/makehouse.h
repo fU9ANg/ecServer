@@ -149,6 +149,7 @@ class CGroup
         int  set_buf (Buf* p);
         void broadcast(Buf* p);
         void sendToOtherStudent (Buf* p, enum CommandType eType);
+        void sendToWhite (Buf* p, enum CommandType eType, int w_fd);
 
         unsigned int getAutoNodeId ();
         unsigned int getAutoLayer ();

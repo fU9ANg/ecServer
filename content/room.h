@@ -73,6 +73,7 @@ public:
 
     friend class CHandleMessage;
     friend class LoginCheck;
+    friend class BHSyncTask;
 
     int  get_room_id();
     void set_teacher_fd(int fd);
@@ -133,6 +134,7 @@ private:
     SceneState  m_current_ss;
 
     unsigned int m_node_id;
+    int  m_is_show;
 
 private:
     MutexLock m_lock;
