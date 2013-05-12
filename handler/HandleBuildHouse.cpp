@@ -226,26 +226,34 @@ void CHandleMessage::handleBuildHouse_GetStuGroup (Buf* p)
 void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 {
 #if _BUILD_HOUSE_GMAE_
-	if (NULL == p)
+	if (p == NULL)
 	{
 		return;
 	}
 
 	cout << "process: CT_BuildHouse_GameStart" << endl;
-	MSG_HEAD* head = (MSG_HEAD*)p->ptr();
-	CRoom* p_room = ROOMMANAGER->get_room_by_fd(p->getfd());
-	if (NULL == p_room) {
-		SINGLE->bufpool.free(p);
+	MSG_HEAD* head = (MSG_HEAD*) p->ptr();
+	CRoom* p_room = ROOMMANAGER->get_room_by_fd (p->getfd ());
+	if (p_room == NULL) {
+		SINGLE->bufpool.free (p);
 		return;
 	}
 
 	//造房子开始
-	p_room->build_house_start();
+    if ((p_room != NULL) && (p_room->get_teacher_fd () == p->getfd ()))
+    {
+	    p_room->build_house_start ();
 
-    // sync message to whiteboard that dispaly data
-	if (head->cType == CT_BuildHouse_GameStart) {
-		CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_GameStart);
+        // sync message to whiteboard that dispaly data
+	    if (head->cType == CT_BuildHouse_GameStart) {
+		    CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_GameStart);
+        }
 	}
+    else
+    {
+        cout << "[WARNING] -- fd is not teacher_fd for BuildHouse" << endl;
+        return;
+    }
 
 #else
 
@@ -771,47 +779,19 @@ void CHandleMessage::handleBuildHouse_Change_Layer(Buf* p)
 // 添加一张图片
 void CHandleMessage::handleBuildHouse_Add_Pic (Buf* p)
 {
-#if 0//_BUILD_HOUSE_GMAE
 	cout << "CT_BuildHouse_Add_Pic" << endl;
+
+    CNode* p_node = NULL;
 
 	if (NULL == p)
 	{
 		return;
 	}
 
-#if 1
-	CRoom* p_room = ROOMMANAGER->get_room_by_fd(p->getfd());
-	if ( NULL == p_room)
-	{
-		return;
-	}
-
-	CGroup* p_group = p_room->get_group_by_fd(p->getfd());
-	if ( NULL == p_group)
-	{
-		return;
-	}
-
-#endif
-
-	/*
-	 *     TMake_House_Add_Pic* p_add_pic = (TMake_House_Add_Pic*)((char*)p->ptr() + MSG_HEAD_LEN); 
-	 *     CNode* p_node = new CNode(p->getfd());
-	 * 
-	 *     unsigned int node_id = p_room->getAutoNodeId();
-	 *     p_add_pic->node_id = node_id;
-	 * 
-	 *     p_node->set_node_id(p_add_pic->node_id);
-	 *     p_node->set_name(p_add_pic->picture_name);
-	 * 
-	 *     p_group->get_make_house()->add(p_node->get_node_id(), p_node);
-	 * 
-	 *     p_group->sendToOtherStudent (p, ST_BuildHouse_Add_Pic);
-	 */
-
-	AddPic *p_add_pic = (AddPic *) (((char *)p->ptr())+ MSG_HEAD_LEN);
+	AddPic *p_add_pic = (AddPic *) (((char *)p->ptr ())+ MSG_HEAD_LEN);
 	if (NULL == p_add_pic)
 	{
+        printf ("[ERROR] -- (AddPic): message packet is wrong\n");
 		return;
 	}
 
@@ -824,17 +804,42 @@ void CHandleMessage::handleBuildHouse_Add_Pic (Buf* p)
 	cout << p_add_pic->y << ", ";
 	cout << endl;
 #endif
-    //CStudent* stu = get_student_by_fd (p->getfd());
-    //stu->setId (p_add_pic->studentId);
 
-	CNode *p_node = new CNode(p->getfd(), p_add_pic->x, p_add_pic->y);
-	if (NULL == p_node)
+#if _BUILD_HOUSE_GMAE
+
+	CRoom* p_room = ROOMMANAGER->get_room_by_fd (p->getfd ());
+	if (NULL == p_room)
 	{
+        printf ("[ERROR] -- not found room by fd (%d)\n", p->getfd ());
 		return;
 	}
 
-	p_node->set_node_id(p_room->getAutoNodeId());
+	CGroup* p_group = p_room->get_group_by_fd (p->getfd ());
+	if (NULL == p_group)
+	{
+        printf ("[ERROR] -- not found group by fd (%d)\n", p->getfd ());
+		return;
+	}
+
+    //CStudent* stu = get_student_by_fd (p->getfd());
+    //stu->setId (p_add_pic->studentId);
+
+	if ((p_node = new CNode (p->getfd (), p_add_pic->x, p_add_pic->y)) == NULL)
+	{
+        printf ("[ERROR] -- new CNode\n");
+		return;
+	}
+
+    p_node->set_angle (0.0f);
+    p_node->set_scale (1.0f);
+	p_node->set_node_id (p_group->getAutoNodeId());
+    p_node->set_layer (p_group->get_make_house()->get_current_layer ());
 	p_node->set_sname(p_add_pic->picName);
+    cout << "ADDPIC: student=" << p_group->get_student_by_fd()->getId () << endl;
+    p_node->set_student_id (p_group->get_student_by_fd ()->getId ());
+    p_group->get_make_house()->set_current_layer (\
+            p_group.get_make_house()->get_current_layer () + 1);
+    cout << "NODEID=" << p_node->get_node_id() << endl;
 	p_group->get_make_house()->add(p_node->get_node_id(), p_node);
 
 
@@ -842,24 +847,16 @@ void CHandleMessage::handleBuildHouse_Add_Pic (Buf* p)
 	p_group->set_buf(p);
 	p_group->sendToOtherStudent(p, ST_BuildHouse_Add_Pic);
 
-	delete p_node;
-	p_node = NULL;
+	//delete p_node;
+	//p_node = NULL;
 
 #else
 
-	AddPic *p_add_pic = (AddPic *) (((char *)p->ptr()) + MSG_HEAD_LEN);
-
-#ifdef DEBUG
-	// 打印结构体。
-	cout << "Add_Pic : ";
-	cout << p_add_pic->studentId << ", ";
-	cout << p_add_pic->picName << ", ";
-	cout << p_add_pic->x << ", ";
-	cout << p_add_pic->y << ", ";
-	cout << endl;
-#endif
-
-	CNode *p_node = new CNode (p->getfd(), p_add_pic->x, p_add_pic->y);
+	if ((p_node = new CNode (p->getfd (), p_add_pic->x, p_add_pic->y)) == NULL)
+	{
+        printf ("[ERROR] -- new CNode\n");
+		return;
+	}
     
     p_node->set_angle (0.0f);
     p_node->set_scale (1.0f);
@@ -949,7 +946,7 @@ void CHandleMessage::handleBuildHouse_Del_Pic (Buf* p)
 #endif
 
 	CMakeHouse *p_make_house = test_group.get_make_house ();
-	if (0 != p_make_house->del(p_make_house->get_node_id_by_layer (p_del_pic->layer)))
+	if (0 != p_make_house->del (p_make_house->get_node_id_by_layer (p_del_pic->layer)))
 	{
 		cout << "[WARNING:] -- CT_BuildHouse_Del_Pic Failure!" << endl;
 		return;

@@ -498,7 +498,8 @@ void CRoom::build_house_start ()
     // only for testing
     CGroup* p_group = new CGroup("group1");
     STUDENTMAP::iterator iter;
-    for(iter = m_student_map.begin(); iter != m_student_map.end(); ++iter) {
+    for (iter = m_student_map.begin(); iter != m_student_map.end(); ++iter)
+    {
         p_group->add_student_to_group(iter->first, iter->second);
     }
 
@@ -509,7 +510,6 @@ void CRoom::build_house_start ()
 
 void CRoom::build_house_end ()
 {
-
     // clear groups of buildhouse
     GROUPMAP::iterator iter;
     for (iter = m_buildhouse_groups.begin(); iter != m_buildhouse_groups.end(); iter++) {
