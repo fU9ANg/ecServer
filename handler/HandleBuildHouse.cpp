@@ -225,7 +225,6 @@ void CHandleMessage::handleBuildHouse_GetStuGroup (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 {
-
 	if (p == NULL)
 	{
 		return;
@@ -259,7 +258,7 @@ if (p_room->m_is_show == 0)
         return;
     }
     }
-#if 0
+#if 0 // for test
 else if (p_room->m_is_show == 1)
     {
 
