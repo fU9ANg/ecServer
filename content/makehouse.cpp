@@ -337,6 +337,28 @@ int CMakeHouse::del (int node_id)
     return (1);
 }
 
+int CMakeHouse::cleanall (void)
+{
+    //MutexLockGuard gurad (m_node_lock); // clean all picture node on the map
+
+    NODEMAP::iterator it;
+    for (it = m_node_map.begin(); it != m_node_map.end();)
+    {
+        delete it->second;
+        m_node_map.erase (it++);
+    }
+
+    if (m_node_map.empty())
+        return (0);
+    else
+    {
+        cout << "[Fail]: clean all picture node" << endl;
+        return (1);
+    }
+
+    return (0);
+}
+
 std::list <CNode*>::iterator CMakeHouse::get_iterator_by_node_id (int node_id)
 {
     std::list <CNode*>::iterator iter;
@@ -521,6 +543,84 @@ int  CGroup::set_buf (Buf* p)
     return (0);   
 }
 
+int CGroup::save_data (Buf* p)
+{
+    std::map<int, CNode*>::iterator it;
+    CStudent* stu = NULL;
+    MSG_HEAD* head = NULL;
+    char* pp = NULL;
+    int   idx = 0;
+    int count, student_id;
+
+    head = (MSG_HEAD*) ((char*)p->ptr());
+    (void) head;
+
+    pp = ((char*) p->ptr()) + MSG_HEAD_LEN;
+
+    count = *(int*) pp;
+    student_id = *(int*) (pp + sizeof (int));
+    (void) student_id; 
+
+    if ((stu = get_student_by_fd (p->getfd())) == NULL)
+    {
+        cout << "[save_data]: not found student on the STUDENTMAP" <<  endl;
+        return (1);
+    }
+
+    //reset
+    resetAutoNodeId (0);
+    resetAutoLayer (0);
+    if (m_make_house.cleanall() != 0)
+    {
+        cout << "[save_data]: can't clean all picture node" << endl;
+        return (1);
+    }
+
+    DataTool* dt = NULL;
+    long long*ll = NULL;
+    long long ldata;
+    struct Picture pic;
+    CNode* p_node = NULL;
+    pp += sizeof (int) + sizeof (int);
+    // add node to map
+    for (idx = 0; idx < count; idx++)
+    {
+        ll = (long long*) pp;
+        ldata = *ll;
+        dt = new DataTool (ldata);
+        pic = dt->getPicture();
+        /*
+        x = dt->getX();
+        y = dt->getY();
+        angle = dt->getAngle ();
+        scale = dt->getScale ();
+        sname = dt->getName (); */
+#if 1
+        cout << "[PICTURE NODE] idx=" << idx+1 << endl;
+        cout << "name=" << pic.name << ", x=" << pic.x << ", y=" << pic.y << ", angle=" << pic.angle << ", scale=" << pic.scale << endl;
+#endif
+	    if ((p_node = new CNode (p->getfd (), pic.x, pic.y)) == NULL)
+	    {
+            printf ("[ERROR] -- new CNode\n");
+		    return (1);
+	    }
+
+        p_node->set_angle (pic.angle);
+        p_node->set_scale (pic.scale);
+	    p_node->set_node_id (getAutoNodeId());
+        p_node->set_layer (pic.layer);
+	    p_node->set_sname (pic.name);
+        cout << "save_data: student_id=" << get_student_by_fd(p->getfd())->getId() << endl;
+        p_node->set_student_id (get_student_by_fd (p->getfd())->getId ());
+        cout << "NODEID=" << p_node->get_node_id() << endl;
+        m_make_house.add (p_node->get_node_id(), p_node);
+
+        // clean temp object
+        delete dt;
+    }
+    return (0);
+}
+
 void CGroup::broadcast(Buf* p)
 {
     MutexLockGuard guard (m_lock);
@@ -568,7 +668,7 @@ void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
 
     if (p == NULL)
     {
-        cout << "[Warning] -- p is NULL" << endl;
+        cout << "[sendToWhite] -- p is NULL" << endl;
         return;
     }
 
@@ -674,4 +774,16 @@ unsigned int CGroup::getAutoLayer ()
     MutexLockGuard guard (m_lock);
 
     return (m_auto_layer++);
+}
+
+void CGroup::resetAutoNodeId (int value)
+{
+    MutexLockGuard guard (m_lock);
+    m_auto_nodeid = value;
+}
+
+void CGroup::resetAutoLayer (int value)
+{
+    MutexLockGuard gurad (m_lock);
+    m_auto_layer = value;
 }

@@ -513,9 +513,9 @@ void CRoom::build_house_end ()
 {
     // clear groups of buildhouse
     GROUPMAP::iterator iter;
-    for (iter = m_buildhouse_groups.begin(); iter != m_buildhouse_groups.end(); iter++) {
+    for (iter = m_buildhouse_groups.begin(); iter != m_buildhouse_groups.end();) {
         delete iter->second;
-        m_buildhouse_groups.erase(iter);
+        m_buildhouse_groups.erase(iter++);
     }
 }
 

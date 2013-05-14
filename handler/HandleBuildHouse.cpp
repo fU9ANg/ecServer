@@ -225,6 +225,40 @@ void CHandleMessage::handleBuildHouse_GetStuGroup (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
 {
+    MSG_HEAD* head = NULL;
+    CRoom* room = NULL;
+
+	cout << "process: CT_BuildHouse_GameStart (one student one group)" << endl;
+
+    if ((head = (MSG_HEAD*) p->ptr()) == NULL)
+    {
+        cout << "message header is NULL" << endl;
+        SINGLE->bufpool.free (p);
+        return;
+    }
+
+    if ((room = ROOMMANAGER->get_room_by_fd (p->getfd ())) == NULL)
+    {
+        cout << "not found room by fd=" << p->getfd () << endl;
+        SINGLE->bufpool.free (p);
+        return;
+    }
+
+    if (room->m_is_show == 0)
+    {
+        room->build_house_start ();
+    }
+    else if (room->m_is_show == 1)
+    {
+	    CStudent* student = new CStudent;
+        student->setId (50);
+	    test_group.add_student_to_group(p->getfd(), student);
+    }
+}
+
+#if 0
+void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
+{
 	if (p == NULL)
 	{
 		return;
@@ -277,6 +311,7 @@ else if (p_room->m_is_show == 1)
 #endif
 	return;
 }
+#endif
 
 /*
    =====================
@@ -489,11 +524,6 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
 {
 	cout << "CT_BuildHouse_Update" << endl;
 
-	if (NULL == p)
-	{
-		return;
-	}
-
 	CRoom* p_room = ROOMMANAGER->get_room_by_fd (p->getfd());
 	if (NULL == p_room)
 	{
@@ -521,9 +551,11 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
 	 *         }
 	 */
 
+    p_group->save_data (p);
+    p_group->sendToWhite(p, ST_BuildHouse_Update, p_room->get_white_fd());
 	// 同步同一组所有图片。
-	p_group->set_buf(p);
-	p_group->sendToOtherStudent (p, ST_BuildHouse_Update);
+	//p_group->set_buf (p);
+	//p_group->sendToOtherStudent (p, ST_BuildHouse_Update);
 }
 #endif
 

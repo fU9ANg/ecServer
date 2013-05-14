@@ -94,6 +94,7 @@ class CMakeHouse
         bool unlock (int client_fd, int node_id);
         int  add (int node_id, CNode* p_node);
         int  del (int node_id);
+        int  cleanall (void);
 #ifdef _OLD_MAKEHOUSE_GAME 
         int  update (int clientfd, int node_id, float x, float y, float angle, float scale);
 #else
@@ -147,12 +148,17 @@ class CGroup
         CStudent* get_student_by_fd (int fd);
 
         int  set_buf (Buf* p);
+        int  save_data (Buf* p);    // save current picture information
         void broadcast(Buf* p);
         void sendToOtherStudent (Buf* p, enum CommandType eType);
         void sendToWhite (Buf* p, enum CommandType eType, int w_fd);
+        void sendToStudentAndWhite (Buf* p, enum CommandType eType); // send data to student and white
 
         unsigned int getAutoNodeId ();
         unsigned int getAutoLayer ();
+
+        void resetAutoNodeId (int value);
+        void resetAutoLayer (int value);
     public:
         void setName (string name);
         string getName (void);
