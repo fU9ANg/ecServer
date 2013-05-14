@@ -236,16 +236,21 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
         SINGLE->bufpool.free (p);
         return;
     }
-#if 0 // only test
+#if 1 // only test
     {
+        (void) room;
+
         if (*(int*) (((char*)p->ptr()) + MSG_HEAD_LEN) == 0)
         {
+            cout << "[BUILDHOUSE]: student connection" << endl;
             CStudent* student = new CStudent;
             student->setId (50);
             test_group.add_student_to_group (p->getfd(), student);
         }
+
         else if (*(int*) (((char*)p->ptr()) + MSG_HEAD_LEN) == 1)
         {
+            cout << "[BUILDHOUSE]: whiteboard connection" << endl;
             test_white_fd = p->getfd();
         }
     }

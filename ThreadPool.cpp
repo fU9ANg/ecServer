@@ -61,6 +61,7 @@ void* ThreadPool::thread(void* p) {
 int ThreadPool::kill() {
     MutexLockGuard gard(this->ListLock_);
     while(!threads_.empty()) {
+        cout << ".l........." << endl;
         pthread_kill(threads_.front(), SIGRTMIN);
         threads_.pop_front();
     }
