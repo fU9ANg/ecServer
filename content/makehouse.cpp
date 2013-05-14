@@ -589,15 +589,9 @@ int CGroup::save_data (Buf* p)
         ldata = *ll;
         dt = new DataTool (ldata);
         pic = dt->getPicture();
-        /*
-        x = dt->getX();
-        y = dt->getY();
-        angle = dt->getAngle ();
-        scale = dt->getScale ();
-        sname = dt->getName (); */
 #if 1
         cout << "[PICTURE NODE] idx=" << idx+1 << endl;
-        cout << "name=" << pic.name << ", x=" << pic.x << ", y=" << pic.y << ", angle=" << pic.angle << ", scale=" << pic.scale << endl;
+        cout << "sname=" << pic.name << ", x=" << pic.x << ", y=" << pic.y << ", angle=" << pic.angle << ", scale=" << pic.scale << ", layer=" << pic.layer << endl;
 #endif
 	    if ((p_node = new CNode (p->getfd (), pic.x, pic.y)) == NULL)
 	    {

@@ -13,6 +13,7 @@
 /////////////////////
 HANDLEMAP CHandleMessage::m_HandleMap;
 CGroup CHandleMessage::test_group;
+int CHandleMessage::test_white_fd = 0;
 
 /*
 =====================

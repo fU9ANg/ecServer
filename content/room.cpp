@@ -509,7 +509,7 @@ void CRoom::build_house_start ()
 #endif
 }
 
-void CRoom::build_house_end ()
+void CRoom::clean_buildhouse_group ()
 {
     // clear groups of buildhouse
     GROUPMAP::iterator iter;
@@ -517,6 +517,11 @@ void CRoom::build_house_end ()
         delete iter->second;
         m_buildhouse_groups.erase(iter++);
     }
+}
+
+void CRoom::build_house_end ()
+{
+    clean_buildhouse_group ();
 }
 
 void CRoom::init_buildhouse_group (int numsOfStudent)

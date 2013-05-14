@@ -76,8 +76,11 @@ private:
 
 private:
     static HANDLEMAP m_HandleMap;
+
 public:
     static CGroup test_group;
+    static int    test_white_fd;
+
 };
 
 
