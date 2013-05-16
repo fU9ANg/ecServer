@@ -21,6 +21,8 @@ enum CommandType
     ST_ConfirmIntoClassRoom,    // 当教师进入电子教室后,发送此消息给所有的学生端
     CT_ConfirmIntoClassRoom,    // 学生端
 
+    ST_GetStudentCount,
+
     CT_Login = 150,      // 登录 (所有端)
     CT_LoginResult,      // 登录结果 (所有端)
     CT_GetCourseDBCount, // 获得数据库中的课程信息数量 (教师端)

@@ -545,6 +545,7 @@ int  CGroup::set_buf (Buf* p)
 
 int CGroup::save_data (Buf* p)
 {
+    cout << "save_data ----------------------- " << endl;
     std::map<int, CNode*>::iterator it;
     CStudent* stu = NULL;
     MSG_HEAD* head = NULL;
@@ -561,6 +562,7 @@ int CGroup::save_data (Buf* p)
     student_id = *(int*) (pp + sizeof (int));
     (void) student_id; 
 
+    cout << "studentid = " << student_id << ", count = " << count << endl;
     if ((stu = get_student_by_fd (p->getfd())) == NULL)
     {
         cout << "[save_data]: not found student on the STUDENTMAP" <<  endl;
@@ -587,8 +589,10 @@ int CGroup::save_data (Buf* p)
     {
         ll = (long long*) pp;
         ldata = *ll;
+        cout << "process: DataTool" << endl;
         dt = new DataTool (ldata);
         pic = dt->getPicture();
+        cout << "process: DataTool   --- endl" << endl;
 #if 1
         cout << "[PICTURE NODE] idx=" << idx+1 << endl;
         cout << "sname=" << pic.name << ", x=" << pic.x << ", y=" << pic.y << ", angle=" << pic.angle << ", scale=" << pic.scale << ", layer=" << pic.layer << endl;
@@ -611,7 +615,9 @@ int CGroup::save_data (Buf* p)
 
         // clean temp object
         delete dt;
+        pp += sizeof (long long);
     }
+    cout << "---------------------------------- save_data" << endl;
     return (0);
 }
 

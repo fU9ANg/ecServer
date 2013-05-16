@@ -252,6 +252,13 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
         {
             cout << "[BUILDHOUSE]: whiteboard connection" << endl;
             test_white_fd = p->getfd();
+            // send student count to whiteboard
+            head = (MSG_HEAD*) p->ptr();
+            head->cLen = MSG_HEAD_LEN + sizeof (int);
+            head->cType = ST_GetStudentCount;
+            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = 15;
+            p->setsize (head->cLen);
+            SINGLE->sendqueue.enqueue (p);
         }
     }
 #else
@@ -549,6 +556,7 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
     p_group->save_data (p);
     p_group->sendToWhite (p, ST_BuildHouse_Update, p_room->get_white_fd());
 #else
+    test_group.save_data (p);
     test_group.sendToWhite (p, ST_BuildHouse_Update, test_white_fd);
 #endif
 	/*
