@@ -11,6 +11,7 @@ CRoom::CRoom(int id, string class_name, string white_board):
         m_node_id = 1;
         m_isUsed = 0;
         m_is_show = 0;
+        m_current_scene = 100;
 }
 
 int CRoom::getIsUsed ()

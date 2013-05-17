@@ -137,6 +137,7 @@ private:
 
     unsigned int m_node_id;
     int  m_is_show;
+    int  m_current_scene;
 
 private:
     MutexLock m_lock;

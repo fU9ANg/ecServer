@@ -244,7 +244,7 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
         {
             cout << "[BUILDHOUSE]: student connection" << endl;
             CStudent* student = new CStudent;
-            student->setId (50);
+            student->setId (3);
             test_group.add_student_to_group (p->getfd(), student);
         }
 
@@ -256,7 +256,7 @@ void CHandleMessage::handleBuildHouse_GameStart (Buf* p)
             head = (MSG_HEAD*) p->ptr();
             head->cLen = MSG_HEAD_LEN + sizeof (int);
             head->cType = ST_GetStudentCount;
-            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = 15;
+            *(int*) (((char*) p->ptr()) + MSG_HEAD_LEN) = 35;
             p->setsize (head->cLen);
             SINGLE->sendqueue.enqueue (p);
         }

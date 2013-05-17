@@ -10,6 +10,8 @@
     {ST_FLAGS, ST_ConfirmIntoClassRoom, "ST_ConfirmIntoClassRoom", sizeof (struct sCommonStruct), "struct sCommonStruct", "uint,"},
     {ST_FLAGS, ST_GetStudentCount, "ST_GetStudentCount", sizeof (struct sCommonStruct), "struct sCommonStruct", "int,"},
 
+    {CT_FLAGS, CT_GetCurrentScene, "CT_GetCurrentScene", sizeof (0), "not data", ""},
+    {ST_FLAGS, ST_GetCurrentScene, "ST_GetCurrentScene", sizeof (int), "int", "int,"},
     {CT_FLAGS, CT_Login, "CT_Login", sizeof (struct sLogin), "struct sLogin", "int,char20,char20,"},
     {CT_FLAGS, CT_LoginResult, "CT_LoginResult", sizeof (struct sLoginOutResult), "struct sLoginOutResult", "int,char50,"},
 

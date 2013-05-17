@@ -23,6 +23,9 @@ enum CommandType
 
     ST_GetStudentCount,
 
+    CT_GetCurrentScene, // 获得当前scene
+    ST_GetCurrentScene, // 服务器返回当前scene
+
     CT_Login = 150,      // 登录 (所有端)
     CT_LoginResult,      // 登录结果 (所有端)
     CT_GetCourseDBCount, // 获得数据库中的课程信息数量 (教师端)

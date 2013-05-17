@@ -1,6 +1,7 @@
     MSGNAME (CT_Test, handleTest);
     MSGNAME (CT_ChangeScene, handleChangeScene);
     MSGNAME (CT_ControlChangeScene, handleControlChangeScene);
+    MSGNAME (CT_GetCurrentScene, handleGetCurrentScene);
     MSGNAME (CT_InitSceneFinished, handleInitSceneFinished);
     MSGNAME (CT_ConfirmIntoClassRoom, handleConfirmIntoClassRoom);
     MSGNAME (CT_Login, handleLogin);

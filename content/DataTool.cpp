@@ -7,12 +7,14 @@
 
 #include "DataTool.h"
 #include <string>
+#include <iostream>
 using namespace std;
 
 DataTool::DataTool(long long data) {
 	m_data = data;
 	m_sdata = getString();
 	m_length = m_sdata.length();
+//  cout<<m_length;
 	//m_pic=getPicture();
 }
 
@@ -30,6 +32,7 @@ float DataTool::getX() {
 	stringstream ss;
 	ss << string(m_sdata, m_length - 3, 3);
 	ss >> x;
+//	cout<<"xxx"<<x<<endl;
 	return x;
 }
 float DataTool::getY() {
@@ -72,8 +75,13 @@ int DataTool::getLayer() {
 int DataTool::getStudentId() {
 	int i;
 	stringstream ss;
+	if(m_length!=18){
 	ss << string(m_sdata, m_length - 19, 2);
 	ss >> i;
+	}else{
+		ss<<string(m_sdata,m_length-18,1);
+		ss>>i;
+	}
 	return i;
 }
 Picture DataTool::getPicture() {

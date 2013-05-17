@@ -67,6 +67,7 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
 
     if (pc != NULL && pc->get_teacher_fd() == pp->getfd()) 
     {
+        pc->m_current_scene = *(int*)((char*)p->ptr() + MSG_HEAD_LEN);
         if (*(int *)((char *)p->ptr () + sizeof (MSG_HEAD)) == 16)
         {
             // send int to fk whiteboard
@@ -122,6 +123,25 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
 
     //CHandleMessage::postTeacherToWhite (pp, ST_ControlChangeScene);
     CHandleMessage::postTeacherToAllStudent (p, ST_ControlChangeScene);
+}
+
+/* CT_GetCurrentScene */
+void CHandleMessage::handleGetCurrentScene (Buf* p)
+{
+    cout << "process: CT_GetCurrentScene" << endl;
+
+    MSG_HEAD* head = (MSG_HEAD*) p->ptr();
+
+    CRoom* room = ROOMMANAGER->get_room_by_fd (p->getfd());
+    if (room != NULL)
+    {
+        head->cType = ST_GetCurrentScene;
+        head->cLen = MSG_HEAD_LEN + sizeof (int);
+        *(int*)((char*)p->ptr() + MSG_HEAD_LEN) = room->m_current_scene;
+        p->setsize (head->cLen);
+
+        SINGLE->sendqueue.enqueue (p);
+    }
 }
 
 void CHandleMessage::handleInitSceneFinished (Buf* p)

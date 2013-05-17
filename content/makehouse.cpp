@@ -1,6 +1,7 @@
 
 #include "makehouse.h"
 #include "DataTool.h"
+#include <exception>
 
 CNode::CNode(int client_fd)
 {
@@ -589,10 +590,18 @@ int CGroup::save_data (Buf* p)
     {
         ll = (long long*) pp;
         ldata = *ll;
-        cout << "process: DataTool" << endl;
+        cout << "process: into DataTool class" << endl;
+        cout << "long long= " << ldata << endl;
         dt = new DataTool (ldata);
-        pic = dt->getPicture();
-        cout << "process: DataTool   --- endl" << endl;
+        try {
+            pic = dt->getPicture();
+            //throw exception();
+        }
+        catch (exception e) {
+            cout << "DataTool: -- " << e.what() << endl;
+            return (1);
+        }
+        cout << "process: out DataTool class" << endl;
 #if 1
         cout << "[PICTURE NODE] idx=" << idx+1 << endl;
         cout << "sname=" << pic.name << ", x=" << pic.x << ", y=" << pic.y << ", angle=" << pic.angle << ", scale=" << pic.scale << ", layer=" << pic.layer << endl;
@@ -666,6 +675,7 @@ void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
 {
     MutexLockGuard guard (m_lock);
 
+    int type = 50000;
     if (p == NULL)
     {
         cout << "[sendToWhite] -- p is NULL" << endl;
@@ -674,7 +684,13 @@ void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
 
     MSG_HEAD* head = NULL;
     head = (MSG_HEAD*) ((char*) p->ptr());
-    head->cType = eType;
+
+    type = 50000 + *(int*)((char*)p->ptr() + MSG_HEAD_LEN + sizeof (int));
+    memcpy (&head->cType, &type, sizeof (int));
+    cout << "cType = " << *(int*) ((char*) p->ptr()+sizeof (int)) << endl;
+    cout << "studentId = " << *(int*) ((char*) p->ptr()+ MSG_HEAD_LEN + sizeof (int)) << endl;
+
+    //head->cType = eType;
     p->setfd (w_fd);
     p->setsize (head->cLen);
     cout << "BH: white fd=" << w_fd <<endl;
