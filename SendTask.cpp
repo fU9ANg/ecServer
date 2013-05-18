@@ -70,7 +70,7 @@ int SendTask::work ()
             ptr += written_bytes;
         }
 
-        ///printf("Send data...finished. packetLength=%ld, from FD=[%d]\n", p->size(), fd);
+        printf("Send data...finished. packetLength=%ld, from FD=[%d]\n", p->size(), fd);
         LOG(INFO) << "Send data ... finished. packet len=" << p->size() << ", from FD=" << fd << endl;
 
         p->reset ();

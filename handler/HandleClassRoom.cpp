@@ -535,6 +535,7 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
             *(int*) (((char*)p->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
             CHandleMessage::postTeacherToAllStudent (p, ST_ConfirmIntoClassRoom);
 
+            cout << " ------------------ postTeacherToAllStudent------------------" << endl;
             // Send teacher login information to whiteboard.
             Buf* pp;
             if ((pp = SINGLE->bufpool.malloc ()) == NULL)
@@ -549,12 +550,15 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
             *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
             CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
 
+            cout << "----------------- postTeacherToWhite-----------------" << endl;
+
             //sleep (2);
             //room->set_teacher_fd (0);   // set teacher fd to INVALID
             room->setIsUsed (0);
             room->reset ();
         }
     }
+    cout << "-----------------------out outoutoutoutoutout=-=========================" << endl;
     return;
 }
 

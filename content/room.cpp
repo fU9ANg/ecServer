@@ -340,6 +340,7 @@ int CRoom::reset() {
         m_student_map.erase(it++);
 #else
         it->second->setSocket (0);
+        it++;
 #endif
     }
 
