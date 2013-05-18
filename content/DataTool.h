@@ -8,6 +8,9 @@
 #ifndef DATATOOL_H_
 #define DATATOOL_H_
 #include <sstream>
+#include <map>
+using namespace std;
+
 struct Picture {
 	float x; //X坐标
 	float y; //Y坐标
@@ -52,5 +55,7 @@ public:
 	virtual ~DataTool();
 
 };
+
+extern std::string getSname (short n);
 
 #endif /* DATATOOL_H_ */

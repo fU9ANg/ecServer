@@ -374,7 +374,14 @@ void CHandleMessage::handleBuildHouse_GameEnd (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_Save (Buf* p)
 {
-	//todo:
+	CRoom* room = ROOMMANAGER->get_room_by_fd (p->getfd());
+
+    if (room != NULL)
+    {
+        CGroup* group = room->get_group_by_fd (p->getfd());
+        CStudent* student = group->get_student_by_fd (p->getfd());
+        student->isBuildHouseFinished = 1;
+    }
 }
 
 /*

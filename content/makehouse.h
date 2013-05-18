@@ -146,6 +146,7 @@ class CGroup
         bool add_student_to_group (int fd, CStudent* stu);
         CGroup* get_group_by_fd (int fd);
         CStudent* get_student_by_fd (int fd);
+        CStudent* get_student_by_studentId (int id);
 
         int  set_buf (Buf* p);
         int  save_data (Buf* p);    // save current picture information

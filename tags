@@ -105,6 +105,7 @@ CT_GetCourseItem	protocol.h	/^    CT_GetCourseItem,    \/\/ 获得课程列表�
 CT_GetCourseItemCount	protocol.h	/^    CT_GetCourseItemCount,  \/\/ 获得课程列表的子项数量 (教师端)$/;"	e	enum:CommandType
 CT_GetCourseItemKeyInfoReq	protocol.h	/^    CT_GetCourseItemKeyInfoReq, \/\/ 教师端请求CourseItem的按键数据请求$/;"	e	enum:CommandType
 CT_GetCourseItemKeyInfoRsp	protocol.h	/^    CT_GetCourseItemKeyInfoRsp, \/\/ 教师端请求CourseItem的按键数据回应$/;"	e	enum:CommandType
+CT_GetCurrentScene	protocol.h	/^    CT_GetCurrentScene, \/\/ 获得当前scene$/;"	e	enum:CommandType
 CT_GetDBRecordFinished	protocol.h	/^    CT_GetDBRecordFinished, \/\/ 请求所有数据库记录是否完成$/;"	e	enum:CommandType
 CT_GetGradeDB	protocol.h	/^    CT_GetGradeDB,       \/\/ 获得教室年级数据库信息 (教师端)$/;"	e	enum:CommandType
 CT_GetGradeDBCount	protocol.h	/^    CT_GetGradeDBCount,  \/\/ 获得教室年级数据库信息数量 (教师端)$/;"	e	enum:CommandType
@@ -192,8 +193,8 @@ HAVE_WORKING_FORK	config.h	81;"	d
 HAVE_WORKING_VFORK	config.h	84;"	d
 HAVE__BOOL	config.h	87;"	d
 Init	database.cpp	/^bool DataBase::Init (string host, string user_name, string password, string database)$/;"	f	class:DataBase
-LOCK_NOWAIT	ProcessManager.h	/^  LOCK_NOWAIT = LOCK_EX | LOCK_NB,  \/**<非阻塞锁*\/$/;"	e	enum:__anon1
-LOCK_WAIT	ProcessManager.h	/^  LOCK_WAIT   = LOCK_EX,            \/**<阻塞锁*\/$/;"	e	enum:__anon1
+LOCK_NOWAIT	ProcessManager.h	/^    LOCK_NOWAIT = LOCK_EX | LOCK_NB,  \/**<非阻塞锁*\/$/;"	e	enum:__anon1
+LOCK_WAIT	ProcessManager.h	/^    LOCK_WAIT   = LOCK_EX,            \/**<阻塞锁*\/$/;"	e	enum:__anon1
 LOGIN_H_	content/LoginCheck.h	6;"	d
 ListLock_	ThreadPool.h	/^        MutexLock ListLock_;$/;"	m	class:ThreadPool
 LoginCheck	content/LoginCheck.cpp	/^LoginCheck::LoginCheck() {$/;"	f	class:LoginCheck
@@ -209,7 +210,7 @@ MSGNAME	handler/HandleMessage.h	38;"	d
 MSGNAME	handler/HandleMessage.h	52;"	d
 MSGNAME	handler/HandleMessage.h	55;"	d
 MSG_HEAD	protocol.h	/^}MSG_HEAD;$/;"	t	typeref:struct:sSubmitData
-MSG_HEAD_LEN	protocol.h	720;"	d
+MSG_HEAD_LEN	protocol.h	725;"	d
 Make_House_Add_Pic	protocol.h	/^typedef struct Make_House_Add_Pic {$/;"	s
 Make_House_Change_Layer	protocol.h	/^typedef struct Make_House_Change_Layer{$/;"	s
 Make_House_Del_Pic	protocol.h	/^typedef struct Make_House_Del_Pic {$/;"	s
@@ -326,7 +327,9 @@ ST_Exercise_Play	protocol.h	/^    ST_Exercise_Play,               \/\/ 暖身操
 ST_Exercise_Stop	protocol.h	/^    ST_Exercise_Stop,               \/\/ 暖身操停止 (白板端) *$/;"	e	enum:CommandType
 ST_FLAGS	task.h	12;"	d
 ST_GetCourseGroup	protocol.h	/^    ST_GetCourseGroup,      \/\/ 服务器回应课程列表 (教师端和所有学生端)$/;"	e	enum:CommandType
+ST_GetCurrentScene	protocol.h	/^    ST_GetCurrentScene, \/\/ 服务器返回当前scene$/;"	e	enum:CommandType
 ST_GetDBRecordFinished	protocol.h	/^    ST_GetDBRecordFinished, \/\/ 服务器回应数据库记录是否完成$/;"	e	enum:CommandType
+ST_GetStudentCount	protocol.h	/^    ST_GetStudentCount,$/;"	e	enum:CommandType
 ST_GetStudentDetailInfo	protocol.h	/^    ST_GetStudentDetailInfo,    \/\/ 返回某一学生详细信息  服务器->所有端$/;"	e	enum:CommandType
 ST_GetTeacherInfo	protocol.h	/^    ST_GetTeacherInfo,          \/\/ 返回教师信息  服务器->所有端$/;"	e	enum:CommandType
 ST_InitSceneFinished	protocol.h	/^    ST_InitSceneFinished,       \/\/ 服务器转发此消息给教师端$/;"	e	enum:CommandType
@@ -377,7 +380,7 @@ TT_LOGOUT_CLASSROOM	protocol.h	/^    TT_LOGOUT_CLASSROOM = 2,$/;"	e	enum:eTeache
 TaskQueue_	ThreadPool.h	/^        QueueT<task*> TaskQueue_;$/;"	m	class:ThreadPool
 ThreadPool	ThreadPool.cpp	/^ThreadPool::ThreadPool(int n):$/;"	f	class:ThreadPool
 ThreadPool	ThreadPool.h	/^class ThreadPool{$/;"	c
-UNLOCK	ProcessManager.h	/^  UNLOCK      = LOCK_UN             \/**<解锁*\/$/;"	e	enum:__anon1
+UNLOCK	ProcessManager.h	/^    UNLOCK      = LOCK_UN             \/**<解锁*\/$/;"	e	enum:__anon1
 VERSION	config.h	114;"	d
 _C_COURSE_H	content/course.h	7;"	d
 _C_COURSE_ITEM_H	content/courseitem.h	3;"	d
@@ -435,6 +438,7 @@ cType	protocol.h	/^	enum CommandType cType;     \/\/数据编号$/;"	m	struct:sS
 cType	task.h	/^        int     cType;$/;"	m	struct:sDebugProtocol
 check	content/LoginCheck.cpp	/^void LoginCheck::check(Buf* pbuf) {$/;"	f	class:LoginCheck
 classroom_id	protocol.h	/^    unsigned int classroom_id;$/;"	m	struct:sSelectedClassRoom
+clean_buildhouse_group	content/room.cpp	/^void CRoom::clean_buildhouse_group ()$/;"	f	class:CRoom
 cleanall	content/makehouse.cpp	/^int CMakeHouse::cleanall (void)$/;"	f	class:CMakeHouse
 clear_all_course	content/room.cpp	/^void CRoom::clear_all_course ()$/;"	f	class:CRoom
 client_type	protocol.h	/^    mClientType client_type;$/;"	m	struct:sSelectedClassRoom
@@ -501,6 +505,7 @@ getPicture	content/DataTool.cpp	/^Picture DataTool::getPicture() {$/;"	f	class:D
 getPictureName	content/student.cpp	/^string CStudent::getPictureName (void)$/;"	f	class:CStudent
 getPthreadMutex	Mutex.h	/^        pthread_mutex_t* getPthreadMutex ()$/;"	f	class:MutexLock
 getScale	content/DataTool.cpp	/^float DataTool::getScale() {$/;"	f	class:DataTool
+getSname	content/DataTool.cpp	/^std::string getSname (short n)$/;"	f
 getSocket	content/student.cpp	/^int CStudent::getSocket() {$/;"	f	class:CStudent
 getSocket	content/teacher.cpp	/^int CTeacher::getSocket() {$/;"	f	class:CTeacher
 getStatement	database.cpp	/^Statement* DataBase::getStatement ()$/;"	f	class:DataBase
@@ -542,6 +547,7 @@ get_scale	content/makehouse.cpp	/^float CNode::get_scale (void)$/;"	f	class:CNod
 get_sname	content/makehouse.cpp	/^short CNode::get_sname (void)$/;"	f	class:CNode
 get_student_by_fd	content/makehouse.cpp	/^CStudent* CGroup::get_student_by_fd (int fd)$/;"	f	class:CGroup
 get_student_by_fd	content/room.cpp	/^CStudent* CRoom::get_student_by_fd (int fd)$/;"	f	class:CRoom
+get_student_by_studentId	content/makehouse.cpp	/^CStudent* CGroup::get_student_by_studentId (int id)$/;"	f	class:CGroup
 get_student_id	content/makehouse.cpp	/^int   CNode::get_student_id (void)$/;"	f	class:CNode
 get_teacher_by_fd	content/room.cpp	/^CTeacher* CRoom::get_teacher_by_fd (int fd)$/;"	f	class:CRoom
 get_teacher_fd	content/room.cpp	/^int CRoom::get_teacher_fd ()$/;"	f	class:CRoom
@@ -612,6 +618,7 @@ handleGetCourseGroup	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGe
 handleGetCourseItem	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetCourseItem (Buf* p)$/;"	f	class:CHandleMessage
 handleGetCourseItemCount	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetCourseItemCount (Buf* p)$/;"	f	class:CHandleMessage
 handleGetCourseItemKeyInfoReq	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetCourseItemKeyInfoReq (Buf* p) {$/;"	f	class:CHandleMessage
+handleGetCurrentScene	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetCurrentScene (Buf* p)$/;"	f	class:CHandleMessage
 handleGetGradeDB	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetGradeDB (Buf* p)$/;"	f	class:CHandleMessage
 handleGetGradeDBCount	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetGradeDBCount (Buf* p)$/;"	f	class:CHandleMessage
 handleGetStudentDetailInfo	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleGetStudentDetailInfo (Buf* p)$/;"	f	class:CHandleMessage
@@ -646,6 +653,7 @@ handleSetCourseGroup	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleSe
 handleShowSpriteAnimation	handler/HandleSprite.cpp	/^void CHandleMessage::handleShowSpriteAnimation (Buf* p)$/;"	f	class:CHandleMessage
 handleShowSpriteControl	handler/HandleSprite.cpp	/^void CHandleMessage::handleShowSpriteControl (Buf* p)$/;"	f	class:CHandleMessage
 handleTest	handler/HandleRainbowValley.cpp	/^void CHandleMessage::handleTest (Buf* p)$/;"	f	class:CHandleMessage
+handleTest_LONGLONG	handler/HandleRainbowValley.cpp	/^void CHandleMessage::handleTest_LONGLONG (Buf* p)$/;"	f	class:CHandleMessage
 handlefunc	handler/HandleMessage.h	/^typedef void (*handlefunc)(Buf*);$/;"	t
 iArt	protocol.h	/^    int  iArt;$/;"	m	struct:sGetCourseDB
 iCommunity	protocol.h	/^    int  iCommunity;$/;"	m	struct:sGetCourseDB
@@ -669,6 +677,7 @@ instance	database.cpp	/^DataBase* DataBase::instance ()$/;"	f	class:DataBase
 io	Evloop.h	/^    struct ev_io* io;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
 ioarray	Evloop.cpp	/^struct ev_io_info Evloop::ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::	file:
 ioarray	Evloop.h	/^        static struct ev_io_info ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::ev_io_info
+isBuildHouseFinished	content/student.h	/^    int  isBuildHouseFinished;$/;"	m	class:CStudent
 keys	protocol.h	/^    char keys[512];$/;"	m	struct:_stCT_GetCourseItemKeyInfoRsp
 kill	ThreadPool.cpp	/^int ThreadPool::kill() {$/;"	f	class:ThreadPool
 lasttime	Evloop.h	/^    ev_tstamp lasttime;$/;"	m	struct:ev_io_info
@@ -684,10 +693,9 @@ layer_down	content/makehouse.cpp	/^int CMakeHouse::layer_down (int node_id, int 
 layer_up	content/makehouse.cpp	/^int CMakeHouse::layer_up (int node_id, int count)$/;"	f	class:CMakeHouse
 level	protocol.h	/^    int level;  \/\/ VALUE: 0 (待机), 1, 2, 3, 4 (下一节)$/;"	m	struct:sControlLevel
 lock	Mutex.h	/^        void lock ()$/;"	f	class:MutexLock
-lock	ProcessManager.cpp	/^bool ProcessManager::lock(int mode)$/;"	f	class:ProcessManager
+lock	ProcessManager.cpp	/^bool ProcessManager::lock (int mode)$/;"	f	class:ProcessManager
 lock	content/makehouse.cpp	/^bool CMakeHouse::lock (int client_fd, int node_id)$/;"	f	class:CMakeHouse
 lock	content/makehouse.cpp	/^bool CNode::lock(int client_fd) {$/;"	f	class:CNode
-lockfd_	ProcessManager.h	/^    int lockfd_;            \/**文件锁句柄*\/$/;"	m	class:ProcessManager
 login_student	content/LoginCheck.cpp	/^int LoginCheck::login_student(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
 login_teacher	content/LoginCheck.cpp	/^int LoginCheck::login_teacher(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
 login_whiteboard	content/LoginCheck.cpp	/^int LoginCheck::login_whiteboard(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
@@ -722,6 +730,7 @@ m_course_list	content/room.h	/^    COURSELIST m_course_list;$/;"	m	class:CRoom
 m_current_layer	content/makehouse.h	/^        unsigned int m_current_layer;$/;"	m	class:CGroup
 m_current_layer	content/makehouse.h	/^        unsigned int m_current_layer;$/;"	m	class:CMakeHouse
 m_current_scence	content/game.h	/^        int m_current_scence;$/;"	m	class:CGame
+m_current_scene	content/room.h	/^    int  m_current_scene;$/;"	m	class:CRoom
 m_current_ss	content/room.h	/^    SceneState  m_current_ss;$/;"	m	class:CRoom
 m_current_st	content/room.h	/^    SceneType   m_current_st;$/;"	m	class:CRoom
 m_current_status	content/student.h	/^    eClientStatus m_current_status;$/;"	m	class:CStudent
@@ -744,6 +753,7 @@ m_lock	AtomicT.h	/^        MutexLock m_lock;$/;"	m	class:AtomicT
 m_lock	PoolT.h	/^    MutexLock m_lock;$/;"	m	class:PoolT
 m_lock	content/makehouse.h	/^        MutexLock m_lock;$/;"	m	class:CGroup
 m_lock	content/room.h	/^    MutexLock m_lock;$/;"	m	class:CRoom
+m_lockfd	ProcessManager.h	/^        int m_lockfd;            \/**文件锁句柄*\/$/;"	m	class:ProcessManager
 m_make_house	content/makehouse.h	/^        CMakeHouse m_make_house;$/;"	m	class:CGroup
 m_mutex	QueueT.h	/^    pthread_mutex_t m_mutex;$/;"	m	class:QueueT
 m_mutex	database.h	/^        MutexLock m_mutex;$/;"	m	class:DataBase
@@ -786,6 +796,7 @@ m_student_map	content/room.h	/^    STUDENTMAP m_student_map;$/;"	m	class:CRoom
 m_teacher	content/room.h	/^    CTeacher m_teacher;$/;"	m	class:CRoom
 m_teacher_fd	content/room.h	/^    int m_teacher_fd;$/;"	m	class:CRoom
 m_teacher_name	content/room.h	/^    string m_teacher_name;$/;"	m	class:CRoom
+m_thrpool	ProcessManager.h	/^        ThreadPool* m_thrpool;   \/**线程池*\/$/;"	m	class:ProcessManager
 m_used	Buf.h	/^    size_t  m_used;$/;"	m	class:Buf
 m_user_name	database.h	/^        string m_user_name;$/;"	m	class:DataBase
 m_value	AtomicT.h	/^        TYPE m_value;$/;"	m	class:AtomicT
@@ -851,7 +862,7 @@ postTeacherToStudent	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeache
 postTeacherToWhite	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
 postWhiteToTeacher	handler/HandleMessage.cpp	/^bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
 preStatement	database.cpp	/^PreparedStatement* DataBase::preStatement (string sql)$/;"	f	class:DataBase
-process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic(int argc, char** argv)$/;"	f	class:ProcessManager
+process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic (int argc, char** argv)$/;"	f	class:ProcessManager
 protocols	task.h	/^    static struct sDebugProtocol protocols[] =$/;"	v	typeref:struct:sDebugProtocol
 ptr	Buf.h	/^    void* ptr ()$/;"	f	class:Buf
 push_task	ThreadPool.cpp	/^int ThreadPool::push_task(task* p) {$/;"	f	class:ThreadPool
@@ -870,7 +881,7 @@ resetAutoNodeId	content/makehouse.cpp	/^void CGroup::resetAutoNodeId (int value)
 rotatePic	protocol.h	/^struct rotatePic{$/;"	s
 rowCount	protocol.h	/^	int	rowCount;$/;"	m	struct:sJigsawInitData
 rowCount	protocol.h	/^    unsigned int rowCount;$/;"	m	struct:sPuzzleSize
-run	ProcessManager.cpp	/^int ProcessManager::run()$/;"	f	class:ProcessManager
+run	ProcessManager.cpp	/^int ProcessManager::run ()$/;"	f	class:ProcessManager
 sAccount	protocol.h	/^    char sAccount[20];$/;"	m	struct:sGetStudentDetailInfo
 sBuildHouseCaiHongXiaoWu	protocol.h	/^struct sBuildHouseCaiHongXiaoWu$/;"	s
 sBuildHouseSetStuGroup	protocol.h	/^struct sBuildHouseSetStuGroup$/;"	s
@@ -990,7 +1001,7 @@ setnodelay	Evloop.cpp	/^void Evloop::setnodelay  (int fd)$/;"	f	class:Evloop
 setnonblock	Evloop.cpp	/^void Evloop::setnonblock (int fd)$/;"	f	class:Evloop
 setreuseaddr	Evloop.cpp	/^void Evloop::setreuseaddr (int fd)$/;"	f	class:Evloop
 setsize	Buf.h	/^    size_t setsize (size_t in)$/;"	f	class:Buf
-sig_term	ProcessManager.cpp	/^void ProcessManager::sig_term(int signo)$/;"	f	class:ProcessManager
+sig_term	ProcessManager.cpp	/^void ProcessManager::sig_term (int signo)$/;"	f	class:ProcessManager
 sighandle	ThreadPool.cpp	/^void ThreadPool::sighandle(int signo) {$/;"	f	class:ThreadPool
 size	Buf.h	/^    size_t size ()$/;"	f	class:Buf
 size	PoolT.h	/^    int size ()$/;"	f	class:PoolT
@@ -1016,9 +1027,10 @@ task	task.h	/^class task$/;"	c
 teacher_disconnect	content/room.cpp	/^void CRoom::teacher_disconnect() {$/;"	f	class:CRoom
 test_group	handler/HandleMessage.cpp	/^CGroup CHandleMessage::test_group;$/;"	m	class:CHandleMessage	file:
 test_group	handler/HandleMessage.h	/^    static CGroup test_group;$/;"	m	class:CHandleMessage
+test_white_fd	handler/HandleMessage.cpp	/^int CHandleMessage::test_white_fd = 0;$/;"	m	class:CHandleMessage	file:
+test_white_fd	handler/HandleMessage.h	/^    static int    test_white_fd;$/;"	m	class:CHandleMessage
 thread	ThreadPool.cpp	/^void* ThreadPool::thread(void* p) {$/;"	f	class:ThreadPool
 threads_	ThreadPool.h	/^        list<pthread_t> threads_;$/;"	m	class:ThreadPool
-thrpool_	ProcessManager.h	/^    ThreadPool* thrpool_;   \/**线程池*\/$/;"	m	class:ProcessManager
 time_cb	Evloop.cpp	/^void Evloop::time_cb (struct ev_loop* loop, struct ev_timer *timer, int revents)$/;"	f	class:Evloop
 toAngle	protocol.h	/^float toAngle;$/;"	m	struct:rotatePic
 toLayer	protocol.h	/^	int toLayer;$/;"	m	struct:putLayerPic

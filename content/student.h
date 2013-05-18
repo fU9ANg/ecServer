@@ -55,6 +55,8 @@ public:
 
     void setPictureName (string name);
     string getPictureName (void);
+
+    int  isBuildHouseFinished;
 };
 
 #endif //_C_STUDENT_H

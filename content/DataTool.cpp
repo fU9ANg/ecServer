@@ -10,6 +10,25 @@
 #include <iostream>
 using namespace std;
 
+std::string getSname (short n)
+{
+	std::map<int,std::string> sort;
+	sort[1] = "MakeHouse/Construct/construct";
+	sort[2] = "MakeHouse/Accessory/animal";
+	sort[3] = "MakeHouse/Other/plant";
+    string name=sort[n/1000];
+    short nn=n-1000*(n/1000);
+
+    string temp;
+    stringstream ss;
+    ss<<nn;
+    ss>>temp;
+
+    name+=temp;
+    name+=".png";
+    return name;
+}
+
 DataTool::DataTool(long long data) {
 	m_data = data;
 	m_sdata = getString();

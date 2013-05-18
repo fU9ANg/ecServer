@@ -6,6 +6,7 @@
 #include "student.h"
 
 CStudent::CStudent () {
+    isBuildHouseFinished = 0;
 }
 
 CStudent::~CStudent () {

@@ -488,6 +488,18 @@ CStudent* CGroup::get_student_by_fd (int fd)
     return NULL;
 }
 
+CStudent* CGroup::get_student_by_studentId (int id)
+{
+    STUDENTMAP::iterator it;
+    for (it = m_student_map.begin(); it != m_student_map.end(); it++)
+    {
+        if (it->second->getId() == id)
+            return (it->second);
+    }
+
+    return (NULL);
+}
+
 int  CGroup::set_buf (Buf* p)
 {
     MutexLockGuard guard (m_lock);

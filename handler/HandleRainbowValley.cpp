@@ -11,6 +11,7 @@
 #include "teacher.h"
 #include "Single.h"
 #include "room.h"
+#include "DataTool.h"
 
 #include "makehouse.h"
 
@@ -22,7 +23,8 @@
 void CHandleMessage::handleRainbowValley_HouseNum (Buf* p)
 {
     cout << "CT_RainbowValley_HouseNum" << endl;
-#if 0
+#ifdef _RBV_TEST
+#else
     CRoom* p_room = ROOMMANAGER->get_room_by_fd (p->getfd());
     if (p_room == NULL)
         return;
@@ -36,7 +38,12 @@ void CHandleMessage::handleRainbowValley_HouseNum (Buf* p)
             (sRainbowValley_House_Num*)((char*)p->ptr() + MSG_HEAD_LEN);
 
     cout << "group Size of RainbowValley" << endl;
-    p_house_num->num = 1;//groupSize;
+
+#ifdef _RBV_TEST
+    p_house_num->num = 1;
+#else
+    p_house_num->num = groupSize;
+#endif
 
     p->setsize (head->cLen);
     SINGLE->sendqueue.enqueue (p);
@@ -56,8 +63,8 @@ typedef struct sRainbowValley_HouseItem_Info{
 	float angle;
 }THouseItem_Info;
 */
-
-void CHandleMessage::handleTest (Buf* p)
+#ifdef _BH_LONGLONG
+void CHandleMessage::handleTest_LONGLONG (Buf* p)
 {
     cout << "CT_RainbowValley_HouseInfo" << endl;
 
@@ -89,14 +96,33 @@ void CHandleMessage::handleTest (Buf* p)
         head->cLen = MSG_HEAD_LEN + sizeof (int);
         *(int*)(((char*)pp->ptr()) + MSG_HEAD_LEN) = it->second->get_make_house()->m_node_map.size();
         std::map<int, CNode*>::iterator cit;
-        for (cit = it->second->get_make_house()->m_node_map.begin(); cit != it->second->get_make_house()->m_node_map.end(); cit++) {
+
+        for (cit = it->second->get_make_house()->m_node_map.begin(); cit != it->second->get_make_house()->m_node_map.end(); cit++)
+        {
+            if (it->second->get_student_by_studentId (cit->second->get_student_id ())->isBuildHouseFinished == 0)
+            {
+                continue;
+            }
             info = (sRainbowValley_HouseItem_Info*) (((char*)pp->ptr()) + head->cLen);
             info->x = cit->second->m_position_x;
             info->y = cit->second->m_position_y;
             info->angle = cit->second->m_angle;
             info->zoom = cit->second->m_scale;
             info->layer = cit->second->m_layer;
-            strcpy (info->picture_name, cit->second->m_name.c_str());
+            ///
+            int type, number;
+            type = cit->second->m_sname & 0xF000;
+            number = cit->second->m_sname & 0x0FFF;
+            if (type == 0x1000)
+                sprintf (info->picture_name, "MakeHouse/Construct/construct%d.png", number);
+            else if (type == 0x2000)
+                sprintf (info->picture_name, "MakeHouse/Accessory/animal%d.png", number);
+            else if (type == 0x3000)
+                sprintf (info->picture_name, "MakeHouse/Other/plant%d.png", number);
+
+            //getSname (cit->second->m_sname);
+            ///
+            //strcpy (info->picture_name, cit->second->m_name.c_str());
 
             head->cLen += sizeof (sRainbowValley_HouseItem_Info);
         }
@@ -106,6 +132,80 @@ void CHandleMessage::handleTest (Buf* p)
     pp->setsize (head->cLen);
     SINGLE->sendqueue.enqueue (pp);
 }
+#else
+void CHandleMessage::handleTest (Buf* p)
+{
+    cout << "CT_RainbowValley_HouseInfo" << endl;
+
+    CRoom* p_room = ROOMMANAGER->get_room_by_fd (p->getfd ());
+    if (p_room == NULL)
+        return;
+
+    sRainbowValley_HouseItem_Info* info = NULL;
+    MSG_HEAD* head = NULL;
+    Buf* pp = NULL;
+    int type = 0;
+    int idex = 0;
+    //GROUPMAP::iterator it;
+    std::map<int, CGroup*>::iterator it;
+    for (it = p_room->m_buildhouse_groups.begin(); it != p_room->m_buildhouse_groups.end(); it++)
+    {
+        pp = SINGLE->bufpool.malloc ();
+        if (pp == NULL) {
+            cout << "out of memory" << endl;
+            return;
+        }
+        pp->reset ();
+
+        head = (MSG_HEAD*) pp->ptr();
+        type = 20000 + idex++;
+        memcpy (&head->cType, &type, sizeof (int));
+        //head->cType = ST_RainbowValley_HouseInfo; // 20000
+        head->cLen = MSG_HEAD_LEN + sizeof (int);
+        *(int*)(((char*)pp->ptr()) + MSG_HEAD_LEN) = it->second->get_make_house()->m_node_map.size();
+        std::map<int, CNode*>::iterator cit;
+
+        for (cit = it->second->get_make_house()->m_node_map.begin(); cit != it->second->get_make_house()->m_node_map.end(); cit++)
+        {
+            if (it->second->get_student_by_studentId (cit->second->get_student_id ())->isBuildHouseFinished == 0)
+            {
+                *(int*)(((char*)pp->ptr()) + MSG_HEAD_LEN) = *(int*)(((char*)pp->ptr()) + MSG_HEAD_LEN) - 1;
+                continue;
+            }
+            info = (sRainbowValley_HouseItem_Info*) (((char*)pp->ptr()) + head->cLen);
+            info->x = cit->second->m_position_x;
+            info->y = cit->second->m_position_y;
+            info->angle = cit->second->m_angle;
+            info->zoom = cit->second->m_scale;
+            info->layer = cit->second->m_layer;
+            ///
+            int type, number;
+            type = cit->second->m_sname & 0xF000;
+            number = cit->second->m_sname & 0x0FFF;
+            if (type == 0x1000)
+                sprintf (info->picture_name, "MakeHouse/Construct/construct%d.png", number);
+            else if (type == 0x2000)
+                sprintf (info->picture_name, "MakeHouse/Accessory/animal%d.png", number);
+            else if (type == 0x3000)
+                sprintf (info->picture_name, "MakeHouse/Other/plant%d.png", number);
+
+            //getSname (cit->second->m_sname);
+            ///
+            //strcpy (info->picture_name, cit->second->m_name.c_str());
+
+            head->cLen += sizeof (sRainbowValley_HouseItem_Info);
+        }
+
+        pp->setfd (p->getfd ());
+        pp->setsize (head->cLen);
+        SINGLE->sendqueue.enqueue (pp);
+    }
+
+    pp->setfd (p->getfd());
+    pp->setsize (head->cLen);
+    SINGLE->sendqueue.enqueue (pp);
+}
+#endif
 
 void CHandleMessage::handleRainbowValley_HouseInfo (Buf* p)
 {
@@ -117,7 +217,8 @@ void CHandleMessage::handleRainbowValley_HouseInfo (Buf* p)
     CGroup* p_group = p_room->get_group_by_fd (p->getfd());
     if (p_group == NULL)
         return;
-
+    map<int, CGroup*>::iterator it;
+    for (it = p_room->
     CMakeHouse* p_make_house = p_group->get_make_house();
     if (p_make_house == NULL)
         return;
@@ -149,6 +250,7 @@ void CHandleMessage::handleRainbowValley_HouseInfo (Buf* p)
     for (int i = 0; i < 2; i++)
 #endif
     {
+
         info = (sRainbowValley_HouseItem_Info*)(((char*)pp->ptr()) + head->cLen);
         info->x = 2 * (x++);//it->second->m_position_x;
         info->y = 2 * (y++);//it->second->m_position_y;
@@ -168,6 +270,7 @@ void CHandleMessage::handleRainbowValley_HouseInfo (Buf* p)
     char *ptest = ((char*) pp->ptr()) + MSG_HEAD_LEN + sizeof (int);
     //for (int idx=0; idx < icount; idx++) {
     for (int idx=0; idx < 2; idx++) {
+        cout << "----- HandleRainbowValley -----" << endl;
         cout << "NODE" << idx << ": " << endl;
         cout << "picture_name: " << ((sRainbowValley_HouseItem_Info*)ptest)->picture_name << endl;
         cout << "layer: " << ((sRainbowValley_HouseItem_Info*)ptest)->layer << endl;
