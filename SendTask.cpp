@@ -50,6 +50,7 @@ int SendTask::work ()
                 if (errno == EINTR) {
                     if (written_bytes < 0) {
                         written_bytes = 0;
+                        cout << "EINTR......" << endl;
                         continue;
                     }
                 }
@@ -57,6 +58,7 @@ int SendTask::work ()
                     if (written_bytes < 0) {
                         written_bytes = 0;
                         usleep (50);
+                        cout << "EAGAIN......" << endl;
                         continue;
                     }
                 }

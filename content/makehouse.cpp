@@ -209,6 +209,8 @@ CMakeHouse::CMakeHouse()
 {
     // TODO:
     m_current_layer = 1;
+    for (int i=0; i<35; i++)
+        (void) memset (&longlong_data[i], 0x00, sizeof (longlong_data[i]));
 }
 
 CMakeHouse::~CMakeHouse()
@@ -697,6 +699,8 @@ void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
     MSG_HEAD* head = NULL;
     head = (MSG_HEAD*) ((char*) p->ptr());
 
+    if (head->cLen != 0)
+    {
     type = 50000 + *(int*)((char*)p->ptr() + MSG_HEAD_LEN + sizeof (int));
     memcpy (&head->cType, &type, sizeof (int));
     cout << "cType = " << *(int*) ((char*) p->ptr()+sizeof (int)) << endl;
@@ -710,6 +714,12 @@ void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)
     cout << "head->cType = " << head->cType << endl;
 
     SINGLE->sendqueue.enqueue (p);
+    }
+
+    else
+    {
+        SINGLE->sendqueue.enqueue (p);
+    }
 }
 
 void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)

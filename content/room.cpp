@@ -3,6 +3,7 @@
  */
 
 #include "room.h"
+#include "roommanager.h"
 
 CRoom::CRoom(int id, string class_name, string white_board):
     m_room_id(id),m_room_name(class_name),m_white_board(white_board) {
@@ -222,6 +223,8 @@ void CRoom::del_student(int fd) {
 void CRoom::del_client(int fd) {
     if (fd == m_teacher_fd) {
         printf("room [%d] teacher disconnected!\n", m_room_id);
+        if (ROOMMANAGER->get_room_by_fd (fd)->m_isUsed == 1)
+            ROOMMANAGER->get_room_by_fd (fd)->reset ();
         teacher_disconnect();
         m_teacher_fd = 0;
         return;
@@ -515,6 +518,7 @@ void CRoom::clean_buildhouse_group ()
     // clear groups of buildhouse
     GROUPMAP::iterator iter;
     for (iter = m_buildhouse_groups.begin(); iter != m_buildhouse_groups.end();) {
+        iter->second->get_make_house()->cleanall ();
         delete iter->second;
         m_buildhouse_groups.erase(iter++);
     }

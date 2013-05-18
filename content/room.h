@@ -118,6 +118,7 @@ public:
 
     void clean_buildhouse_group (void);
 
+
 private:
     int m_isUsed;
     CTeacher m_teacher;

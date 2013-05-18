@@ -124,7 +124,7 @@ void CHandleMessage::handleBuildHouse_OperatorDemo (Buf* p)
 	MSG_HEAD* head = (MSG_HEAD*)p->ptr();
 
 	if (head->cType == CT_BuildHouse_OperatorDemo) {
-		CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_OperatorDemo);
+		//CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_OperatorDemo);
 	}
 
 	return;
@@ -374,6 +374,7 @@ void CHandleMessage::handleBuildHouse_GameEnd (Buf* p)
    */
 void CHandleMessage::handleBuildHouse_Save (Buf* p)
 {
+#if 0
 	CRoom* room = ROOMMANAGER->get_room_by_fd (p->getfd());
 
     if (room != NULL)
@@ -382,6 +383,7 @@ void CHandleMessage::handleBuildHouse_Save (Buf* p)
         CStudent* student = group->get_student_by_fd (p->getfd());
         student->isBuildHouseFinished = 1;
     }
+#endif
 }
 
 /*
@@ -563,8 +565,14 @@ void CHandleMessage::handleBuildHouse_Update (Buf* p)
     p_group->save_data (p);
     p_group->sendToWhite (p, ST_BuildHouse_Update, p_room->get_white_fd());
 #else
-    test_group.save_data (p);
-    test_group.sendToWhite (p, ST_BuildHouse_Update, test_white_fd);
+    //test_group.save_data (p);
+    int studentId = *(int*)(((char*)p->ptr()) + MSG_HEAD_LEN + sizeof (int));
+    cout << "studentId:::::::::::::::::: " << studentId << endl;
+    if (studentId <= 35)
+    {
+        (void) memcpy ((char*) &test_group.get_make_house()->longlong_data[studentId][0], (char*)p->ptr(), 1024);
+        test_group.sendToWhite (p, ST_BuildHouse_Update, test_white_fd);
+    }
 #endif
 	/*
 	 *         TMake_House_Update* t_update = (TMake_House_Update*) (((char*)p->ptr()) + MSG_HEAD_LEN);

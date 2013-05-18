@@ -17,7 +17,7 @@ BHFLAGS	=
 #-D_BUILD_HOUSE_GMAE
 
 # is debug? (for development)
-CDEBUG  = -g -DDEBUG
+CDEBUG  = -g -DDEBUG -D_RBV_TEST -D_BUILDHOUSE_LONGLONG
 
 # macro
 CMACRO	= 

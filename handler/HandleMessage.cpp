@@ -67,6 +67,7 @@ bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)
     cout << "postTeacherToWhite............................ " << endl;
     CRoom* pc = ROOMMANAGER->get_room_by_fd (p->getfd());
 
+    //if (pc != NULL)
     if (pc != NULL && pc->get_teacher_fd() == p->getfd()) 
     {
         cout << "hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
@@ -81,6 +82,7 @@ bool CHandleMessage::postTeacherToWhite (Buf* p, enum CommandType iCommandType)
     else 
     {
         cout << "Error: not found 'teacher_fd' in Room" << endl;
+        //cout << "not found class room" << endl;
         SINGLE->bufpool.free(p);
         return false;
     }

@@ -119,7 +119,9 @@ class CMakeHouse
          */
         int layer_down (int node_id, int count);
         friend class CHandleMessage; // fck code
-        
+ 
+        char longlong_data[35][1024];
+
     private:
         NODELIST::iterator get_iterator_by_node_id(int node_id);
 

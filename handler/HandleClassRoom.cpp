@@ -68,6 +68,7 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
     if (pc != NULL && pc->get_teacher_fd() == pp->getfd()) 
     {
         pc->m_current_scene = *(int*)((char*)p->ptr() + MSG_HEAD_LEN);
+#if 0
         if (*(int *)((char *)p->ptr () + sizeof (MSG_HEAD)) == 16)
         {
             // send int to fk whiteboard
@@ -85,6 +86,7 @@ void CHandleMessage::handleControlChangeScene (Buf* p)
 
             usleep (1000);
         }
+#endif
         cout << "---------hereeeeeeeeeeeeeeeeeeeeeeeeeeee" << endl;
     
         pp->setfd (pc->get_white_fd());
@@ -543,6 +545,7 @@ void CHandleMessage::handleLogoutClassRoom (Buf* p)
             head = (MSG_HEAD*) ((char*) pp->ptr());
             head->cLen = MSG_HEAD_LEN + sizeof (int);
             head->cType = ST_ConfirmIntoClassRoom;
+            pp->setfd (p->getfd ());
             *(int*) (((char*)pp->ptr()) + MSG_HEAD_LEN) = TT_LOGOUT_CLASSROOM;
             CHandleMessage::postTeacherToWhite (pp, ST_ConfirmIntoClassRoom);
 
