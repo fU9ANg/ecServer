@@ -11,23 +11,23 @@
 #define CT_FLAGS 0
 #define ST_FLAGS 1
 
-    struct sDebugProtocol
-    {
-        int     cFlags;
-        int     cType;
-        string  cName;
-        int     cStructLen;
-        string  cStructName;
-        string  cFormat;
-    };
+struct sDebugProtocol
+{
+    int     cFlags;
+    int     cType;
+    string  cName;
+    int     cStructLen;
+    string  cStructName;
+    string  cFormat;
+};
 
-    static struct sDebugProtocol protocols[] =
-    {
-        #define PROTOCOLS
-        #include "PROTOCOLS"
-        #undef  PROTOCOLS
-        {0, 0, "", 0, "", ""},
-    };
+static struct sDebugProtocol protocols[] =
+{
+    #define PROTOCOLS
+    #include "PROTOCOLS"
+    #undef  PROTOCOLS
+    {0, 0, "", 0, "", ""},
+};
 
 /**
  * @class task基类
@@ -59,6 +59,8 @@ class task
                         printf ("[- RecvTask -] Message Packet: \n");
                     else if (protocols[idx].cFlags == ST_FLAGS)
                         printf ("[- SendTask -] Message Packet: \n");
+
+                    printf ("\tReceive message packet from FD=[%d]\n", p->getfd());
                     printf ("\tcType = 0x%x (%d) [%s]\n", protocols[idx].cType, protocols[idx].cType, protocols[idx].cName.c_str());
                     printf ("\tcSturctLen = %d, head->cLen = %d\n", protocols[idx].cStructLen, head->cLen);
                     printf ("\tcStructName = %s, Data: \n", protocols[idx].cStructName.c_str());

@@ -503,6 +503,7 @@ void CHandleMessage::handleBuildHouse_Stamp (Buf* p)
 
 	cout << "process: CT_BuildHouse_Stamp" << endl;
 	MSG_HEAD* head = (MSG_HEAD*)p->ptr();
+    *(int*) ((char*) p->ptr() + MSG_HEAD_LEN) = 1;
 
 	if (head->cType == CT_BuildHouse_Stamp) {
 		CHandleMessage::postTeacherToWhite (p, ST_BuildHouse_Stamp);
