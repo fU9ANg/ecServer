@@ -131,11 +131,11 @@ CREATE TABLE `class` (
 #
 LOCK TABLES `class` WRITE;
 /*!40000 ALTER TABLE `class` DISABLE KEYS */;
-INSERT INTO `class` VALUES (1,'河蟹班',1,1);
-INSERT INTO `class` VALUES (2,'蜈蚣班',1,1);
-INSERT INTO `class` VALUES (3,'蜘蛛班',1,1);
-INSERT INTO `class` VALUES (4,'壁虎班',1,1);
-INSERT INTO `class` VALUES (5,'青蛙班',1,1);
+INSERT INTO `class` VALUES (1,'向阳班',1,1);
+INSERT INTO `class` VALUES (2,'草莓班',1,1);
+INSERT INTO `class` VALUES (3,'苹果班',1,1);
+INSERT INTO `class` VALUES (4,'豆豆班',1,1);
+INSERT INTO `class` VALUES (5,'果冻班',1,1);
 /*!40000 ALTER TABLE `class` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,13 +288,14 @@ LOCK TABLES `course_item` WRITE;
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (1,6, '返回上一阶段,开始,停止', '说明:暖身操(暖身操)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,2, '返回上一阶段,离开,进入下一阶段', '说明:动画片(动画串场)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (2,7, '返回上一阶段,开始,停止', '说明:动画片(动画剧院)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '返回上一阶段,离开,进入下一章,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,进入下一阶段', '说明:造房子(造房串场)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,12, '返回上一阶段,离开,彩,虹,小,屋,彩虹谷,小怪物,创造游戏,进入下一阶段', '说明:造房子(造房串场)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,10, '', '说明:造房子(示范造房)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,11, '', '说明:造房子(学生造房)');
 INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,4, '返回上一阶段,彩虹谷场景,进入下一阶段', '说明:造房子(互动)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '返回上一阶段,进入下一阶段', '说明:造房子(拍照)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (3,8, '返回上一阶段,拍照,盖章,进入下一阶段', '说明:造房子(拍照)');
 # INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,14, '返回上一阶段,待机,进入下一阶段', '说明:拼图(拼图串场)');
-INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '返回上一阶段,方块,凹凸,12块,20块,启动,拼图监视,结束', '说明:拼图(拼图)');
+# INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '返回上一阶段,方块,凹凸,12块,20块,启动,拼图监视,结束', '说明:拼图(拼图)');
+INSERT INTO `course_item`(`course_id`, `item_id`, `keys_info`, `fck_desc`) VALUES (4,9, '返回上一阶段,启动,结束', '说明:拼图(拼图)');
 /*!40000 ALTER TABLE `course_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
