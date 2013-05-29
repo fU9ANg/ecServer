@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #ifdef _WIN32
 #include <windows.h>
+#include <winsock.h>
+typedef int socklen_t;
 #else
 #include <unistd.h>
 #include <sys/socket.h>
@@ -28,6 +30,8 @@ extern "C" {
 
 #define w_false 0
 #define w_true  1
+
+#define INVALID_SOCK_FD -1
 
 using namespace std;
 
