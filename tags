@@ -11,6 +11,12 @@ AddPic	protocol.h	/^struct AddPic{$/;"	s
 AtomicT	AtomicT.h	/^        AtomicT()$/;"	f	class:AtomicT
 AtomicT	AtomicT.h	/^        AtomicT(TYPE a)$/;"	f	class:AtomicT
 AtomicT	AtomicT.h	/^class AtomicT$/;"	c
+BASE_LOG_SEVERITY_H__	includes/glog/log_severity.h	31;"	d
+BASE_RAW_LOGGING_H_	includes/glog/raw_logging.h	37;"	d
+BASE_VLOG_IS_ON_H_	includes/glog/vlog_is_on.h	62;"	d
+BHSYNCTASK_H_	handler/task/BHSyncTask.h	8;"	d
+BHSyncTask	handler/task/BHSyncTask.cpp	/^BHSyncTask::BHSyncTask ()$/;"	f	class:BHSyncTask
+BHSyncTask	handler/task/BHSyncTask.h	/^class BHSyncTask: public task$/;"	c
 Buf	Buf.h	/^    Buf (Buf& b)$/;"	f	class:Buf
 Buf	Buf.h	/^    Buf (size_t inSize = MAX_BUF)$/;"	f	class:Buf
 Buf	Buf.h	/^class Buf $/;"	c
@@ -22,6 +28,26 @@ CGame	content/game.h	/^class CGame {$/;"	c
 CGroup	content/makehouse.cpp	/^CGroup::CGroup ()$/;"	f	class:CGroup
 CGroup	content/makehouse.cpp	/^CGroup::CGroup (string name) : m_group_name(name)$/;"	f	class:CGroup
 CGroup	content/makehouse.h	/^class CGroup$/;"	c
+CHECK	includes/glog/logging.h	561;"	d
+CHECK_BOUND	includes/glog/logging.h	811;"	d
+CHECK_DOUBLE_EQ	includes/glog/logging.h	813;"	d
+CHECK_EQ	includes/glog/logging.h	765;"	d
+CHECK_ERR	includes/glog/logging.h	856;"	d
+CHECK_GE	includes/glog/logging.h	769;"	d
+CHECK_GT	includes/glog/logging.h	770;"	d
+CHECK_INDEX	includes/glog/logging.h	810;"	d
+CHECK_LE	includes/glog/logging.h	767;"	d
+CHECK_LT	includes/glog/logging.h	768;"	d
+CHECK_NE	includes/glog/logging.h	766;"	d
+CHECK_NEAR	includes/glog/logging.h	819;"	d
+CHECK_NOTNULL	includes/glog/logging.h	775;"	d
+CHECK_OP	includes/glog/logging.h	740;"	d
+CHECK_OP_LOG	includes/glog/logging.h	707;"	d
+CHECK_STRCASEEQ	includes/glog/logging.h	807;"	d
+CHECK_STRCASENE	includes/glog/logging.h	808;"	d
+CHECK_STREQ	includes/glog/logging.h	805;"	d
+CHECK_STRNE	includes/glog/logging.h	806;"	d
+CHECK_STROP	includes/glog/logging.h	791;"	d
 CHandleMessage	handler/HandleMessage.h	/^class CHandleMessage$/;"	c
 CMakeHouse	content/makehouse.cpp	/^CMakeHouse::CMakeHouse()$/;"	f	class:CMakeHouse
 CMakeHouse	content/makehouse.h	/^class CMakeHouse$/;"	c
@@ -30,9 +56,23 @@ CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y)$/;"	
 CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y, float angle)$/;"	f	class:CNode
 CNode	content/makehouse.cpp	/^CNode::CNode(int client_fd, float x, float y, float angle, float scale)$/;"	f	class:CNode
 CNode	content/makehouse.h	/^class CNode$/;"	c
+COMPACT_GOOGLE_LOG_0	includes/glog/logging.h	940;"	d
+COMPACT_GOOGLE_LOG_0	includes/glog/logging.h	951;"	d
+COMPACT_GOOGLE_LOG_DFATAL	includes/glog/logging.h	420;"	d
+COMPACT_GOOGLE_LOG_DFATAL	includes/glog/logging.h	422;"	d
+COMPACT_GOOGLE_LOG_DFATAL	includes/glog/logging.h	425;"	d
+COMPACT_GOOGLE_LOG_ERROR	includes/glog/logging.h	398;"	d
+COMPACT_GOOGLE_LOG_ERROR	includes/glog/logging.h	403;"	d
+COMPACT_GOOGLE_LOG_FATAL	includes/glog/logging.h	408;"	d
+COMPACT_GOOGLE_LOG_FATAL	includes/glog/logging.h	413;"	d
+COMPACT_GOOGLE_LOG_INFO	includes/glog/logging.h	378;"	d
+COMPACT_GOOGLE_LOG_INFO	includes/glog/logging.h	383;"	d
+COMPACT_GOOGLE_LOG_WARNING	includes/glog/logging.h	388;"	d
+COMPACT_GOOGLE_LOG_WARNING	includes/glog/logging.h	393;"	d
 CONFIG	Config.h	46;"	d
 CONFIGFILE	ProcessManager.h	31;"	d
 CON_NUM	client.c	14;"	d	file:
+COUNTER	includes/glog/logging.h	/^enum PRIVATE_Counter {COUNTER};$/;"	e	enum:google::PRIVATE_Counter
 COURSEITEMLIST	content/course.h	/^typedef list<CCourseItem*> COURSEITEMLIST;$/;"	t
 COURSELIST	content/room.h	/^    typedef list<CCourse*> COURSELIST;$/;"	t	class:CRoom
 CPuzzle	content/puzzle.cpp	/^CPuzzle::CPuzzle():$/;"	f	class:CPuzzle
@@ -143,27 +183,131 @@ CT_ShowSpriteControl	protocol.h	/^    CT_ShowSpriteControl = 300,     \/\/ 控�
 CT_Test	protocol.h	/^    CT_Test = 1,$/;"	e	enum:CommandType
 CTeacher	content/teacher.cpp	/^CTeacher::CTeacher() {$/;"	f	class:CTeacher
 CTeacher	content/teacher.h	/^class CTeacher$/;"	c
+CheckNotNull	includes/glog/logging.h	/^T* CheckNotNull(const char *file, int line, const char *names, T* t) {$/;"	f	namespace:google
+CheckOpMessageBuilder	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL CheckOpMessageBuilder {$/;"	c	namespace:google::base
+CheckOpString	includes/glog/logging.h	/^  CheckOpString(std::string* str) : str_(str) { }$/;"	f	struct:google::CheckOpString
+CheckOpString	includes/glog/logging.h	/^struct CheckOpString {$/;"	s	namespace:google
 CommandType	protocol.h	/^enum CommandType$/;"	g
+CompileAssert	includes/glog/logging.h	/^struct CompileAssert {$/;"	s	namespace:google::glog_internal_namespace_
 Condition	Mutex.h	/^        Condition (MutexLock& m):mutex_ (m){$/;"	f	class:Condition
 Condition	Mutex.h	/^class Condition$/;"	c
 Config	Config.cpp	/^Config::Config ()$/;"	f	class:Config
 Config	Config.h	/^class Config$/;"	c
 DATABASE	database.h	74;"	d
 DATATOOL_H_	content/DataTool.h	9;"	d
+DCHECK	includes/glog/logging.h	1005;"	d
+DCHECK	includes/glog/logging.h	970;"	d
+DCHECK_EQ	includes/glog/logging.h	1010;"	d
+DCHECK_EQ	includes/glog/logging.h	971;"	d
+DCHECK_GE	includes/glog/logging.h	1030;"	d
+DCHECK_GE	includes/glog/logging.h	975;"	d
+DCHECK_GT	includes/glog/logging.h	1035;"	d
+DCHECK_GT	includes/glog/logging.h	976;"	d
+DCHECK_LE	includes/glog/logging.h	1020;"	d
+DCHECK_LE	includes/glog/logging.h	973;"	d
+DCHECK_LT	includes/glog/logging.h	1025;"	d
+DCHECK_LT	includes/glog/logging.h	974;"	d
+DCHECK_NE	includes/glog/logging.h	1015;"	d
+DCHECK_NE	includes/glog/logging.h	972;"	d
+DCHECK_NOTNULL	includes/glog/logging.h	1042;"	d
+DCHECK_NOTNULL	includes/glog/logging.h	977;"	d
+DCHECK_STRCASEEQ	includes/glog/logging.h	1049;"	d
+DCHECK_STRCASEEQ	includes/glog/logging.h	979;"	d
+DCHECK_STRCASENE	includes/glog/logging.h	1059;"	d
+DCHECK_STRCASENE	includes/glog/logging.h	981;"	d
+DCHECK_STREQ	includes/glog/logging.h	1044;"	d
+DCHECK_STREQ	includes/glog/logging.h	978;"	d
+DCHECK_STRNE	includes/glog/logging.h	1054;"	d
+DCHECK_STRNE	includes/glog/logging.h	980;"	d
+DEBUG_MODE	includes/glog/log_severity.h	/^enum { DEBUG_MODE = 0 };$/;"	e	enum:__anon3
+DEBUG_MODE	includes/glog/log_severity.h	/^enum { DEBUG_MODE = 1 };$/;"	e	enum:__anon4
+DECLARE_CHECK_STROP_IMPL	includes/glog/logging.h	780;"	d
+DECLARE_CHECK_STROP_IMPL	includes/glog/logging.h	787;"	d
+DECLARE_VARIABLE	includes/glog/logging.h	296;"	d
+DECLARE_VARIABLE	includes/glog/logging.h	364;"	d
+DECLARE_bool	includes/glog/logging.h	303;"	d
+DECLARE_bool	includes/glog/logging.h	365;"	d
+DECLARE_int32	includes/glog/logging.h	307;"	d
+DECLARE_int32	includes/glog/logging.h	366;"	d
+DECLARE_string	includes/glog/logging.h	312;"	d
+DECLARE_string	includes/glog/logging.h	367;"	d
+DEFINE_CHECK_OP_IMPL	includes/glog/logging.h	679;"	d
+DEFINE_CHECK_OP_IMPL	includes/glog/logging.h	700;"	d
+DFATAL_LEVEL	includes/glog/log_severity.h	59;"	d
+DFATAL_LEVEL	includes/glog/log_severity.h	61;"	d
+DLOG	includes/glog/logging.h	961;"	d
+DLOG	includes/glog/logging.h	985;"	d
+DLOG_ASSERT	includes/glog/logging.h	1001;"	d
+DLOG_ASSERT	includes/glog/logging.h	967;"	d
+DLOG_EVERY_N	includes/glog/logging.h	964;"	d
+DLOG_EVERY_N	includes/glog/logging.h	995;"	d
+DLOG_IF	includes/glog/logging.h	963;"	d
+DLOG_IF	includes/glog/logging.h	992;"	d
+DLOG_IF_EVERY_N	includes/glog/logging.h	965;"	d
+DLOG_IF_EVERY_N	includes/glog/logging.h	998;"	d
+DVLOG	includes/glog/logging.h	962;"	d
+DVLOG	includes/glog/logging.h	988;"	d
 DataBase	database.cpp	/^DataBase::DataBase ()$/;"	f	class:DataBase
 DataBase	database.h	/^class DataBase$/;"	c
 DataTool	content/DataTool.cpp	/^DataTool::DataTool(Picture pic) :$/;"	f	class:DataTool
 DataTool	content/DataTool.cpp	/^DataTool::DataTool(long long data) {$/;"	f	class:DataTool
 DataTool	content/DataTool.h	/^class DataTool {$/;"	c
+DummyClassToDefineOperator	includes/glog/logging.h	/^struct DummyClassToDefineOperator {};$/;"	s	namespace:google
+ERROR	includes/glog/log_severity.h	/^  ERROR = GLOG_ERROR, FATAL = GLOG_FATAL;$/;"	v
 ERRORLAYER	content/makehouse.h	16;"	d
 ERRORNODEID	content/makehouse.h	15;"	d
 EVLOOP_H_	Evloop.h	8;"	d
+ErrnoLogMessage	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL ErrnoLogMessage : public LogMessage {$/;"	c	namespace:google
 Evloop	Evloop.cpp	/^Evloop::Evloop (string ip, int port)$/;"	f	class:Evloop
 Evloop	Evloop.h	/^class Evloop: public task$/;"	c
+FATAL	includes/glog/log_severity.h	/^  ERROR = GLOG_ERROR, FATAL = GLOG_FATAL;$/;"	v
+FPSVALUE	handler/task/BHSyncTask.h	26;"	d
+ForVar1	includes/glog/logging.h	/^  std::ostream* ForVar1() { return stream_; }$/;"	f	class:google::base::CheckOpMessageBuilder
 GAMELIST	content/room.h	/^    typedef list<CGame*> GAMELIST;$/;"	t	class:CRoom
+GLOG_0	includes/glog/logging.h	/^const LogSeverity GLOG_0 = GLOG_ERROR;$/;"	m	namespace:google
+GLOG_0	includes/glog/logging.h	954;"	d
+GLOG_ERROR	includes/glog/log_severity.h	/^const int GLOG_INFO = 0, GLOG_WARNING = 1, GLOG_ERROR = 2, GLOG_FATAL = 3,$/;"	v
+GLOG_ERROR_MSG	includes/glog/logging.h	950;"	d
+GLOG_FATAL	includes/glog/log_severity.h	/^const int GLOG_INFO = 0, GLOG_WARNING = 1, GLOG_ERROR = 2, GLOG_FATAL = 3,$/;"	v
+GLOG_INFO	includes/glog/log_severity.h	/^const int GLOG_INFO = 0, GLOG_WARNING = 1, GLOG_ERROR = 2, GLOG_FATAL = 3,$/;"	v
+GLOG_MSVC_POP_WARNING	includes/glog/logging.h	62;"	d
+GLOG_MSVC_POP_WARNING	includes/glog/logging.h	65;"	d
+GLOG_MSVC_PUSH_DISABLE_WARNING	includes/glog/logging.h	60;"	d
+GLOG_MSVC_PUSH_DISABLE_WARNING	includes/glog/logging.h	64;"	d
+GLOG_WARNING	includes/glog/log_severity.h	/^const int GLOG_INFO = 0, GLOG_WARNING = 1, GLOG_ERROR = 2, GLOG_FATAL = 3,$/;"	v
+GOOGLE_GLOG_COMPILE_ASSERT	includes/glog/logging.h	911;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/log_severity.h	36;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/log_severity.h	38;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/logging.h	54;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/logging.h	56;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/raw_logging.h	49;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/vlog_is_on.h	69;"	d
+GOOGLE_GLOG_DLL_DECL	includes/glog/vlog_is_on.h	71;"	d
+GOOGLE_LOG_DFATAL	includes/glog/logging.h	450;"	d
+GOOGLE_LOG_ERROR	includes/glog/logging.h	438;"	d
+GOOGLE_LOG_FATAL	includes/glog/logging.h	444;"	d
+GOOGLE_LOG_INFO	includes/glog/logging.h	428;"	d
+GOOGLE_LOG_WARNING	includes/glog/logging.h	432;"	d
+GOOGLE_PLOG	includes/glog/logging.h	833;"	d
+GOOGLE_PREDICT_BRANCH_NOT_TAKEN	includes/glog/logging.h	131;"	d
+GOOGLE_PREDICT_FALSE	includes/glog/logging.h	132;"	d
+GOOGLE_PREDICT_TRUE	includes/glog/logging.h	133;"	d
+GOOGLE_STRIP_LOG	includes/glog/logging.h	121;"	d
 GROUPMAP	content/room.h	/^    typedef map<int, CGroup*>  GROUPMAP;  \/* map<group_id, CGroup *> *\/$/;"	t	class:CRoom
 GetCourseItemKeyInfoReq	protocol.h	/^}GetCourseItemKeyInfoReq;$/;"	t	typeref:struct:_stCT_GetCourseItemKeyInfoReq
 GetCourseItemKeyInfoRsp	protocol.h	/^}GetCourseItemKeyInfoRsp;$/;"	t	typeref:struct:_stCT_GetCourseItemKeyInfoRsp
+GetReferenceableValue	includes/glog/logging.h	/^inline char           GetReferenceableValue(char               t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline const T&       GetReferenceableValue(const T&           t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline int            GetReferenceableValue(int                t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline long           GetReferenceableValue(long               t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline long long      GetReferenceableValue(long long          t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline short          GetReferenceableValue(short              t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline signed char    GetReferenceableValue(signed char        t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline unsigned char  GetReferenceableValue(unsigned char      t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline unsigned int   GetReferenceableValue(unsigned int       t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline unsigned long  GetReferenceableValue(unsigned long      t) { return t; }$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline unsigned long long GetReferenceableValue(unsigned long long t) {$/;"	f	namespace:google
+GetReferenceableValue	includes/glog/logging.h	/^inline unsigned short GetReferenceableValue(unsigned short     t) { return t; }$/;"	f	namespace:google
 HANDLEMAP	handler/HandleMessage.h	/^typedef map<int, handlefunc> HANDLEMAP;$/;"	t
 HAVE_ARPA_INET_H	config.h	5;"	d
 HAVE_FCNTL_H	config.h	8;"	d
@@ -192,11 +336,216 @@ HAVE_VFORK	config.h	75;"	d
 HAVE_WORKING_FORK	config.h	81;"	d
 HAVE_WORKING_VFORK	config.h	84;"	d
 HAVE__BOOL	config.h	87;"	d
+IF_DEBUG_MODE	includes/glog/log_severity.h	86;"	d
+IF_DEBUG_MODE	includes/glog/log_severity.h	89;"	d
+INFO	includes/glog/log_severity.h	/^const int INFO = GLOG_INFO, WARNING = GLOG_WARNING,$/;"	v
 Init	database.cpp	/^bool DataBase::Init (string host, string user_name, string password, string database)$/;"	f	class:DataBase
+L	includes/lua5.2/lauxlib.h	/^  lua_State *L;$/;"	m	struct:luaL_Buffer
 LOCK_NOWAIT	ProcessManager.h	/^    LOCK_NOWAIT = LOCK_EX | LOCK_NB,  \/**<非阻塞锁*\/$/;"	e	enum:__anon1
 LOCK_WAIT	ProcessManager.h	/^    LOCK_WAIT   = LOCK_EX,            \/**<阻塞锁*\/$/;"	e	enum:__anon1
+LOG	includes/glog/logging.h	483;"	d
 LOGIN_H_	content/LoginCheck.h	6;"	d
+LOG_ASSERT	includes/glog/logging.h	552;"	d
+LOG_AT_LEVEL	includes/glog/logging.h	1282;"	d
+LOG_EVERY_N	includes/glog/logging.h	914;"	d
+LOG_EVERY_N_VARNAME	includes/glog/logging.h	862;"	d
+LOG_EVERY_N_VARNAME_CONCAT	includes/glog/logging.h	863;"	d
+LOG_FIRST_N	includes/glog/logging.h	926;"	d
+LOG_IF	includes/glog/logging.h	547;"	d
+LOG_IF_EVERY_N	includes/glog/logging.h	929;"	d
+LOG_OCCURRENCES	includes/glog/logging.h	865;"	d
+LOG_OCCURRENCES_MOD_N	includes/glog/logging.h	866;"	d
+LOG_STRING	includes/glog/logging.h	544;"	d
+LOG_SYSRESULT	includes/glog/logging.h	459;"	d
+LOG_TO_SINK	includes/glog/logging.h	512;"	d
+LOG_TO_SINK_BUT_NOT_TO_LOGFILE	includes/glog/logging.h	517;"	d
+LOG_TO_STRING	includes/glog/logging.h	533;"	d
+LOG_TO_STRING_0	includes/glog/logging.h	942;"	d
+LOG_TO_STRING_0	includes/glog/logging.h	953;"	d
+LOG_TO_STRING_ERROR	includes/glog/logging.h	400;"	d
+LOG_TO_STRING_ERROR	includes/glog/logging.h	404;"	d
+LOG_TO_STRING_FATAL	includes/glog/logging.h	410;"	d
+LOG_TO_STRING_FATAL	includes/glog/logging.h	414;"	d
+LOG_TO_STRING_INFO	includes/glog/logging.h	380;"	d
+LOG_TO_STRING_INFO	includes/glog/logging.h	384;"	d
+LOG_TO_STRING_WARNING	includes/glog/logging.h	390;"	d
+LOG_TO_STRING_WARNING	includes/glog/logging.h	394;"	d
+LUAI_BITSINT	includes/lua5.2/luaconf.h	321;"	d
+LUAI_BITSINT	includes/lua5.2/luaconf.h	324;"	d
+LUAI_DDEC	includes/lua5.2/luaconf.h	182;"	d
+LUAI_DDEC	includes/lua5.2/luaconf.h	187;"	d
+LUAI_DDEF	includes/lua5.2/luaconf.h	183;"	d
+LUAI_DDEF	includes/lua5.2/luaconf.h	188;"	d
+LUAI_FIRSTPSEUDOIDX	includes/lua5.2/luaconf.h	365;"	d
+LUAI_FUNC	includes/lua5.2/luaconf.h	181;"	d
+LUAI_FUNC	includes/lua5.2/luaconf.h	186;"	d
+LUAI_MAXNUMBER2STR	includes/lua5.2/luaconf.h	407;"	d
+LUAI_MAXSHORTLEN	includes/lua5.2/luaconf.h	234;"	d
+LUAI_MAXSTACK	includes/lua5.2/luaconf.h	359;"	d
+LUAI_MAXSTACK	includes/lua5.2/luaconf.h	361;"	d
+LUAI_MEM	includes/lua5.2/luaconf.h	343;"	d
+LUAI_MEM	includes/lua5.2/luaconf.h	348;"	d
+LUAI_UACNUMBER	includes/lua5.2/luaconf.h	395;"	d
+LUAI_UMEM	includes/lua5.2/luaconf.h	342;"	d
+LUAI_UMEM	includes/lua5.2/luaconf.h	347;"	d
+LUALIB_API	includes/lua5.2/luaconf.h	161;"	d
+LUAL_BUFFERSIZE	includes/lua5.2/luaconf.h	374;"	d
+LUAMOD_API	includes/lua5.2/luaconf.h	162;"	d
+LUA_ANSI	includes/lua5.2/luaconf.h	28;"	d
+LUA_API	includes/lua5.2/luaconf.h	148;"	d
+LUA_API	includes/lua5.2/luaconf.h	150;"	d
+LUA_API	includes/lua5.2/luaconf.h	155;"	d
+LUA_AUTHORS	includes/lua5.2/lua.h	27;"	d
+LUA_BITLIBNAME	includes/lua5.2/lualib.h	32;"	d
+LUA_CDIR	includes/lua5.2/luaconf.h	106;"	d
+LUA_CDIR	includes/lua5.2/luaconf.h	93;"	d
+LUA_COLIBNAME	includes/lua5.2/lualib.h	17;"	d
+LUA_COMPAT_LOADERS	includes/lua5.2/luaconf.h	261;"	d
+LUA_COMPAT_LOADSTRING	includes/lua5.2/luaconf.h	283;"	d
+LUA_COMPAT_LOG10	includes/lua5.2/luaconf.h	277;"	d
+LUA_COMPAT_MAXN	includes/lua5.2/luaconf.h	288;"	d
+LUA_COMPAT_MODULE	includes/lua5.2/luaconf.h	306;"	d
+LUA_COMPAT_UNPACK	includes/lua5.2/luaconf.h	255;"	d
+LUA_COPYRIGHT	includes/lua5.2/lua.h	26;"	d
+LUA_CPATH_DEFAULT	includes/lua5.2/luaconf.h	110;"	d
+LUA_CPATH_DEFAULT	includes/lua5.2/luaconf.h	97;"	d
+LUA_DBLIBNAME	includes/lua5.2/lualib.h	38;"	d
+LUA_DIRSEP	includes/lua5.2/luaconf.h	122;"	d
+LUA_DIRSEP	includes/lua5.2/luaconf.h	124;"	d
+LUA_DL_DLL	includes/lua5.2/luaconf.h	37;"	d
+LUA_ENV	includes/lua5.2/luaconf.h	133;"	d
+LUA_ERRERR	includes/lua5.2/lua.h	51;"	d
+LUA_ERRFILE	includes/lua5.2/lauxlib.h	20;"	d
+LUA_ERRGCMM	includes/lua5.2/lua.h	50;"	d
+LUA_ERRMEM	includes/lua5.2/lua.h	49;"	d
+LUA_ERRRUN	includes/lua5.2/lua.h	47;"	d
+LUA_ERRSYNTAX	includes/lua5.2/lua.h	48;"	d
+LUA_FILEHANDLE	includes/lua5.2/lauxlib.h	185;"	d
+LUA_GCCOLLECT	includes/lua5.2/lua.h	278;"	d
+LUA_GCCOUNT	includes/lua5.2/lua.h	279;"	d
+LUA_GCCOUNTB	includes/lua5.2/lua.h	280;"	d
+LUA_GCGEN	includes/lua5.2/lua.h	286;"	d
+LUA_GCINC	includes/lua5.2/lua.h	287;"	d
+LUA_GCISRUNNING	includes/lua5.2/lua.h	285;"	d
+LUA_GCRESTART	includes/lua5.2/lua.h	277;"	d
+LUA_GCSETMAJORINC	includes/lua5.2/lua.h	284;"	d
+LUA_GCSETPAUSE	includes/lua5.2/lua.h	282;"	d
+LUA_GCSETSTEPMUL	includes/lua5.2/lua.h	283;"	d
+LUA_GCSTEP	includes/lua5.2/lua.h	281;"	d
+LUA_GCSTOP	includes/lua5.2/lua.h	276;"	d
+LUA_HOOKCALL	includes/lua5.2/lua.h	355;"	d
+LUA_HOOKCOUNT	includes/lua5.2/lua.h	358;"	d
+LUA_HOOKLINE	includes/lua5.2/lua.h	357;"	d
+LUA_HOOKRET	includes/lua5.2/lua.h	356;"	d
+LUA_HOOKTAILCALL	includes/lua5.2/lua.h	359;"	d
+LUA_IDSIZE	includes/lua5.2/luaconf.h	206;"	d
+LUA_IEEE754TRICK	includes/lua5.2/luaconf.h	508;"	d
+LUA_IEEE754TRICK	includes/lua5.2/luaconf.h	516;"	d
+LUA_IEEE754TRICK	includes/lua5.2/luaconf.h	521;"	d
+LUA_IEEE754TRICK	includes/lua5.2/luaconf.h	527;"	d
+LUA_IEEEENDIAN	includes/lua5.2/luaconf.h	501;"	d
+LUA_IEEEENDIAN	includes/lua5.2/luaconf.h	510;"	d
+LUA_IEEEENDIAN	includes/lua5.2/luaconf.h	517;"	d
+LUA_IEEEENDIAN	includes/lua5.2/luaconf.h	522;"	d
+LUA_IEEELL	includes/lua5.2/luaconf.h	509;"	d
+LUA_INT32	includes/lua5.2/luaconf.h	341;"	d
+LUA_INT32	includes/lua5.2/luaconf.h	346;"	d
+LUA_INTEGER	includes/lua5.2/luaconf.h	456;"	d
+LUA_IOLIBNAME	includes/lua5.2/lualib.h	23;"	d
+LUA_LDIR	includes/lua5.2/luaconf.h	105;"	d
+LUA_LDIR	includes/lua5.2/luaconf.h	92;"	d
+LUA_LOADLIBNAME	includes/lua5.2/lualib.h	41;"	d
+LUA_MASKCALL	includes/lua5.2/lua.h	365;"	d
+LUA_MASKCOUNT	includes/lua5.2/lua.h	368;"	d
+LUA_MASKLINE	includes/lua5.2/lua.h	367;"	d
+LUA_MASKRET	includes/lua5.2/lua.h	366;"	d
+LUA_MATHLIBNAME	includes/lua5.2/lualib.h	35;"	d
+LUA_MINSTACK	includes/lua5.2/lua.h	93;"	d
+LUA_MULTRET	includes/lua5.2/lua.h	34;"	d
+LUA_NANTRICK	includes/lua5.2/luaconf.h	502;"	d
+LUA_NANTRICK	includes/lua5.2/luaconf.h	511;"	d
+LUA_NOREF	includes/lua5.2/lauxlib.h	69;"	d
+LUA_NUMBER	includes/lua5.2/luaconf.h	389;"	d
+LUA_NUMBER_DOUBLE	includes/lua5.2/luaconf.h	388;"	d
+LUA_NUMBER_FMT	includes/lua5.2/luaconf.h	405;"	d
+LUA_NUMBER_SCAN	includes/lua5.2/luaconf.h	404;"	d
+LUA_NUMTAGS	includes/lua5.2/lua.h	88;"	d
+LUA_OK	includes/lua5.2/lua.h	45;"	d
+LUA_OPADD	includes/lua5.2/lua.h	179;"	d
+LUA_OPDIV	includes/lua5.2/lua.h	182;"	d
+LUA_OPEQ	includes/lua5.2/lua.h	189;"	d
+LUA_OPLE	includes/lua5.2/lua.h	191;"	d
+LUA_OPLT	includes/lua5.2/lua.h	190;"	d
+LUA_OPMOD	includes/lua5.2/lua.h	183;"	d
+LUA_OPMUL	includes/lua5.2/lua.h	181;"	d
+LUA_OPPOW	includes/lua5.2/lua.h	184;"	d
+LUA_OPSUB	includes/lua5.2/lua.h	180;"	d
+LUA_OPUNM	includes/lua5.2/lua.h	185;"	d
+LUA_OSLIBNAME	includes/lua5.2/lualib.h	26;"	d
+LUA_PATH_DEFAULT	includes/lua5.2/luaconf.h	107;"	d
+LUA_PATH_DEFAULT	includes/lua5.2/luaconf.h	94;"	d
+LUA_QL	includes/lua5.2/luaconf.h	197;"	d
+LUA_QS	includes/lua5.2/luaconf.h	198;"	d
+LUA_REFNIL	includes/lua5.2/lauxlib.h	70;"	d
+LUA_REGISTRYINDEX	includes/lua5.2/lua.h	40;"	d
+LUA_RELEASE	includes/lua5.2/lua.h	25;"	d
+LUA_RIDX_GLOBALS	includes/lua5.2/lua.h	98;"	d
+LUA_RIDX_LAST	includes/lua5.2/lua.h	99;"	d
+LUA_RIDX_MAINTHREAD	includes/lua5.2/lua.h	97;"	d
+LUA_ROOT	includes/lua5.2/luaconf.h	104;"	d
+LUA_SIGNATURE	includes/lua5.2/lua.h	31;"	d
+LUA_STRLIBNAME	includes/lua5.2/lualib.h	29;"	d
+LUA_TABLIBNAME	includes/lua5.2/lualib.h	20;"	d
+LUA_TBOOLEAN	includes/lua5.2/lua.h	79;"	d
+LUA_TFUNCTION	includes/lua5.2/lua.h	84;"	d
+LUA_TLIGHTUSERDATA	includes/lua5.2/lua.h	80;"	d
+LUA_TNIL	includes/lua5.2/lua.h	78;"	d
+LUA_TNONE	includes/lua5.2/lua.h	76;"	d
+LUA_TNUMBER	includes/lua5.2/lua.h	81;"	d
+LUA_TSTRING	includes/lua5.2/lua.h	82;"	d
+LUA_TTABLE	includes/lua5.2/lua.h	83;"	d
+LUA_TTHREAD	includes/lua5.2/lua.h	86;"	d
+LUA_TUSERDATA	includes/lua5.2/lua.h	85;"	d
+LUA_UNSIGNED	includes/lua5.2/luaconf.h	462;"	d
+LUA_USE_AFORMAT	includes/lua5.2/luaconf.h	38;"	d
+LUA_USE_AFORMAT	includes/lua5.2/luaconf.h	48;"	d
+LUA_USE_AFORMAT	includes/lua5.2/luaconf.h	57;"	d
+LUA_USE_DLOPEN	includes/lua5.2/luaconf.h	45;"	d
+LUA_USE_DLOPEN	includes/lua5.2/luaconf.h	54;"	d
+LUA_USE_GMTIME_R	includes/lua5.2/luaconf.h	73;"	d
+LUA_USE_ISATTY	includes/lua5.2/luaconf.h	70;"	d
+LUA_USE_LONGLONG	includes/lua5.2/luaconf.h	49;"	d
+LUA_USE_LONGLONG	includes/lua5.2/luaconf.h	58;"	d
+LUA_USE_MKSTEMP	includes/lua5.2/luaconf.h	69;"	d
+LUA_USE_POPEN	includes/lua5.2/luaconf.h	71;"	d
+LUA_USE_POSIX	includes/lua5.2/luaconf.h	44;"	d
+LUA_USE_POSIX	includes/lua5.2/luaconf.h	53;"	d
+LUA_USE_READLINE	includes/lua5.2/luaconf.h	46;"	d
+LUA_USE_READLINE	includes/lua5.2/luaconf.h	55;"	d
+LUA_USE_STRTODHEX	includes/lua5.2/luaconf.h	47;"	d
+LUA_USE_STRTODHEX	includes/lua5.2/luaconf.h	56;"	d
+LUA_USE_ULONGJMP	includes/lua5.2/luaconf.h	72;"	d
+LUA_VDIR	includes/lua5.2/luaconf.h	103;"	d
+LUA_VERSION	includes/lua5.2/lua.h	24;"	d
+LUA_VERSION_MAJOR	includes/lua5.2/lua.h	19;"	d
+LUA_VERSION_MINOR	includes/lua5.2/lua.h	20;"	d
+LUA_VERSION_NUM	includes/lua5.2/lua.h	21;"	d
+LUA_VERSION_RELEASE	includes/lua5.2/lua.h	22;"	d
+LUA_WIN	includes/lua5.2/luaconf.h	33;"	d
+LUA_YIELD	includes/lua5.2/lua.h	46;"	d
 ListLock_	ThreadPool.h	/^        MutexLock ListLock_;$/;"	m	class:ThreadPool
+LogAtLevel	includes/glog/logging.h	/^inline void LogAtLevel(int const severity, std::string const &msg) {$/;"	f	namespace:google
+LogMessage	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL LogMessage {$/;"	c	namespace:google
+LogMessageFatal	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL LogMessageFatal : public LogMessage {$/;"	c	namespace:google
+LogMessageVoidify	includes/glog/logging.h	/^  LogMessageVoidify() { }$/;"	f	class:google::LogMessageVoidify
+LogMessageVoidify	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL LogMessageVoidify {$/;"	c	namespace:google
+LogSeverity	includes/glog/log_severity.h	/^typedef int LogSeverity;$/;"	t
+LogSink	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL LogSink {$/;"	c	namespace:google
+LogStream	includes/glog/logging.h	/^    LogStream(char *buf, int len, int ctr)$/;"	f	class:google::LogMessage::LogStream
+LogStream	includes/glog/logging.h	/^  class GOOGLE_GLOG_DLL_DECL LogStream : public std::ostream {$/;"	c	class:google::LogMessage
+LogStreamBuf	includes/glog/logging.h	/^  LogStreamBuf(char *buf, int len) {$/;"	f	class:google::base_logging::LogStreamBuf
+LogStreamBuf	includes/glog/logging.h	/^class LogStreamBuf : public std::streambuf {$/;"	c	namespace:google::base_logging
+Logger	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL Logger {$/;"	c	namespace:google::base
 LoginCheck	content/LoginCheck.cpp	/^LoginCheck::LoginCheck() {$/;"	f	class:LoginCheck
 LoginCheck	content/LoginCheck.h	/^class LoginCheck{$/;"	c
 MAXFD	Evloop.h	32;"	d
@@ -211,6 +560,11 @@ MSGNAME	handler/HandleMessage.h	52;"	d
 MSGNAME	handler/HandleMessage.h	55;"	d
 MSG_HEAD	protocol.h	/^}MSG_HEAD;$/;"	t	typeref:struct:sSubmitData
 MSG_HEAD_LEN	protocol.h	725;"	d
+MS_ASMTRICK	includes/lua5.2/luaconf.h	500;"	d
+MUST_UNDEF_GFLAGS_DECLARE_MACROS	includes/glog/logging.h	295;"	d
+MUST_UNDEF_GFLAGS_DECLARE_MACROS	includes/glog/logging.h	363;"	d
+MakeCheckOpString	includes/glog/logging.h	/^std::string* MakeCheckOpString(const T1& v1, const T2& v2, const char* exprtext) {$/;"	f	namespace:google
+MakeCheckOpValueString	includes/glog/logging.h	/^inline void MakeCheckOpValueString(std::ostream* os, const T& v) {$/;"	f	namespace:google
 Make_House_Add_Pic	protocol.h	/^typedef struct Make_House_Add_Pic {$/;"	s
 Make_House_Change_Layer	protocol.h	/^typedef struct Make_House_Change_Layer{$/;"	s
 Make_House_Del_Pic	protocol.h	/^typedef struct Make_House_Del_Pic {$/;"	s
@@ -220,9 +574,29 @@ MutexLock	Mutex.h	/^class MutexLock$/;"	c
 MutexLockGuard	Mutex.h	/^        explicit MutexLockGuard (MutexLock& mutex) : mutex_ (mutex) { $/;"	f	class:MutexLockGuard
 MutexLockGuard	Mutex.h	/^class MutexLockGuard$/;"	c
 MutexLockGuard	Mutex.h	108;"	d
+MySQL_Connection	includes/mysql/mysql_connection.h	/^class CPPCONN_PUBLIC_FUNC MySQL_Connection : public sql::Connection$/;"	c	namespace:sql::mysql
+MySQL_Driver	includes/mysql/mysql_driver.h	/^class CPPCONN_PUBLIC_FUNC MySQL_Driver : public sql::Driver$/;"	c	namespace:sql::mysql
+MySQL_Savepoint	includes/mysql/mysql_connection.h	/^class MySQL_Savepoint : public sql::Savepoint$/;"	c	namespace:sql::mysql
 NODELIST	content/makehouse.h	/^        typedef std::list<CNode*> NODELIST;$/;"	t	class:CMakeHouse
 NODEMAP	content/makehouse.h	/^        typedef std::map<int, CNode*> NODEMAP; \/\/ node_id, CNode$/;"	t	class:CMakeHouse
 NUMS_STU_OF_GROUP	content/room.h	30;"	d
+NUM_SEVERITIES	includes/glog/log_severity.h	/^  NUM_SEVERITIES = 4;$/;"	v
+NativeAPI	includes/mysql/mysql_connection.h	/^namespace NativeAPI$/;"	n	namespace:sql::mysql
+NativeAPI	includes/mysql/mysql_driver.h	/^namespace NativeAPI$/;"	n	namespace:sql::mysql
+NullStream	includes/glog/logging.h	/^  NullStream() : LogMessage::LogStream(message_buffer_, 1, 0) { }$/;"	f	class:google::NullStream
+NullStream	includes/glog/logging.h	/^  NullStream(const char* \/*file*\/, int \/*line*\/,$/;"	f	class:google::NullStream
+NullStream	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL NullStream : public LogMessage::LogStream {$/;"	c	namespace:google
+NullStreamFatal	includes/glog/logging.h	/^  NullStreamFatal() { }$/;"	f	class:google::NullStreamFatal
+NullStreamFatal	includes/glog/logging.h	/^  NullStreamFatal(const char* file, int line, const CheckOpString& result) :$/;"	f	class:google::NullStreamFatal
+NullStreamFatal	includes/glog/logging.h	/^class GOOGLE_GLOG_DLL_DECL NullStreamFatal : public NullStream {$/;"	c	namespace:google
+OUTPUT_FIVE_ARG_CONTAINER	includes/glog/stl_logging.h	119;"	d
+OUTPUT_FIVE_ARG_CONTAINER	includes/glog/stl_logging.h	132;"	d
+OUTPUT_FOUR_ARG_CONTAINER	includes/glog/stl_logging.h	102;"	d
+OUTPUT_FOUR_ARG_CONTAINER	includes/glog/stl_logging.h	117;"	d
+OUTPUT_THREE_ARG_CONTAINER	includes/glog/stl_logging.h	100;"	d
+OUTPUT_THREE_ARG_CONTAINER	includes/glog/stl_logging.h	89;"	d
+OUTPUT_TWO_ARG_CONTAINER	includes/glog/stl_logging.h	72;"	d
+OUTPUT_TWO_ARG_CONTAINER	includes/glog/stl_logging.h	87;"	d
 PACKAGE	config.h	90;"	d
 PACKAGE_BUGREPORT	config.h	93;"	d
 PACKAGE_NAME	config.h	96;"	d
@@ -230,9 +604,14 @@ PACKAGE_STRING	config.h	99;"	d
 PACKAGE_TARNAME	config.h	102;"	d
 PACKAGE_URL	config.h	105;"	d
 PACKAGE_VERSION	config.h	108;"	d
+PCHECK	includes/glog/logging.h	844;"	d
 PIS_ERR	protocol.h	/^    PIS_ERR,$/;"	e	enum:ePuzzleIconStatus
 PIS_OK	protocol.h	/^    PIS_OK = 1,$/;"	e	enum:ePuzzleIconStatus
 PIS_WAIT	protocol.h	/^    PIS_WAIT,$/;"	e	enum:ePuzzleIconStatus
+PLOG	includes/glog/logging.h	831;"	d
+PLOG_EVERY_N	includes/glog/logging.h	923;"	d
+PLOG_IF	includes/glog/logging.h	838;"	d
+PRIVATE_Counter	includes/glog/logging.h	/^enum PRIVATE_Counter {COUNTER};$/;"	g	namespace:google
 PROTOCOLS	task.h	26;"	d
 PROTOCOLS	task.h	28;"	d
 PT_CIRCLE	protocol.h	/^    PT_CIRCLE,      \/\/ 圆形$/;"	e	enum:ePuzzleType
@@ -242,21 +621,36 @@ PUZZLE_H_	content/puzzle.h	2;"	d
 Picture	content/DataTool.h	/^struct Picture {$/;"	s
 PoolT	PoolT.h	/^    PoolT (int n = MAX_POOL_BUF)$/;"	f	class:PoolT
 PoolT	PoolT.h	/^class PoolT$/;"	c
+PrintSequence	includes/glog/stl_logging.h	/^inline void PrintSequence(std::ostream& out, Iter begin, Iter end) {$/;"	f	namespace:google
 ProcessManager	ProcessManager.cpp	/^ProcessManager::ProcessManager()$/;"	f	class:ProcessManager
 ProcessManager	ProcessManager.h	/^class ProcessManager$/;"	c
 QueueT	QueueT.h	/^    QueueT () {$/;"	f	class:QueueT
 QueueT	QueueT.h	/^class QueueT$/;"	c
+RAW_CHECK	includes/glog/raw_logging.h	139;"	d
+RAW_DCHECK	includes/glog/raw_logging.h	150;"	d
+RAW_DLOG	includes/glog/raw_logging.h	149;"	d
+RAW_LOG	includes/glog/raw_logging.h	69;"	d
+RAW_LOG_ERROR	includes/glog/raw_logging.h	117;"	d
+RAW_LOG_FATAL	includes/glog/raw_logging.h	124;"	d
+RAW_LOG_INFO	includes/glog/raw_logging.h	103;"	d
+RAW_LOG_WARNING	includes/glog/raw_logging.h	110;"	d
+RAW_VLOG	includes/glog/raw_logging.h	92;"	d
 RECVTASK_H_	RecvTask.h	8;"	d
 RES_FAIL	protocol.h	/^    RES_FAIL,$/;"	e	enum:mLoginOutResult
 RES_SUCCEED	protocol.h	/^    RES_SUCCEED = 1,$/;"	e	enum:mLoginOutResult
 ROOMMANAGER	content/roommanager.h	51;"	d
 ROOMMAP	content/roommanager.h	/^    typedef map<int, CRoom*> ROOMMAP;$/;"	t	class:CRoomManager
+RawLogStub__	includes/glog/raw_logging.h	/^static inline void RawLogStub__(int \/* ignored *\/, ...) {$/;"	f	namespace:google
 RecvTask	RecvTask.cpp	/^RecvTask::RecvTask ()$/;"	f	class:RecvTask
 RecvTask	RecvTask.h	/^class RecvTask: public task$/;"	c
 SENDTASK_H_	SendTask.h	8;"	d
 SERV_IP	client.c	12;"	d	file:
 SERV_PORT	client.c	13;"	d	file:
 SINGLE	Single.h	35;"	d
+SOME_KIND_OF_LOG_EVERY_N	includes/glog/logging.h	868;"	d
+SOME_KIND_OF_LOG_FIRST_N	includes/glog/logging.h	895;"	d
+SOME_KIND_OF_LOG_IF_EVERY_N	includes/glog/logging.h	877;"	d
+SOME_KIND_OF_PLOG_EVERY_N	includes/glog/logging.h	886;"	d
 SQL_SELECT_ALLSTU	SQL.h	15;"	d
 SQL_SELECT_CLASS	SQL.h	10;"	d
 SQL_SELECT_CLASSROOM	SQL.h	11;"	d
@@ -358,10 +752,22 @@ ST_SendStudentStatus	protocol.h	/^    ST_SendStudentStatus,   \/\/学生在线�
 ST_SendStudentStatusReq	protocol.h	/^typedef struct ST_SendStudentStatusReq {$/;"	s
 ST_ShowSpriteAnimation	protocol.h	/^    ST_ShowSpriteAnimation,         \/\/ 显示串场动画 (白板端) *$/;"	e	enum:CommandType
 ST_ShowSpriteControl	protocol.h	/^    ST_ShowSpriteControl,           \/\/ 控场动画显示 (白板端) *$/;"	e	enum:CommandType
+SYSLOG	includes/glog/logging.h	484;"	d
+SYSLOG_0	includes/glog/logging.h	941;"	d
+SYSLOG_0	includes/glog/logging.h	952;"	d
+SYSLOG_ASSERT	includes/glog/logging.h	554;"	d
+SYSLOG_DFATAL	includes/glog/logging.h	453;"	d
+SYSLOG_ERROR	includes/glog/logging.h	441;"	d
+SYSLOG_EVERY_N	includes/glog/logging.h	920;"	d
+SYSLOG_FATAL	includes/glog/logging.h	447;"	d
+SYSLOG_IF	includes/glog/logging.h	549;"	d
+SYSLOG_INFO	includes/glog/logging.h	429;"	d
+SYSLOG_WARNING	includes/glog/logging.h	435;"	d
 SceneState	content/room.h	/^typedef enum SceneState$/;"	g
 SceneState	content/room.h	/^} SceneState;$/;"	t	typeref:enum:SceneState
 SceneType	content/room.h	/^typedef enum SceneType$/;"	g
 SceneType	content/room.h	/^} SceneType;$/;"	t	typeref:enum:SceneType
+SendMethod	includes/glog/logging.h	/^  typedef void (LogMessage::*SendMethod)();$/;"	t	class:google::LogMessage
 SendTask	SendTask.cpp	/^SendTask::SendTask () $/;"	f	class:SendTask
 SendTask	SendTask.h	/^class SendTask: public task$/;"	c
 Single	Single.cpp	/^Single::Single()$/;"	f	class:Single
@@ -381,7 +787,15 @@ TaskQueue_	ThreadPool.h	/^        QueueT<task*> TaskQueue_;$/;"	m	class:ThreadPo
 ThreadPool	ThreadPool.cpp	/^ThreadPool::ThreadPool(int n):$/;"	f	class:ThreadPool
 ThreadPool	ThreadPool.h	/^class ThreadPool{$/;"	c
 UNLOCK	ProcessManager.h	/^    UNLOCK      = LOCK_UN             \/**<解锁*\/$/;"	e	enum:__anon1
+UTIL_GTL_STL_LOGGING_INL_H_	includes/glog/stl_logging.h	39;"	d
 VERSION	config.h	114;"	d
+VLOG	includes/glog/logging.h	1068;"	d
+VLOG_EVERY_N	includes/glog/logging.h	1073;"	d
+VLOG_IF	includes/glog/logging.h	1070;"	d
+VLOG_IF_EVERY_N	includes/glog/logging.h	1076;"	d
+VLOG_IS_ON	includes/glog/vlog_is_on.h	82;"	d
+VLOG_IS_ON	includes/glog/vlog_is_on.h	93;"	d
+WARNING	includes/glog/log_severity.h	/^const int INFO = GLOG_INFO, WARNING = GLOG_WARNING,$/;"	v
 _C_COURSE_H	content/course.h	7;"	d
 _C_COURSE_ITEM_H	content/courseitem.h	3;"	d
 _C_GRADE_H	content/grade.h	7;"	d
@@ -398,8 +812,11 @@ _EXECUTE_	handler/HandleMessage.h	27;"	d
 _GAME_H_	content/game.h	2;"	d
 _GLOBAL_DATA_H_	Single.h	7;"	d
 _HANDLE_MESSAGE_H	handler/HandleMessage.h	7;"	d
+_LOGGING_H_	includes/glog/logging.h	37;"	d
 _MAKEHOUSE_H_	content/makehouse.h	3;"	d
 _MUTEX_LOCK_H_	Mutex.h	8;"	d
+_MYSQL_CONNECTION_H_	includes/mysql/mysql_connection.h	28;"	d
+_MYSQL_DRIVER_H_	includes/mysql/mysql_driver.h	28;"	d
 _PROCESSMAMAGER_H_	ProcessManager.h	8;"	d
 _PROTOCOL_H	protocol.h	7;"	d
 _QUEUET_H_	QueueT.h	9;"	d
@@ -416,26 +833,31 @@ add_group	content/room.cpp	/^bool CRoom::add_group (int id, CGroup* cg)$/;"	f	cl
 add_item	content/course.cpp	/^void CCourse::add_item (CCourseItem* pItem)$/;"	f	class:CCourse
 add_student	content/room.cpp	/^void CRoom::add_student(int fd, CStudent* pstudent) {$/;"	f	class:CRoom
 add_student_to_group	content/makehouse.cpp	/^bool CGroup::add_student_to_group (int fd, CStudent* stu)$/;"	f	class:CGroup
+allocated_	includes/glog/logging.h	/^  LogMessageData* allocated_;$/;"	m	class:google::LogMessage
+alsologtostderr	includes/glog/logging.h	/^DECLARE_bool(alsologtostderr);$/;"	v
 angle	content/DataTool.h	/^	float angle; \/\/顺时针旋转角度值$/;"	m	struct:Picture
 angle	protocol.h	/^	float angle;$/;"	m	struct:sRainbowValley_HouseItem_Info
 angle	protocol.h	/^    float angle;$/;"	m	struct:Make_House_Update
 autorelease	task.h	/^        bool autorelease;$/;"	m	class:task
+b	includes/lua5.2/lauxlib.h	/^  char *b;  \/* buffer address *\/$/;"	m	struct:luaL_Buffer
+base	includes/glog/logging.h	/^namespace base {$/;"	n	namespace:google
+base_logging	includes/glog/logging.h	/^namespace base_logging {$/;"	n	namespace:google
 birthday	protocol.h	/^    char birthday[20];$/;"	m	struct:sGetStudentDetailInfo
 broadcast	content/makehouse.cpp	/^void CGroup::broadcast(Buf* p)$/;"	f	class:CGroup
 bufpool	Single.h	/^        PoolT<Buf> bufpool;$/;"	m	class:Single
 build_house_end	content/room.cpp	/^void CRoom::build_house_end ()$/;"	f	class:CRoom
 build_house_start	content/room.cpp	/^void CRoom::build_house_start ()$/;"	f	class:CRoom
 cData	protocol.h	/^	void *cData() {             \/\/指向数据的指针$/;"	f	struct:sSubmitData
-cFlags	task.h	/^        int     cFlags;$/;"	m	struct:sDebugProtocol
-cFormat	task.h	/^        string  cFormat;$/;"	m	struct:sDebugProtocol
+cFlags	task.h	/^    int     cFlags;$/;"	m	struct:sDebugProtocol
+cFormat	task.h	/^    string  cFormat;$/;"	m	struct:sDebugProtocol
 cGrade	content/grade.cpp	/^cGrade::cGrade()$/;"	f	class:cGrade
 cGrade	content/grade.h	/^class cGrade$/;"	c
 cLen	protocol.h	/^	unsigned int cLen;          \/\/数据长度$/;"	m	struct:sSubmitData
-cName	task.h	/^        string  cName;$/;"	m	struct:sDebugProtocol
-cStructLen	task.h	/^        int     cStructLen;$/;"	m	struct:sDebugProtocol
-cStructName	task.h	/^        string  cStructName;$/;"	m	struct:sDebugProtocol
+cName	task.h	/^    string  cName;$/;"	m	struct:sDebugProtocol
+cStructLen	task.h	/^    int     cStructLen;$/;"	m	struct:sDebugProtocol
+cStructName	task.h	/^    string  cStructName;$/;"	m	struct:sDebugProtocol
 cType	protocol.h	/^	enum CommandType cType;     \/\/数据编号$/;"	m	struct:sSubmitData	typeref:enum:sSubmitData::CommandType
-cType	task.h	/^        int     cType;$/;"	m	struct:sDebugProtocol
+cType	task.h	/^    int     cType;$/;"	m	struct:sDebugProtocol
 check	content/LoginCheck.cpp	/^void LoginCheck::check(Buf* pbuf) {$/;"	f	class:LoginCheck
 classroom_id	protocol.h	/^    unsigned int classroom_id;$/;"	m	struct:sSelectedClassRoom
 clean_buildhouse_group	content/room.cpp	/^void CRoom::clean_buildhouse_group ()$/;"	f	class:CRoom
@@ -444,12 +866,18 @@ clear_all_course	content/room.cpp	/^void CRoom::clear_all_course ()$/;"	f	class:
 client_type	protocol.h	/^    mClientType client_type;$/;"	m	struct:sSelectedClassRoom
 clientcount	Evloop.cpp	/^AtomicT<int> Evloop::clientcount;$/;"	m	class:Evloop	file:
 clientcount	Evloop.h	/^        static AtomicT<int> clientcount;$/;"	m	class:Evloop
+closef	includes/lua5.2/lauxlib.h	/^  lua_CFunction closef;  \/* to close stream (NULL for closed streams) *\/$/;"	m	struct:luaL_Stream
 closefd	Evloop.cpp	/^void Evloop::closefd (int fd)$/;"	f	class:Evloop
+colorlogtostderr	includes/glog/logging.h	/^DECLARE_bool(colorlogtostderr);$/;"	v
 columnCount	protocol.h	/^	int columnCount;$/;"	m	struct:sJigsawInitData
 columnCount	protocol.h	/^    unsigned int columnCount;$/;"	m	struct:sPuzzleSize
 count	ThreadPool.h	/^        int count;$/;"	m	class:ThreadPool
 count	protocol.h	/^    int count;$/;"	m	struct:sDBCount
 course_item	protocol.h	/^    char course_item[64];$/;"	m	struct:_stCT_GetCourseItemKeyInfoReq
+ctr	includes/glog/logging.h	/^    int ctr() const { return ctr_; }$/;"	f	class:google::LogMessage::LogStream
+ctr_	includes/glog/logging.h	/^    int ctr_;  \/\/ Counter hack (for the LOG_EVERY_X() macro)$/;"	m	class:google::LogMessage::LogStream
+currentline	includes/lua5.2/lua.h	/^  int currentline;	\/* (l) *\/$/;"	m	struct:lua_Debug
+data_	includes/glog/logging.h	/^  LogMessageData* data_;$/;"	m	class:google::LogMessage
 db_database	Config.h	/^        string  db_database;$/;"	m	class:Config
 db_host	Config.h	/^        string  db_host;$/;"	m	class:Config
 db_password	Config.h	/^        string  db_password;$/;"	m	class:Config
@@ -461,6 +889,7 @@ del_client	content/roommanager.cpp	/^void CRoomManager::del_client(int fd) {$/;"
 del_student	content/room.cpp	/^void CRoom::del_student(int fd) {$/;"	f	class:CRoom
 deletePic	protocol.h	/^struct deletePic{$/;"	s
 dequeue	QueueT.h	/^    int dequeue (TYPE& out, unsigned int timeout) {$/;"	f	class:QueueT
+driver	includes/mysql/mysql_connection.h	/^	Driver * driver;$/;"	m	class:sql::mysql::MySQL_Connection
 eCS_LEAVEEARLY	protocol.h	/^    eCS_LEAVEEARLY = 3,$/;"	e	enum:eClientStatus
 eCS_NOLOGIN	protocol.h	/^    eCS_NOLOGIN = 4$/;"	e	enum:eClientStatus
 eCS_OFFLINE	protocol.h	/^    eCS_OFFLINE = 2,$/;"	e	enum:eClientStatus
@@ -475,8 +904,11 @@ end_puzzle_by_fd	content/room.cpp	/^void CRoom::end_puzzle_by_fd (int fd)$/;"	f	
 enqueue	QueueT.h	/^    int enqueue (TYPE t) {$/;"	f	class:QueueT
 ev_in_info	Evloop.h	/^}   ev_in_info;$/;"	t	typeref:struct:ev_io_info
 ev_io_info	Evloop.h	/^typedef struct ev_io_info$/;"	s
+event	includes/lua5.2/lua.h	/^  int event;$/;"	m	struct:lua_Debug
+f	includes/lua5.2/lauxlib.h	/^  FILE *f;  \/* stream (NULL for incompletely created streams) *\/$/;"	m	struct:luaL_Stream
 free	PoolT.h	/^    int free (TYPE* i)$/;"	f	class:PoolT
 free_	ThreadPool.h	/^        AtomicT<int> free_;$/;"	m	class:ThreadPool
+func	includes/lua5.2/lauxlib.h	/^  lua_CFunction func;$/;"	m	struct:luaL_Reg
 game_count	Config.h	/^        int     game_count;$/;"	m	class:Config
 getAccount	content/student.cpp	/^string CStudent::getAccount (void) {$/;"	f	class:CStudent
 getAccount	content/teacher.cpp	/^string CTeacher::getAccount (void)$/;"	f	class:CTeacher
@@ -533,6 +965,7 @@ get_layer_by_node_id	content/makehouse.cpp	/^int  CMakeHouse::get_layer_by_node_
 get_location	content/makehouse.cpp	/^void CNode::get_location (float& x, float& y)$/;"	f	class:CNode
 get_location	content/makehouse.cpp	/^void CNode::get_location (float& x, float& y, float& angle, float& scale)$/;"	f	class:CNode
 get_make_house	content/makehouse.cpp	/^CMakeHouse* CGroup::get_make_house (void)$/;"	f	class:CGroup
+get_mysql_driver_instance	includes/mysql/mysql_driver.h	/^static inline MySQL_Driver * get_mysql_driver_instance() { return get_driver_instance(); }$/;"	f	namespace:sql::mysql
 get_name	content/makehouse.cpp	/^string CNode::get_name (void)$/;"	f	class:CNode
 get_node_id	content/makehouse.cpp	/^int CNode::get_node_id() {$/;"	f	class:CNode
 get_node_id_by_layer	content/makehouse.cpp	/^int  CMakeHouse::get_node_id_by_layer (int layer)$/;"	f	class:CMakeHouse
@@ -557,6 +990,10 @@ get_white_fd	content/room.cpp	/^int CRoom::get_white_fd ()$/;"	f	class:CRoom
 getcount	ThreadPool.cpp	/^int ThreadPool::getcount() {$/;"	f	class:ThreadPool
 getfd	Buf.h	/^    int getfd ()$/;"	f	class:Buf
 getid	Buf.h	/^    int getid ()$/;"	f	class:Buf
+glog_internal_namespace_	includes/glog/logging.h	/^namespace glog_internal_namespace_ {$/;"	n	namespace:google
+google	includes/glog/logging.h	/^namespace google {$/;"	n
+google	includes/glog/raw_logging.h	/^namespace google {$/;"	n
+google	includes/glog/stl_logging.h	/^namespace google {$/;"	n
 handleBuildHouse_Activation	handler/HandleBuildHouse.cpp	/^void CHandleMessage::handleBuildHouse_Activation (Buf* p)$/;"	f	class:CHandleMessage
 handleBuildHouse_Add_Pic	handler/HandleBuildHouse.cpp	/^void CHandleMessage::handleBuildHouse_Add_Pic (Buf* p)$/;"	f	class:CHandleMessage
 handleBuildHouse_Angle	handler/HandleBuildHouse.cpp	/^void CHandleMessage::handleBuildHouse_Angle (Buf* p)$/;"	f	class:CHandleMessage
@@ -653,7 +1090,6 @@ handleSetCourseGroup	handler/HandleClassRoom.cpp	/^void CHandleMessage::handleSe
 handleShowSpriteAnimation	handler/HandleSprite.cpp	/^void CHandleMessage::handleShowSpriteAnimation (Buf* p)$/;"	f	class:CHandleMessage
 handleShowSpriteControl	handler/HandleSprite.cpp	/^void CHandleMessage::handleShowSpriteControl (Buf* p)$/;"	f	class:CHandleMessage
 handleTest	handler/HandleRainbowValley.cpp	/^void CHandleMessage::handleTest (Buf* p)$/;"	f	class:CHandleMessage
-handleTest_LONGLONG	handler/HandleRainbowValley.cpp	/^void CHandleMessage::handleTest_LONGLONG (Buf* p)$/;"	f	class:CHandleMessage
 handlefunc	handler/HandleMessage.h	/^typedef void (*handlefunc)(Buf*);$/;"	t
 iArt	protocol.h	/^    int  iArt;$/;"	m	struct:sGetCourseDB
 iCommunity	protocol.h	/^    int  iCommunity;$/;"	m	struct:sGetCourseDB
@@ -668,19 +1104,31 @@ iStudentCount	protocol.h	/^    int  iStudentCount;$/;"	m	struct:sBuildHouseSetSt
 iStudentId	protocol.h	/^    int  iStudentId;$/;"	m	struct:sStudentDetail
 iStudentId	protocol.h	/^    int iStudentId;$/;"	m	struct:sGetAllStudentInfo
 iValue	protocol.h	/^    unsigned int iValue;$/;"	m	struct:sCommonStruct
+i_ci	includes/lua5.2/lua.h	/^  struct CallInfo *i_ci;  \/* active function *\/$/;"	m	struct:lua_Debug	typeref:struct:lua_Debug::CallInfo
 init	content/roommanager.cpp	/^int CRoomManager::init() {$/;"	f	class:CRoomManager
 initHandlers	handler/HandleMessage.h	/^    static void initHandlers (void)$/;"	f	class:CHandleMessage
 init_buildhouse_group	content/room.cpp	/^void CRoom::init_buildhouse_group (int numsOfStudent)$/;"	f	class:CRoom
+initb	includes/lua5.2/lauxlib.h	/^  char initb[LUAL_BUFFERSIZE];  \/* initial buffer *\/$/;"	m	struct:luaL_Buffer
 instance	Config.cpp	/^Config* Config::instance ()$/;"	f	class:Config
 instance	Single.cpp	/^Single* Single::instance() $/;"	f	class:Single
 instance	database.cpp	/^DataBase* DataBase::instance ()$/;"	f	class:DataBase
+int32	includes/glog/logging.h	/^typedef int32_t int32;$/;"	t	namespace:google
+int64	includes/glog/logging.h	/^typedef int64_t int64;$/;"	t	namespace:google
+intern	includes/mysql/mysql_connection.h	/^	MySQL_ConnectionData * intern; \/* pimpl *\/$/;"	m	class:sql::mysql::MySQL_Connection
+internal	includes/glog/logging.h	/^namespace internal {$/;"	n	namespace:google::base
 io	Evloop.h	/^    struct ev_io* io;$/;"	m	struct:ev_io_info	typeref:struct:ev_io_info::ev_io
 ioarray	Evloop.cpp	/^struct ev_io_info Evloop::ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::	file:
 ioarray	Evloop.h	/^        static struct ev_io_info ioarray[MAXFD];$/;"	m	class:Evloop	typeref:struct:Evloop::ev_io_info
 isBuildHouseFinished	content/student.h	/^    int  isBuildHouseFinished;$/;"	m	class:CStudent
+istailcall	includes/lua5.2/lua.h	/^  char istailcall;	\/* (t) *\/$/;"	m	struct:lua_Debug
+isvararg	includes/lua5.2/lua.h	/^  char isvararg;        \/* (u) *\/$/;"	m	struct:lua_Debug
+kMaxLogMessageLen	includes/glog/logging.h	/^  static const size_t kMaxLogMessageLen;$/;"	m	class:google::LogMessage
+kNoLogPrefix	includes/glog/logging.h	/^    kNoLogPrefix = -1$/;"	e	enum:google::LogMessage::__anon2
 keys	protocol.h	/^    char keys[512];$/;"	m	struct:_stCT_GetCourseItemKeyInfoRsp
 kill	ThreadPool.cpp	/^int ThreadPool::kill() {$/;"	f	class:ThreadPool
+lastlinedefined	includes/lua5.2/lua.h	/^  int lastlinedefined;	\/* (S) *\/$/;"	m	struct:lua_Debug
 lasttime	Evloop.h	/^    ev_tstamp lasttime;$/;"	m	struct:ev_io_info
+lauxlib_h	includes/lua5.2/lauxlib.h	9;"	d
 layer	content/DataTool.h	/^	int layer; \/\/层次与编号统一，不大于99$/;"	m	struct:Picture
 layer	protocol.h	/^	int layer; \/\/层作为图片标识符$/;"	m	struct:movePic
 layer	protocol.h	/^	int layer;$/;"	m	struct:deletePic
@@ -691,16 +1139,109 @@ layer	protocol.h	/^   int layer;$/;"	m	struct:scalePic
 layer	protocol.h	/^int layer;$/;"	m	struct:rotatePic
 layer_down	content/makehouse.cpp	/^int CMakeHouse::layer_down (int node_id, int count)$/;"	f	class:CMakeHouse
 layer_up	content/makehouse.cpp	/^int CMakeHouse::layer_up (int node_id, int count)$/;"	f	class:CMakeHouse
+lconfig_h	includes/lua5.2/luaconf.h	9;"	d
 level	protocol.h	/^    int level;  \/\/ VALUE: 0 (待机), 1, 2, 3, 4 (下一节)$/;"	m	struct:sControlLevel
+linedefined	includes/lua5.2/lua.h	/^  int linedefined;	\/* (S) *\/$/;"	m	struct:lua_Debug
 lock	Mutex.h	/^        void lock ()$/;"	f	class:MutexLock
 lock	ProcessManager.cpp	/^bool ProcessManager::lock (int mode)$/;"	f	class:ProcessManager
 lock	content/makehouse.cpp	/^bool CMakeHouse::lock (int client_fd, int node_id)$/;"	f	class:CMakeHouse
 lock	content/makehouse.cpp	/^bool CNode::lock(int client_fd) {$/;"	f	class:CNode
+log_dir	includes/glog/logging.h	/^DECLARE_string(log_dir);$/;"	v
+log_link	includes/glog/logging.h	/^DECLARE_string(log_link);$/;"	v
+log_prefix	includes/glog/logging.h	/^DECLARE_bool(log_prefix);$/;"	v
+logbuflevel	includes/glog/logging.h	/^DECLARE_int32(logbuflevel);$/;"	v
+logbufsecs	includes/glog/logging.h	/^DECLARE_int32(logbufsecs);$/;"	v
 login_student	content/LoginCheck.cpp	/^int LoginCheck::login_student(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
 login_teacher	content/LoginCheck.cpp	/^int LoginCheck::login_teacher(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
 login_whiteboard	content/LoginCheck.cpp	/^int LoginCheck::login_whiteboard(int fd, struct sLogin login) {$/;"	f	class:LoginCheck
+longlong_data	content/makehouse.h	/^        char longlong_data[35][1024];$/;"	m	class:CMakeHouse
 loop	Evloop.cpp	/^struct ev_loop* Evloop::loop = NULL;$/;"	m	class:Evloop	typeref:struct:Evloop::	file:
 loop	Evloop.h	/^        static struct ev_loop* loop;$/;"	m	class:Evloop	typeref:struct:Evloop::ev_loop
+luaL_Buffer	includes/lua5.2/lauxlib.h	/^typedef struct luaL_Buffer {$/;"	s
+luaL_Buffer	includes/lua5.2/lauxlib.h	/^} luaL_Buffer;$/;"	t	typeref:struct:luaL_Buffer
+luaL_Reg	includes/lua5.2/lauxlib.h	/^typedef struct luaL_Reg {$/;"	s
+luaL_Reg	includes/lua5.2/lauxlib.h	/^} luaL_Reg;$/;"	t	typeref:struct:luaL_Reg
+luaL_Stream	includes/lua5.2/lauxlib.h	/^typedef struct luaL_Stream {$/;"	s
+luaL_Stream	includes/lua5.2/lauxlib.h	/^} luaL_Stream;$/;"	t	typeref:struct:luaL_Stream
+luaL_addchar	includes/lua5.2/lauxlib.h	152;"	d
+luaL_addsize	includes/lua5.2/lauxlib.h	156;"	d
+luaL_argcheck	includes/lua5.2/lauxlib.h	113;"	d
+luaL_checkint	includes/lua5.2/lauxlib.h	117;"	d
+luaL_checklong	includes/lua5.2/lauxlib.h	119;"	d
+luaL_checkstring	includes/lua5.2/lauxlib.h	115;"	d
+luaL_checkversion	includes/lua5.2/lauxlib.h	30;"	d
+luaL_dofile	includes/lua5.2/lauxlib.h	124;"	d
+luaL_dostring	includes/lua5.2/lauxlib.h	127;"	d
+luaL_getmetatable	includes/lua5.2/lauxlib.h	130;"	d
+luaL_loadbuffer	includes/lua5.2/lauxlib.h	134;"	d
+luaL_loadfile	includes/lua5.2/lauxlib.h	78;"	d
+luaL_newlib	includes/lua5.2/lauxlib.h	111;"	d
+luaL_newlibtable	includes/lua5.2/lauxlib.h	108;"	d
+luaL_opt	includes/lua5.2/lauxlib.h	132;"	d
+luaL_optint	includes/lua5.2/lauxlib.h	118;"	d
+luaL_optlong	includes/lua5.2/lauxlib.h	120;"	d
+luaL_optstring	includes/lua5.2/lauxlib.h	116;"	d
+luaL_prepbuffer	includes/lua5.2/lauxlib.h	167;"	d
+luaL_register	includes/lua5.2/lauxlib.h	205;"	d
+luaL_typename	includes/lua5.2/lauxlib.h	122;"	d
+lua_Alloc	includes/lua5.2/lua.h	/^typedef void * (*lua_Alloc) (void *ud, void *ptr, size_t osize, size_t nsize);$/;"	t
+lua_CFunction	includes/lua5.2/lua.h	/^typedef int (*lua_CFunction) (lua_State *L);$/;"	t
+lua_Debug	includes/lua5.2/lua.h	/^struct lua_Debug {$/;"	s
+lua_Debug	includes/lua5.2/lua.h	/^typedef struct lua_Debug lua_Debug;  \/* activation record *\/$/;"	t	typeref:struct:lua_Debug
+lua_Hook	includes/lua5.2/lua.h	/^typedef void (*lua_Hook) (lua_State *L, lua_Debug *ar);$/;"	t
+lua_Integer	includes/lua5.2/lua.h	/^typedef LUA_INTEGER lua_Integer;$/;"	t
+lua_Number	includes/lua5.2/lua.h	/^typedef LUA_NUMBER lua_Number;$/;"	t
+lua_Reader	includes/lua5.2/lua.h	/^typedef const char * (*lua_Reader) (lua_State *L, void *ud, size_t *sz);$/;"	t
+lua_State	includes/lua5.2/lua.h	/^typedef struct lua_State lua_State;$/;"	t	typeref:struct:lua_State
+lua_Unsigned	includes/lua5.2/lua.h	/^typedef LUA_UNSIGNED lua_Unsigned;$/;"	t
+lua_Writer	includes/lua5.2/lua.h	/^typedef int (*lua_Writer) (lua_State *L, const void* p, size_t sz, void* ud);$/;"	t
+lua_assert	includes/lua5.2/lualib.h	51;"	d
+lua_call	includes/lua5.2/lua.h	248;"	d
+lua_cpcall	includes/lua5.2/luaconf.h	267;"	d
+lua_equal	includes/lua5.2/luaconf.h	299;"	d
+lua_h	includes/lua5.2/lua.h	10;"	d
+lua_isboolean	includes/lua5.2/lua.h	330;"	d
+lua_isfunction	includes/lua5.2/lua.h	326;"	d
+lua_islightuserdata	includes/lua5.2/lua.h	328;"	d
+lua_isnil	includes/lua5.2/lua.h	329;"	d
+lua_isnone	includes/lua5.2/lua.h	332;"	d
+lua_isnoneornil	includes/lua5.2/lua.h	333;"	d
+lua_istable	includes/lua5.2/lua.h	327;"	d
+lua_isthread	includes/lua5.2/lua.h	331;"	d
+lua_lessthan	includes/lua5.2/luaconf.h	300;"	d
+lua_newtable	includes/lua5.2/lua.h	320;"	d
+lua_number2str	includes/lua5.2/luaconf.h	406;"	d
+lua_objlen	includes/lua5.2/luaconf.h	297;"	d
+lua_pcall	includes/lua5.2/lua.h	254;"	d
+lua_pop	includes/lua5.2/lua.h	318;"	d
+lua_pushcfunction	includes/lua5.2/lua.h	324;"	d
+lua_pushglobaltable	includes/lua5.2/lua.h	338;"	d
+lua_pushliteral	includes/lua5.2/lua.h	335;"	d
+lua_register	includes/lua5.2/lua.h	322;"	d
+lua_str2number	includes/lua5.2/luaconf.h	418;"	d
+lua_strlen	includes/lua5.2/luaconf.h	295;"	d
+lua_strx2number	includes/lua5.2/luaconf.h	421;"	d
+lua_tointeger	includes/lua5.2/lua.h	315;"	d
+lua_tonumber	includes/lua5.2/lua.h	314;"	d
+lua_tostring	includes/lua5.2/lua.h	341;"	d
+lua_tounsigned	includes/lua5.2/lua.h	316;"	d
+lua_upvalueindex	includes/lua5.2/lua.h	41;"	d
+lua_yield	includes/lua5.2/lua.h	268;"	d
+luai_numadd	includes/lua5.2/luaconf.h	438;"	d
+luai_numdiv	includes/lua5.2/luaconf.h	441;"	d
+luai_numeq	includes/lua5.2/luaconf.h	443;"	d
+luai_numisnan	includes/lua5.2/luaconf.h	446;"	d
+luai_numle	includes/lua5.2/luaconf.h	445;"	d
+luai_numlt	includes/lua5.2/luaconf.h	444;"	d
+luai_nummod	includes/lua5.2/luaconf.h	432;"	d
+luai_nummul	includes/lua5.2/luaconf.h	440;"	d
+luai_numpow	includes/lua5.2/luaconf.h	433;"	d
+luai_numsub	includes/lua5.2/luaconf.h	439;"	d
+luai_numunm	includes/lua5.2/luaconf.h	442;"	d
+luai_writeline	includes/lua5.2/luaconf.h	217;"	d
+luai_writestring	includes/lua5.2/luaconf.h	216;"	d
+luai_writestringerror	includes/lua5.2/luaconf.h	224;"	d
+lualib_h	includes/lua5.2/lualib.h	9;"	d
 mClientType	protocol.h	/^enum mClientType$/;"	g
 mLoginOutResult	protocol.h	/^enum mLoginOutResult$/;"	g
 m_Account	content/teacher.h	/^    string      m_Account;$/;"	m	class:CTeacher
@@ -738,6 +1279,7 @@ m_data	content/DataTool.h	/^	long long m_data;$/;"	m	class:DataTool
 m_database	database.h	/^        string m_database;$/;"	m	class:DataBase
 m_end_time	content/puzzle.h	/^        time_t m_end_time;$/;"	m	class:CPuzzle
 m_fd	Buf.h	/^    int     m_fd;$/;"	m	class:Buf
+m_fps	handler/task/BHSyncTask.h	/^        int m_fps;$/;"	m	class:BHSyncTask
 m_game_list	content/room.h	/^    GAMELIST   m_game_list;$/;"	m	class:CRoom
 m_group_name	content/makehouse.h	/^        string m_group_name;$/;"	m	class:CGroup
 m_host	database.h	/^        string m_host;$/;"	m	class:DataBase
@@ -766,6 +1308,7 @@ m_node_layer_list	content/makehouse.h	/^        NODELIST  m_node_layer_list;$/;"
 m_node_layer_list_lock	content/makehouse.h	/^        MutexLock m_node_layer_list_lock;$/;"	m	class:CMakeHouse
 m_node_lock	content/makehouse.h	/^        MutexLock m_node_lock;$/;"	m	class:CMakeHouse
 m_node_map	content/makehouse.h	/^        NODEMAP   m_node_map;$/;"	m	class:CMakeHouse
+m_oldtime	handler/task/BHSyncTask.h	/^        time_t m_oldtime;$/;"	m	class:BHSyncTask
 m_onLine	content/student.h	/^		m_StuName (s1+s2), m_AccountName (acc), m_onLine (line) {}$/;"	f	class:CStudent
 m_onLine	content/student.h	/^	bool          m_onLine;$/;"	m	class:CStudent
 m_pConn	database.h	/^        Connection* m_pConn;$/;"	m	class:DataBase
@@ -807,8 +1350,11 @@ main	client.c	/^int main(int argc, char* argv[]){$/;"	f
 main	content/main.cpp	/^int main (void)$/;"	f
 main	main.cpp	/^int main (int argc, char* argv[])$/;"	f
 malloc	PoolT.h	/^    TYPE* malloc ()$/;"	f	class:PoolT
+max_log_size	includes/glog/logging.h	/^DECLARE_int32(max_log_size);$/;"	v
 maxsize	Buf.h	/^    size_t maxsize ()$/;"	f	class:Buf
 message	protocol.h	/^    char message[50];$/;"	m	struct:sLoginOutResult
+message_buffer_	includes/glog/logging.h	/^  char message_buffer_[2];$/;"	m	class:google::NullStream
+minloglevel	includes/glog/logging.h	/^DECLARE_int32(minloglevel);$/;"	v
 modifyAngle	content/makehouse.cpp	/^int  CMakeHouse::modifyAngle (int node_id, float angle)$/;"	f	class:CMakeHouse
 modifyAngle	content/makehouse.cpp	/^int  CNode::modifyAngle (float angle)$/;"	f	class:CNode
 modifyMove	content/makehouse.cpp	/^int  CMakeHouse::modifyMove (int node_id, float x, float y)$/;"	f	class:CMakeHouse
@@ -819,15 +1365,26 @@ movePic	protocol.h	/^struct movePic{$/;"	s
 mutex_	Mutex.h	/^        MutexLock& mutex_;$/;"	m	class:Condition
 mutex_	Mutex.h	/^        MutexLock& mutex_;$/;"	m	class:MutexLockGuard
 mutex_	Mutex.h	/^        pthread_mutex_t mutex_;$/;"	m	class:MutexLock
+mysql	includes/mysql/mysql_connection.h	/^namespace mysql$/;"	n	namespace:sql
+mysql	includes/mysql/mysql_driver.h	/^namespace mysql$/;"	n	namespace:sql
+n	includes/lua5.2/lauxlib.h	/^  size_t n;  \/* number of characters in buffer *\/$/;"	m	struct:luaL_Buffer
 name	content/DataTool.h	/^	short name; \/\/图片名称$/;"	m	struct:Picture
+name	includes/lua5.2/lauxlib.h	/^  const char *name;$/;"	m	struct:luaL_Reg
+name	includes/lua5.2/lua.h	/^  const char *name;	\/* (n) *\/$/;"	m	struct:lua_Debug
+name	includes/mysql/mysql_connection.h	/^	sql::SQLString name;$/;"	m	class:sql::mysql::MySQL_Savepoint
+namewhat	includes/lua5.2/lua.h	/^  const char *namewhat;	\/* (n) 'global', 'local', 'field', 'method' *\/$/;"	m	struct:lua_Debug
 node_id	protocol.h	/^    int node_id;$/;"	m	struct:Make_House_Add_Pic
 node_id	protocol.h	/^    int node_id;$/;"	m	struct:Make_House_Change_Layer
 node_id	protocol.h	/^    int node_id;$/;"	m	struct:Make_House_Del_Pic
 node_id	protocol.h	/^    int node_id;$/;"	m	struct:Make_House_Update
 notify	Mutex.h	/^        void notify (){$/;"	f	class:Condition
 notifyall	Mutex.h	/^        void notifyall (){$/;"	f	class:Condition
+nparams	includes/lua5.2/lua.h	/^  unsigned char nparams;\/* (u) number of parameters *\/$/;"	m	struct:lua_Debug
 num	protocol.h	/^	int num;$/;"	m	struct:sRainbowValley_House_Num
+num_messages_	includes/glog/logging.h	/^  static int64 num_messages_[NUM_SEVERITIES];  \/\/ under log_mutex$/;"	m	class:google::LogMessage
+nups	includes/lua5.2/lua.h	/^  unsigned char nups;	\/* (u) number of upvalues *\/$/;"	m	struct:lua_Debug
 operator !=	AtomicT.h	/^        bool operator!= (TYPE a) $/;"	f	class:AtomicT
+operator &	includes/glog/logging.h	/^  void operator&(std::ostream&) { }$/;"	f	class:google::LogMessageVoidify
 operator ++	AtomicT.h	/^        TYPE operator++ (int)   \/\/ parameter must is int type$/;"	f	class:AtomicT
 operator ++	AtomicT.h	/^        TYPE operator++ (void)$/;"	f	class:AtomicT
 operator +=	AtomicT.h	/^        TYPE operator+= (TYPE a)$/;"	f	class:AtomicT
@@ -835,16 +1392,25 @@ operator --	AtomicT.h	/^        TYPE operator-- (int)  \/\/ parameter must is in
 operator --	AtomicT.h	/^        TYPE operator-- (void)$/;"	f	class:AtomicT
 operator -=	AtomicT.h	/^        TYPE operator-= (TYPE a)$/;"	f	class:AtomicT
 operator <	AtomicT.h	/^        bool operator< (TYPE a)$/;"	f	class:AtomicT
+operator <<	includes/glog/logging.h	/^inline NullStream& operator<<(NullStream &str, const T &) { return str; }$/;"	f	namespace:google
+operator <<	includes/glog/logging.h	/^inline std::ostream& operator<<($/;"	f
+operator <<	includes/glog/stl_logging.h	/^inline std::ostream& operator<<(std::ostream& out,$/;"	f
 operator <=	AtomicT.h	/^        bool operator<= (TYPE a)$/;"	f	class:AtomicT
 operator =	AtomicT.h	/^        AtomicT<TYPE>& operator= (TYPE a)$/;"	f	class:AtomicT
 operator =	Buf.h	/^    Buf& operator=  (Buf& b)$/;"	f	class:Buf
 operator ==	AtomicT.h	/^        bool operator== (TYPE a)$/;"	f	class:AtomicT
 operator >	AtomicT.h	/^        bool operator> (TYPE a)$/;"	f	class:AtomicT
 operator >=	AtomicT.h	/^        bool operator>= (TYPE a)$/;"	f	class:AtomicT
+operator bool	includes/glog/logging.h	/^  operator bool() const {$/;"	f	struct:google::CheckOpString
+overflow	includes/glog/logging.h	/^  virtual int_type overflow(int_type ch) {$/;"	f	class:google::base_logging::LogStreamBuf
 p_	Single.cpp	/^Single* Single::p_ = NULL;$/;"	m	class:Single	file:
 p_	Single.h	/^        static class Single* p_;$/;"	m	class:Single	typeref:class:Single::Single
 password	protocol.h	/^    char password[20];$/;"	m	struct:sLogin
+pbase	includes/glog/logging.h	/^    char* pbase() const { return streambuf_.pbase(); }$/;"	f	class:google::LogMessage::LogStream
+pbase	includes/glog/logging.h	/^  char* pbase() const { return std::streambuf::pbase(); }$/;"	f	class:google::base_logging::LogStreamBuf
 pcond_	Mutex.h	/^        pthread_cond_t pcond_;$/;"	m	class:Condition
+pcount	includes/glog/logging.h	/^    size_t pcount() const { return streambuf_.pcount(); }$/;"	f	class:google::LogMessage::LogStream
+pcount	includes/glog/logging.h	/^  size_t pcount() const { return pptr() - pbase(); }$/;"	f	class:google::base_logging::LogStreamBuf
 picName	protocol.h	/^    short picName;$/;"	m	struct:AddPic
 pic_idx	protocol.h	/^    int pic_idx; \/\/ 某张拼图块$/;"	m	struct:sPuzzleUpdatePic
 picturePath	protocol.h	/^	char picturePath[512];$/;"	m	struct:sJigsawInitData
@@ -863,7 +1429,9 @@ postTeacherToWhite	handler/HandleMessage.cpp	/^bool CHandleMessage::postTeacherT
 postWhiteToTeacher	handler/HandleMessage.cpp	/^bool CHandleMessage::postWhiteToTeacher (Buf* p, enum CommandType iCommandType)$/;"	f	class:CHandleMessage
 preStatement	database.cpp	/^PreparedStatement* DataBase::preStatement (string sql)$/;"	f	class:DataBase
 process_logic	ProcessManager.cpp	/^int ProcessManager::process_logic (int argc, char** argv)$/;"	f	class:ProcessManager
-protocols	task.h	/^    static struct sDebugProtocol protocols[] =$/;"	v	typeref:struct:sDebugProtocol
+protocols	task.h	/^static struct sDebugProtocol protocols[] =$/;"	v	typeref:struct:sDebugProtocol
+proxy	includes/mysql/mysql_connection.h	/^	boost::shared_ptr< NativeAPI::NativeConnectionWrapper > proxy;$/;"	m	class:sql::mysql::MySQL_Connection
+proxy	includes/mysql/mysql_driver.h	/^	boost::scoped_ptr< ::sql::mysql::NativeAPI::NativeDriverWrapper > proxy;$/;"	m	class:sql::mysql::MySQL_Driver
 ptr	Buf.h	/^    void* ptr ()$/;"	f	class:Buf
 push_task	ThreadPool.cpp	/^int ThreadPool::push_task(task* p) {$/;"	f	class:ThreadPool
 putLayerPic	protocol.h	/^struct putLayerPic{$/;"	s
@@ -902,7 +1470,7 @@ sCourseName	protocol.h	/^    char sCourseName[20];$/;"	m	struct:sGetCourseDB
 sCourseName	protocol.h	/^    char sCourseName[20];$/;"	m	struct:sGetCourseItem
 sDBCount	protocol.h	/^struct sDBCount$/;"	s
 sDBRecordFinished	protocol.h	/^struct sDBRecordFinished$/;"	s
-sDebugProtocol	task.h	/^    struct sDebugProtocol$/;"	s
+sDebugProtocol	task.h	/^struct sDebugProtocol$/;"	s
 sDesc	protocol.h	/^    char sDesc[512];$/;"	m	struct:sCourseItem
 sFirstName	protocol.h	/^    char sFirstName[20];$/;"	m	struct:sGetStudentDetailInfo
 sGetAllStudentInfo	protocol.h	/^struct sGetAllStudentInfo$/;"	s
@@ -952,6 +1520,8 @@ save_data	content/makehouse.cpp	/^int CGroup::save_data (Buf* p)$/;"	f	class:CGr
 scale	content/DataTool.h	/^	float scale; \/\/缩放比例$/;"	m	struct:Picture
 scalePic	protocol.h	/^struct scalePic{$/;"	s
 school_id	Config.h	/^        int     school_id;$/;"	m	class:Config
+self	includes/glog/logging.h	/^    LogStream* self() const { return self_; }$/;"	f	class:google::LogMessage::LogStream
+self_	includes/glog/logging.h	/^    LogStream *self_;  \/\/ Consistency check hack$/;"	m	class:google::LogMessage::LogStream
 sendToOtherStudent	content/makehouse.cpp	/^void CGroup::sendToOtherStudent (Buf* p, enum CommandType eType)$/;"	f	class:CGroup
 sendToWhite	content/makehouse.cpp	/^void CGroup::sendToWhite (Buf* p, enum CommandType eType, int w_fd)$/;"	f	class:CGroup
 send_n	Sock.c	/^ssize_t send_n(int fd,$/;"	f
@@ -981,6 +1551,7 @@ setStudentStatus	content/student.cpp	/^void CStudent::setStudentStatus (eClientS
 set_angle	content/makehouse.cpp	/^void  CNode::set_angle (float angle)$/;"	f	class:CNode
 set_buf	content/makehouse.cpp	/^int  CGroup::set_buf (Buf* p)$/;"	f	class:CGroup
 set_class_name	content/room.cpp	/^void CRoom::set_class_name(string name) {$/;"	f	class:CRoom
+set_ctr	includes/glog/logging.h	/^    void set_ctr(int ctr) { ctr_ = ctr; }$/;"	f	class:google::LogMessage::LogStream
 set_current_layer	content/makehouse.cpp	/^int CMakeHouse::set_current_layer (unsigned int layer)$/;"	f	class:CMakeHouse
 set_current_scence	content/game.cpp	/^void CGame::set_current_scence(int scence) {$/;"	f	class:CGame
 set_current_ss	content/room.cpp	/^void CRoom::set_current_ss (SceneState ss)$/;"	f	class:CRoom
@@ -1001,11 +1572,16 @@ setnodelay	Evloop.cpp	/^void Evloop::setnodelay  (int fd)$/;"	f	class:Evloop
 setnonblock	Evloop.cpp	/^void Evloop::setnonblock (int fd)$/;"	f	class:Evloop
 setreuseaddr	Evloop.cpp	/^void Evloop::setreuseaddr (int fd)$/;"	f	class:Evloop
 setsize	Buf.h	/^    size_t setsize (size_t in)$/;"	f	class:Buf
+short_src	includes/lua5.2/lua.h	/^  char short_src[LUA_IDSIZE]; \/* (S) *\/$/;"	m	struct:lua_Debug
 sig_term	ProcessManager.cpp	/^void ProcessManager::sig_term (int signo)$/;"	f	class:ProcessManager
 sighandle	ThreadPool.cpp	/^void ThreadPool::sighandle(int signo) {$/;"	f	class:ThreadPool
 size	Buf.h	/^    size_t size ()$/;"	f	class:Buf
 size	PoolT.h	/^    int size ()$/;"	f	class:PoolT
 size	QueueT.h	/^    size_t size () {$/;"	f	class:QueueT
+size	includes/lua5.2/lauxlib.h	/^  size_t size;  \/* buffer size *\/$/;"	m	struct:luaL_Buffer
+source	includes/lua5.2/lua.h	/^  const char *source;	\/* (S) *\/$/;"	m	struct:lua_Debug
+sql	includes/mysql/mysql_connection.h	/^namespace sql$/;"	n
+sql	includes/mysql/mysql_driver.h	/^namespace sql$/;"	n
 stFirstName	protocol.h	/^    char stFirstName[20];$/;"	m	struct:sGetStudentDetailInfo
 stLastName	protocol.h	/^    char stLastName[20];$/;"	m	struct:sGetStudentDetailInfo
 start	ThreadPool.cpp	/^int ThreadPool::start() {$/;"	f	class:ThreadPool
@@ -1014,8 +1590,16 @@ startlisten	Evloop.cpp	/^int Evloop::startlisten ()$/;"	f	class:Evloop
 state_	ThreadPool.h	/^        AtomicT<int> state_;$/;"	m	class:ThreadPool
 status	protocol.h	/^    int status;$/;"	m	struct:sPuzzleIconStatus
 status	protocol.h	/^    unsigned int status;$/;"	m	struct:ST_SendStudentStatusReq
+std	includes/glog/stl_logging.h	/^namespace std { using ::operator<<; }$/;"	n
+stderrthreshold	includes/glog/logging.h	/^DECLARE_int32(stderrthreshold);$/;"	v
 stencilId	protocol.h	/^	int	stencilId;$/;"	m	struct:sJigsawInitData
 stop	ThreadPool.cpp	/^int ThreadPool::stop() {$/;"	f	class:ThreadPool
+stop_logging_if_full_disk	includes/glog/logging.h	/^DECLARE_bool(stop_logging_if_full_disk);$/;"	v
+str	includes/glog/logging.h	/^    char* str() const { return pbase(); }$/;"	f	class:google::LogMessage::LogStream
+str_	includes/glog/logging.h	/^  std::string* str_;$/;"	m	struct:google::CheckOpString
+stream	includes/glog/logging.h	/^  NullStream &stream() { return *this; }$/;"	f	class:google::NullStream
+stream_	includes/glog/logging.h	/^  std::ostringstream *stream_;$/;"	m	class:google::base::CheckOpMessageBuilder
+streambuf_	includes/glog/logging.h	/^    base_logging::LogStreamBuf streambuf_;$/;"	m	class:google::LogMessage::LogStream
 studentId	content/DataTool.h	/^	int studentId; \/\/学生编号，用于身份识别$/;"	m	struct:Picture
 studentId	protocol.h	/^	int studentId;$/;"	m	struct:AddPic
 student_id	protocol.h	/^    int student_id;$/;"	m	struct:sLeaveEarly
@@ -1042,6 +1626,8 @@ type	protocol.h	/^    int type;   \/\/ 客户端的类型(学生,教师或白板
 type	protocol.h	/^    int type; \/\/ 客户端的类型(学生,教师或白板)$/;"	m	struct:sLogout
 type	protocol.h	/^    int type;$/;"	m	struct:sSceneEnd
 type	protocol.h	/^    unsigned int type;$/;"	m	struct:sPuzzleType
+uint32	includes/glog/logging.h	/^typedef uint32_t uint32;$/;"	t	namespace:google
+uint64	includes/glog/logging.h	/^typedef uint64_t uint64;$/;"	t	namespace:google
 unlock	Mutex.h	/^        void unlock ()$/;"	f	class:MutexLock
 unlock	content/makehouse.cpp	/^bool CMakeHouse::unlock (int client_fd, int node_id)$/;"	f	class:CMakeHouse
 unlock	content/makehouse.cpp	/^bool CNode::unlock(int client_fd) {$/;"	f	class:CNode
@@ -1050,12 +1636,15 @@ update	content/makehouse.cpp	/^int CNode::update (int client_fd, float x, float 
 update_all_student_status	content/room.cpp	/^void CRoom::update_all_student_status (int fd, int flag)$/;"	f	class:CRoom
 used	PoolT.h	/^    int used ()$/;"	f	class:PoolT
 username	protocol.h	/^    char username[20];$/;"	m	struct:sLogin
+v	includes/glog/logging.h	/^DECLARE_int32(v);  \/\/ in vlog_is_on.cc$/;"	v
 value	AtomicT.h	/^        TYPE value()$/;"	f	class:AtomicT
 wait	Mutex.h	/^        int wait (){$/;"	f	class:Condition
 wait	Mutex.h	/^        int wait (time_t t){$/;"	f	class:Condition
+what	includes/lua5.2/lua.h	/^  const char *what;	\/* (S) 'Lua', 'C', 'main', 'tail' *\/$/;"	m	struct:lua_Debug
 work	Evloop.cpp	/^int Evloop::work ()$/;"	f	class:Evloop
 work	RecvTask.cpp	/^int RecvTask::work ()$/;"	f	class:RecvTask
 work	SendTask.cpp	/^int SendTask::work ()$/;"	f	class:SendTask
+work	handler/task/BHSyncTask.cpp	/^int BHSyncTask::work ()$/;"	f	class:BHSyncTask
 x	content/DataTool.h	/^	float x; \/\/X坐标$/;"	m	struct:Picture
 x	protocol.h	/^	float  x;$/;"	m	struct:sRainbowValley_HouseItem_Info
 x	protocol.h	/^	float x;$/;"	m	struct:AddPic
@@ -1069,6 +1658,7 @@ y	protocol.h	/^    float y;$/;"	m	struct:Make_House_Update
 zoom	protocol.h	/^	float zoom;$/;"	m	struct:sRainbowValley_HouseItem_Info
 zoom	protocol.h	/^    float zoom;$/;"	m	struct:Make_House_Update
 ~AtomicT	AtomicT.h	/^        ~AtomicT()$/;"	f	class:AtomicT
+~BHSyncTask	handler/task/BHSyncTask.cpp	/^BHSyncTask::~BHSyncTask ()$/;"	f	class:BHSyncTask
 ~Buf	Buf.h	/^    ~Buf ()$/;"	f	class:Buf
 ~CCourse	content/course.cpp	/^CCourse :: ~CCourse ()$/;"	f	class:CCourse
 ~CGame	content/game.cpp	/^CGame::~CGame() {$/;"	f	class:CGame
@@ -1086,6 +1676,8 @@ zoom	protocol.h	/^    float zoom;$/;"	m	struct:Make_House_Update
 ~LoginCheck	content/LoginCheck.cpp	/^LoginCheck::~LoginCheck() {$/;"	f	class:LoginCheck
 ~MutexLock	Mutex.h	/^        ~MutexLock ()$/;"	f	class:MutexLock
 ~MutexLockGuard	Mutex.h	/^        ~MutexLockGuard () { $/;"	f	class:MutexLockGuard
+~MySQL_Savepoint	includes/mysql/mysql_connection.h	/^	virtual ~MySQL_Savepoint() {}$/;"	f	class:sql::mysql::MySQL_Savepoint
+~NullStreamFatal	includes/glog/logging.h	/^  __attribute__ ((noreturn)) ~NullStreamFatal() { _exit(1); }$/;"	f	class:google::NullStreamFatal
 ~PoolT	PoolT.h	/^    ~PoolT ()$/;"	f	class:PoolT
 ~ProcessManager	ProcessManager.cpp	/^ProcessManager::~ProcessManager()$/;"	f	class:ProcessManager
 ~QueueT	QueueT.h	/^    ~QueueT () {$/;"	f	class:QueueT
