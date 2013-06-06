@@ -26,7 +26,7 @@ int AuthTask::work ()
                 exit (1);
             }
         }
-        sleep (3);
+        sleep (SLEEP_TIME);
     }
 
     return (0);

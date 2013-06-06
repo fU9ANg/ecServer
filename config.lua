@@ -4,13 +4,13 @@
 --]]
 
 -- Database host and port
-db_host="tcp://192.168.0.254:3306";
+db_host="tcp://127.0.0.1:3306";
 
 -- Username for connection to DB
 db_username="root";
 
 -- Password for connection to DB
-db_password="root";
+db_password="123123";
 
 -- Which name of Database
 db_database="teaching_db";
@@ -19,13 +19,16 @@ db_database="teaching_db";
 server_port=9999;
 
 -- ecServer IP
-server_ip="192.168.111.128";
+--server_ip="192.168.0.254";
+server_ip="172.16.10.78";
 
 -- username
-username="QSV1234";
+--username="QSV1234";
+username="username123456"
 
 -- password
-password="RSZ4321";
+--password="RSZ4321";
+password="password123456"
 
 -- The school id (no used)
 school_id=8888;

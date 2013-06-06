@@ -10,11 +10,12 @@
  */
 
 #ifndef  CONFIRM_SERVER_IP
-		#define  CONFIRM_SERVER_IP  ("222.186.50.76")
+    //#define  CONFIRM_SERVER_IP "192.168.0.254"
+    #define  CONFIRM_SERVER_IP "172.16.10.78"
 #endif
 
 #ifndef  CONFIRM_SERVER_PORT
-#define  CONFIRM_SERVER_PORT  (4231)
+#define  CONFIRM_SERVER_PORT  4231
 #endif
 
 #ifndef  CONFIRM_USERNAME_LEN
@@ -42,14 +43,23 @@ public :
 	Confirm() : confirm_flag()
 	{
 		cfd = socket(AF_INET, SOCK_STREAM, 0);
-		assert(-1 != cfd);
+        if (cfd < 0)
+        {
+            printf ("[AUTH]: error socket\n");
+            exit (-1);
+        }
+		//assert(-1 != cfd);
 
 		struct sockaddr_in ci = {0};
 		ci.sin_family = AF_INET;
 		ci.sin_port = htons(CONFIRM_SERVER_PORT);
 		ci.sin_addr.s_addr = inet_addr(CONFIRM_SERVER_IP);
-		assert(-1 != connect(cfd, (struct sockaddr*)&ci, sizeof ci));
-
+		//assert(-1 != connect(cfd, (struct sockaddr*)&ci, sizeof ci));
+        if (connect (cfd, (struct sockaddr*)&ci, sizeof (ci)) == -1)
+        {
+            printf ("[AUTH]: error connect\n");
+            exit (-1);
+        }
 		memcpy(buf, CONFIG->username.c_str(), CONFIRM_USERNAME_LEN);
 		memcpy(buf+CONFIRM_USERNAME_LEN, CONFIG->passwd.c_str(), CONFIRM_PASSWD_LEN);
 
@@ -70,22 +80,13 @@ public :
 			written_bytes = send (cfd, ptr, bytes_left, 0);
 			if (written_bytes <= 0)
 			{
-				if (errno == EINTR)
+				if ((errno == EINTR) || (errno == EAGAIN))
 				{
 					if (written_bytes < 0)
 					{
 						written_bytes = 0;
+                        usleep (50);
 						cout << "EINTR......" << endl;
-						continue;
-					}
-				}
-				else if (errno == EAGAIN)
-				{
-					if (written_bytes < 0)
-					{
-						written_bytes = 0;
-						usleep (50);
-						cout << "EAGAIN......" << endl;
 						continue;
 					}
 				}
@@ -101,13 +102,24 @@ public :
 
 	void recv_data()
 	{
+        time_t old_time = time (NULL);
 		for (;;)
 		{
 			int nrecv = recv(cfd, &confirm_flag, sizeof(confirm_flag), 0);
+
 			assert(-1 != nrecv);
+            // map port to local port (xxx.xxx.xxx.xxx:9090 -> 192.168.111.128:8080)
+            if (nrecv == 0)
+            {
+                if (time(NULL) - old_time >= 15) {
+                    printf ("out\n");
+                    exit (-1);
+                }
+            }
+
 			if (0 != nrecv)
 			{
-#ifdef  ___DEBUG
+#ifdef  DEBUG
 				cout << "confirm.hpp : confirm_flag = " << confirm_flag << endl;
 #endif
 				break;

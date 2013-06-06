@@ -64,6 +64,8 @@ int ProcessManager::process_logic (int argc, char** argv)
                     cout << "authorize failed" << endl;
             }
 
+            cout << "-------------------------" << endl;
+
             if (!DATABASE->Init(CONFIG->db_host, \
                                 CONFIG->db_username, \
                                 CONFIG->db_password, \
