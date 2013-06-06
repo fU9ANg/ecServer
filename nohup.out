@@ -1,0 +1,22 @@
+192.168.0.254:43063 - - [27/May/2013 10:30:11] "HTTP/1.1 GET /static/" - 200 
+192.168.0.254:43064 - - [27/May/2013 10:30:23] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:43064 - - [27/May/2013 10:30:30] "HTTP/1.1 GET /upload" - 200 OK
+192.168.0.254:43078 - - [27/May/2013 10:31:55] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:43247 - - [27/May/2013 10:41:36] "HTTP/1.1 GET /upload" - 200 OK
+192.168.0.254:43743 - - [27/May/2013 11:37:59] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:43743 - - [27/May/2013 11:37:59] "HTTP/1.1 GET /favicon.ico" - 404 Not Found
+192.168.0.145:55576 - - [27/May/2013 11:42:09] "HTTP/1.1 GET /static/pingtu.png" - 200 
+192.168.0.254:43748 - - [27/May/2013 11:54:39] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:43800 - - [27/May/2013 15:40:25] "HTTP/1.1 GET /upload" - 200 OK
+192.168.0.254:47574 - - [29/May/2013 10:22:34] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:47581 - - [29/May/2013 10:26:12] "HTTP/1.1 GET /static/" - 304 Not Modified
+192.168.0.254:47581 - - [29/May/2013 10:26:12] "HTTP/1.1 GET /favicon.ico" - 404 Not Found
+192.168.0.85:2486 - - [29/May/2013 10:31:57] "HTTP/1.1 GET /static/gaizhang.png" - 200 
+192.168.0.85:2591 - - [29/May/2013 10:33:41] "HTTP/1.1 GET /static/gaizhang.png" - 200 
+192.168.0.145:59165 - - [29/May/2013 10:37:22] "HTTP/1.1 GET /static/pingtu.png" - 304 Not Modified
+192.168.0.193:42268 - - [29/May/2013 10:41:08] "HTTP/1.1 GET /static/pingtu" - 404 File not found
+192.168.0.193:42269 - - [29/May/2013 10:41:20] "HTTP/1.1 GET /static/pingtu.png" - 200 
+192.168.0.85:3234 - - [29/May/2013 10:44:12] "HTTP/1.1 GET /static/gaizhang.png" - 200 
+192.168.0.85:3322 - - [29/May/2013 10:45:36] "HTTP/1.1 GET /static/gaizhang.png" - 200 
+192.168.0.85:3386 - - [29/May/2013 10:46:37] "HTTP/1.1 GET /static/gaizhang.png" - 200 
+192.168.0.193:42270 - - [29/May/2013 11:00:42] "HTTP/1.1 GET /static/pingtu.png" - 304 Not Modified

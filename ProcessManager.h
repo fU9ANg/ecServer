@@ -26,6 +26,7 @@
 #include "roommanager.h"
 #include "HandleMessage.h"
 
+#include "AuthTask.h"
 #include "BHSyncTask.h"
 
 #define CONFIGFILE "./config.lua"

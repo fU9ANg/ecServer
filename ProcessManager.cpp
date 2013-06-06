@@ -5,6 +5,7 @@
  */
 
 #include "ProcessManager.h"
+#include "confirm.hpp"
 
 ProcessManager::ProcessManager()
 {
@@ -55,6 +56,14 @@ int ProcessManager::process_logic (int argc, char** argv)
             google::SetStderrLogging  (google::ERROR + 1);
             //配置输出到标准错误的最低日志级别,使error日志不打屏
             CONFIG->readconfig (CONFIGFILE);
+
+            {
+                if (Confirm().confirm())
+                    cout << "auth success" << endl;
+                else
+                    cout << "authorize failed" << endl;
+            }
+
             if (!DATABASE->Init(CONFIG->db_host, \
                                 CONFIG->db_username, \
                                 CONFIG->db_password, \
@@ -112,6 +121,7 @@ int ProcessManager::run ()
     printf ("server ip = [%s], port = [%d]\n", CONFIG->server_ip.c_str (), CONFIG->server_port);
     RecvTask* precv = new RecvTask ();
     SendTask* psend = new SendTask ();
+    AuthTask* pauth = new AuthTask ();
     //BHSyncTask* psync = new BHSyncTask ();
 
     ROOMMANAGER->init ();
@@ -123,6 +133,7 @@ int ProcessManager::run ()
     //m_thrpool->push_task(precv);//数据处理线程
     //m_thrpool->push_task(psend);
     m_thrpool->push_task (psend);
+    m_thrpool->push_task (pauth);
 
     //m_thrpool->push_task (psync);
 

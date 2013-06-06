@@ -61,6 +61,14 @@ void Config::readconfig (string file)
   lua_getglobal (lua,"server_ip");
   server_ip = lua_tostring (lua, -1);
 
+  //username
+  lua_getglobal (lua, "username");
+  username = lua_tostring(lua, -1);
+
+  //passwd
+  lua_getglobal (lua, "password");
+  passwd = lua_tostring(lua, -1);
+
   //端口
   lua_getglobal (lua,"server_port");
   server_port = lua_tointeger (lua, -1);

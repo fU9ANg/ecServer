@@ -312,7 +312,7 @@ void CHandleMessage::handlePuzzle_UpdatePic(Buf* p) {
         return;
     }
 
-#if 0
+#if 1
     updatepic->student_id = p_student->getId();
 #else
     updatepic->student_id = 1;

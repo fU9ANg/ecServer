@@ -33,6 +33,7 @@ OBJS    = 	main.o \
 		    Single.o \
 		    ThreadPool.o \
 		    RecvTask.o \
+			AuthTask.o \
 		    handler/HandleCartoon.o \
 		    handler/HandleExercise.o \
 		    handler/HandleClassRoom.o \
