@@ -40,7 +40,8 @@ SET (SRC_LIST
     ./Sock.c
     ./Single.cpp
     ./ThreadPool.cpp
-    ./RecvTask.cpp 
+    ./RecvTask.cpp
+    ./AuthTask.cpp 
     ./handler/HandleCartoon.cpp
     ./handler/HandleExercise.cpp
     ./handler/HandleClassRoom.cpp
