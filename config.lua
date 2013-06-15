@@ -20,15 +20,15 @@ server_port=9999;
 
 -- ecServer IP
 --server_ip="192.168.0.254";
-server_ip="172.16.10.78";
+server_ip="172.16.10.103";
 
 -- username
---username="QSV1234";
-username="username123456"
+username="QSV1234";
+--username="username123456"
 
 -- password
---password="RSZ4321";
-password="password123456"
+password="RSZ4321";
+--password="password123456"
 
 -- The school id (no used)
 school_id=8888;

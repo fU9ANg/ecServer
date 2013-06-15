@@ -11,7 +11,7 @@
 
 #ifndef  CONFIRM_SERVER_IP
     //#define  CONFIRM_SERVER_IP "192.168.0.254"
-    #define  CONFIRM_SERVER_IP "172.16.10.78"
+    #define  CONFIRM_SERVER_IP "xxx.xxx.50.76"
 #endif
 
 #ifndef  CONFIRM_SERVER_PORT
@@ -46,6 +46,7 @@ public :
         if (cfd < 0)
         {
             printf ("[AUTH]: error socket\n");
+            CloseFD ();
             exit (-1);
         }
 		//assert(-1 != cfd);
@@ -58,6 +59,7 @@ public :
         if (connect (cfd, (struct sockaddr*)&ci, sizeof (ci)) == -1)
         {
             printf ("[AUTH]: error connect\n");
+            CloseFD ();
             exit (-1);
         }
 		memcpy(buf, CONFIG->username.c_str(), CONFIRM_USERNAME_LEN);
@@ -65,9 +67,15 @@ public :
 
 	}
 
+    void CloseFD (void)
+    {
+        if (cfd)
+            close (cfd);
+    }
+
 	~Confirm()
 	{
-		close(cfd);
+        CloseFD ();
 	}
 
 	void send_data()
