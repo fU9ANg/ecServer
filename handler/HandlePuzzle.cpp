@@ -294,8 +294,10 @@ void CHandleMessage::handlePuzzle_GetPic(Buf* p)
 }
 
 void CHandleMessage::handlePuzzle_UpdatePic(Buf* p) {
+    int type;
+
     MSG_HEAD* pp = (MSG_HEAD*)p->ptr();
-    pp->cType = ST_Puzzle_UpdatePic;
+    //pp->cType = ST_Puzzle_UpdatePic;
     struct sPuzzleUpdatePic *updatepic = (struct sPuzzleUpdatePic*)pp->cData();
     CRoom* p_room = ROOMMANAGER->get_room_by_fd(p->getfd());
     if (NULL == p_room ) {
@@ -317,6 +319,9 @@ void CHandleMessage::handlePuzzle_UpdatePic(Buf* p) {
 #else
     updatepic->student_id = 1;
 #endif
+
+    type = ST_Puzzle_UpdatePic + updatepic->student_id;
+    (void) memcpy (&pp->cType, &type, sizeof (unsigned int));
 
     p->setfd(p_room->get_white_fd());
     p->setsize(sizeof(MSG_HEAD) + sizeof(struct sPuzzleUpdatePic));
