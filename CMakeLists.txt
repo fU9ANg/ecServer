@@ -36,6 +36,7 @@ SET (SRC_LIST
     ./Config.cpp
     ./SendTask.cpp
     ./database.cpp
+    ./memcached.cpp
     ./Evloop.cpp
     ./Sock.c
     ./Single.cpp
@@ -68,7 +69,7 @@ SET (SRC_LIST
 
 # libraries for linker
 SET (EXTRA_LIBS 
-    -lpthread -lrt -lev -lglog -lmysqlcppconn -llua5.2
+    -lpthread -lrt -lev -lglog -lmysqlcppconn -llua5.2 -lmemcached
 )
 
 # how to compiling programs

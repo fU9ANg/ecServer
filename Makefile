@@ -28,6 +28,7 @@ OBJS    = 	main.o \
     		Config.o \
     		SendTask.o \
 		    database.o \
+			memcached.o \
 		    Evloop.o \
 		    Sock.o \
 		    Single.o \
@@ -64,8 +65,8 @@ BIN	    = server
 INC	    = -I. -I./includes -I./handler -I./content -I./handler/task
 
 # for Linker
-#LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so
-LINK        = -lev -lglog -lmysqlcppconn -llua5.2
+#LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so libs/libmemcached.so
+LINK        = -lev -lglog -lmysqlcppconn -llua5.2 -lmemcached
 # rock..
 all: clean $(BIN)
 
