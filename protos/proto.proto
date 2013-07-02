@@ -1,0 +1,305 @@
+
+message PKT_CommonStruct
+{
+    required uint32 iValue = 1;
+}
+
+message PKT_DBRecordFinished
+{
+    required uint32 iFlagFinished = 1;
+}
+
+message PKT_SceneEnd
+{
+    required int32 type = 1;
+}
+
+message PKT_DBCount
+{
+    required int32 count = 1;
+}
+
+message PKT_Login
+{
+    required int32  type = 1;   // 客户端的类型(学生,教师或白板)
+    required string username = 2;
+    required string password = 3;
+}
+
+message PKT_LoginOutResult
+{
+    required int32  succeed = 1;
+    required string message = 2;
+}
+
+message PKT_Logout
+{
+    required int32  type = 1; // 客户端的类型(学生,教师或白板)
+}
+
+message PKT_CourseGroup
+{
+    required string sGradeName = 1;    // 服务器没有处理这个字段
+    required string sCourseGroupName = 2;
+}
+
+message PKT_GetCourseGroup
+{
+    required string sCourseList = 1;   // 动画片,暖身操,xxxx,
+}
+
+message PKT_GetCourseDB
+{
+    required string sGradeName = 1;
+    required string sGroupName = 2;
+    required string sCourseName = 3;
+    required int32  iLanguage = 4;
+    required int32  iArt = 5;
+    required int32  iCommunity = 6;
+    required int32  iHealth = 7;
+    required int32  iScience = 8;
+}
+
+message PKT_GetGradeDB
+{
+    required string sGradeName = 1;
+}
+
+message PKT_GetClassDB
+{
+    required string sClassName = 1;
+}
+
+message PKT_GetClassRoomDB
+{
+    required string sClassRoomName = 1;
+}
+
+message PKT_SelectedClassRoom
+{
+    required uint32 classroom_id = 1;
+    //mClientType client_type;
+}
+
+message PKT_GetCourseItem
+{
+    required string sCourseName = 1;
+}
+
+message PKT_SendStudentStatusReq
+{
+    required uint32 student_id = 1;
+    required uint32 status = 2;
+}
+
+message PKT_CourseItem
+{
+    required string sCourseName = 1;
+    required string sItemName = 2;
+    required string sDesc = 3;
+    required int32  iId = 4;
+}
+
+message PKT_LoginOutClassRoom
+{
+    required int32  type = 1;
+    required string sTeacherName = 2;
+    required string sClassName = 3;
+    required string sClassRoomName = 4;
+}
+
+message PKT_StudentDetail
+{
+    required int32  iStudentId = 1;
+    required string sStudentName = 2;
+}
+
+message PKT_GetStudentDetailInfo
+{
+    required string sNumber = 1;
+    required string sFirstName = 2;
+    required string sLastName = 3;
+    required string sSex = 4;
+    required string sSchoolName = 5;
+    required string sGradeName = 6;
+    required string sClassName = 7;
+    required string sAccount = 8;
+    required string birthday = 9;
+    required string stFirstName = 10;
+    required string stLastName = 11;
+    required int32  iPicture_id = 12;
+}
+
+message PKT_GetAllStudentInfo
+{
+    required int32  iStudentId = 1;
+    required string sPicName = 2;
+    required string sStudentName = 3;
+}
+
+message PKT_LeaveEarly // LeaveEarly / ConfirmLeaveEarly
+{
+    //required string sStudentName;
+    //required string sTeacharName;
+    //required string sClassroomName;
+    //required string sClassName;
+    required int32 student_id = 1;
+}
+
+message PKT_PuzzleType
+{
+    required uint32 type = 1;
+}
+
+message PKT_PuzzleSize
+{
+    required uint32 rowCount = 1;
+    required uint32 columnCount = 2;
+}
+
+message PKT_GetTeacherInfo
+{
+    required string sTeacherName = 1;
+    required string sPicName = 2;
+}
+
+message PKT_ControlLevel
+{
+    required int32 level = 1;  // VALUE: 0 (待机), 1, 2, 3, 4 (下一节)
+}
+
+message PKT_BuildHouseCaiHongXiaoWu
+{
+    required string sText = 1;
+}
+
+message PKT_BuildHouseSetStuGroup
+{
+    required int32  iGroupIndex = 1;
+    required int32  iStudentCount = 2;
+}
+message PKT_BuildHouseStudentList
+{
+    required string sStudentName = 1;
+}
+
+message PKT_PuzzleIconStatus
+{
+    required int32 status = 1;
+}
+
+//学生拼图正确时发送发送学生是那个拼图块拼正确了
+message PKT_PuzzleUpdatePic
+{
+    required int32  student_id = 1;
+    required int32  pic_idx = 2; // 某张拼图块
+}
+
+//拼图开始数据
+message PKT_JigsawInitData
+{
+	required string picturePath = 1;
+	required int32	stencilId = 2;
+	required int32	rowCount = 3;
+	required int32  columnCount = 4;
+
+}
+
+///////////////////
+
+message PKT_GetCourseItemKeyInfoReq
+{
+    //required uint32 course_item_id;
+    required string course_item = 1;
+}
+
+message PKT_GetCourseItemKeyInfoRsp
+{
+    required string keys = 1;
+}
+
+message PKT_MH_Update
+{
+    required int32 node_id = 1;
+    required float x = 2;
+    required float y = 3;
+    required float zoom = 4;
+    required float angle = 5;
+}
+
+message PKT_MH_Change_Layer
+{
+    required int32 node_id = 1;
+    required int32 layer = 2;
+}
+
+message PKT_MH_Add_Pic
+{
+    required int32 node_id = 1;
+    required float x = 2;
+    required float y = 3;
+    required string picture_name = 4;
+}
+
+message PKT_MH_Del_Pic
+{
+    required int32  node_id = 1;
+    required string picture_name = 2;
+}
+
+message PKT_RainbowValley_House_Num
+{
+	required int32 num = 1;
+}
+
+message PKT_RainbowValley_HouseItem_Info
+{
+	required int32  layer = 1;
+	required float  x = 2;
+	required float  y = 3;
+	required float  zoom = 4;
+	required float  angle = 5;
+	required string picture_name = 6;
+}
+
+
+// make house
+
+message PKT_AddPic
+{
+	required int32 studentId = 1;
+	required float x = 2;
+	required float y = 3;
+	//required string picName;
+    required int32 picName = 4;
+}//添加
+
+message PKT_movePic
+{
+	required int32 layer = 1; //层作为图片标识符
+	required float toX = 2;
+	required float toY = 3;
+}//移动
+
+message PKT_calePic
+{
+    required int32 layer = 1;
+	required float toScale = 2;
+}//缩放
+
+message PKT_rotatePic
+{
+    required int32 layer = 1;
+    required float toAngle = 2;
+}//旋转
+
+message PKT_putLayerPic
+{
+	required int32 layer = 1;
+	required int32 toLayer = 2;
+}//调整层次
+
+message PKT_deletePic
+{
+	required int32 layer = 1;
+}//删除素材

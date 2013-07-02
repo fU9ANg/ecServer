@@ -1,6 +1,7 @@
 
 #include "RecvTask.h"
 #include "LoginCheck.h"
+#include "protos/proto.pb.h"
 
 RecvTask::RecvTask ()
 {
@@ -19,7 +20,14 @@ int RecvTask::work ()
         {
             continue;
         }
+#if 0
+        string temp_str((char*)p->ptr());
 
+        PKT_DBRecordFinished db_recordfinished;
+        db_recordfinished.ParseFromString (temp_str);
+
+        cout << db_recordfinished.iflagfinished() << endl;
+#endif
         if (p == NULL)
         {
             cout << "ERROR: p==NULL in RecvTask::work()" << endl;

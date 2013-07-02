@@ -9,6 +9,7 @@
 #include "roommanager.h"
 #include "teacher.h"
 #include "Single.h"
+#include "protos/proto.pb.h"
 
 /////////////////////
 HANDLEMAP CHandleMessage::m_HandleMap;
@@ -571,6 +572,22 @@ bool CHandleMessage::postDBRecord (Buf* buf, int iCase)
             //cout << "send finished flags -----------" << endl;
             Buf* p = SINGLE->bufpool.malloc ();
             MSG_HEAD* phead = (MSG_HEAD*)p->ptr();
+#if 0
+            PKT_DBRecordFinished db_record_finished;
+            db_record_finished.set_iflagfinished (1);
+
+            string str_dbrecordfinished;
+            db_record_finished.SerializeToString (&str_dbrecordfinished);
+
+            // TODO: push string to send queue.........
+            // Buf* p = NULL;
+            // p = SINGLE->bufpool.malloc ();
+            // memcpy (p->ptr(), str_dbrecordfinished.c_str(), str_dbrecordfinished.size());
+            // p->setsize (...);
+            // p->setfd (...);
+            // SINGLE->sendqueue->enqueue (p);
+
+#endif
             struct sDBRecordFinished finished;
             memset (&finished, 0x00, sizeof (sDBRecordFinished));
             if (iCase == 5)
