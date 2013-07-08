@@ -35,6 +35,7 @@ OBJS    = 	main.o \
     		SendTask.o \
 		    database.o \
 			memcached.o \
+			mongodb.o \
 		    Evloop.o \
 		    Sock.o \
 		    Single.o \
@@ -71,9 +72,13 @@ BIN	    = server
 # where are include files kept
 INC	    = -I. -I./includes -I./handler -I./content -I./handler/task -I./message
 
+# where are static library
+LIBA	= /usr/lib64/libmongoclient.a
+
 # for Linker
 #LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so libs/libmemcached.so
-LINK        = -lev -lglog -lmysqlcppconn -llua5.2 -lmemcached -lprotobuf
+LINK        = -lev -lglog -lmysqlcppconn -llua5.2 -lmemcached -lprotobuf -lpthread \
+              -lboost_system -lboost_thread -lboost_program_options -lboost_filesystem -lrt
 # rock..
 all: clean precompile_protobuf $(BIN)
 
@@ -84,7 +89,7 @@ precompile_protobuf:
 # how to compiling programs
 $(BIN):$(OBJS)
 #	$(CPP) $(CFLAGS) $(CDEBUG) -o $@ $(OBJS)
-	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) -o $@ $(OBJS) $(LINK)
+	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) -o $@ $(OBJS) $(LIBA) $(LINK)
 %.o:%.cpp
 	$(CPP) $(CFLAGS) $(CDEBUG) $(BHFLAGS) $(CMACRO) $(INC) -o $@ -c $<
 %.o:%.cc
