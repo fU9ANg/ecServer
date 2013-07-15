@@ -75,7 +75,7 @@ void CHandleMessage::handleRainbowValley_HouseInfo (Buf* p)
     //int type;
     //MSG_HEAD* head = NULL;
     Buf* pp = NULL;
-    for (i = 1; i < 35; i++)
+    for (i = 1; i < 36; i++)
     {
         if ((pp = SINGLE->bufpool.malloc ()) != NULL)
         {
