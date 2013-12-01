@@ -99,8 +99,10 @@ int recv_v(int fd,
     }
 
     int recved = 0;
+    int len = 0;
+#if 0
     while(0 != left) {
-            int len = recv(fd, (char*)buf + recved, left, 0);
+            len = recv(fd, (char*)buf + recved, left, 0);
             if (EAGAIN == errno) {
                 usleep (100);
                 continue;
@@ -118,5 +120,28 @@ int recv_v(int fd,
             left -= len;
             recved += len;
     }
+#else
+    while(left > 0) {
+            len = recv(fd, (char*)buf + recved, left, 0);
+
+            if (len <= 0)
+            {
+                if (errno == EAGAIN)
+                {
+                    if (len < 0) len = 0;
+                    continue;
+                }
+                else if (errno == EINTR)
+                {
+                    if (len < 0) len = 0;
+                    continue;
+                }
+                else
+                    break;
+            }
+            left -= len;
+            recved += len;
+    }
+#endif
     return recved;
 }

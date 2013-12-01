@@ -73,7 +73,8 @@ BIN	    = server
 INC	    = -I. -I./includes -I./handler -I./content -I./handler/task -I./message
 
 # where are static library
-LIBA	= /usr/lib64/libmongoclient.a
+#LIBA	= /usr/lib64/libmongoclient.a
+LIBA	= /usr/local/lib/libmongoclient.a
 
 # for Linker
 #LINK        = libs/libev.a libs/libglog.a libs/liblua52.so libs/libmysqlcppconn.so libs/libmemcached.so
