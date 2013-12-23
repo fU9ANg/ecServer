@@ -1,0 +1,2 @@
+
+#define VIRTUAL "virtual file"

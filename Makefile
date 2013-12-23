@@ -35,13 +35,14 @@ OBJS    = 	main.o \
     		SendTask.o \
 		    database.o \
 			memcached.o \
-			mongodb.o \
+            mongodb.o \
 		    Evloop.o \
 		    Sock.o \
 		    Single.o \
 		    ThreadPool.o \
 		    RecvTask.o \
 			AuthTask.o \
+            virtual.o \
 		    handler/HandleCartoon.o \
 		    handler/HandleExercise.o \
 		    handler/HandleClassRoom.o \
@@ -101,3 +102,11 @@ $(BIN):$(OBJS)
 
 clean:
 	-rm -rf $(OBJS) $(BIN) *~ logs .lock message/*
+
+
+
+
+
+
+
+
